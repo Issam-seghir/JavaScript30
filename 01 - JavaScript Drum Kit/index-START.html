@@ -1,67 +1,143 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
   <meta charset="UTF-8">
   <title>JS Drum Kit</title>
   <link rel="stylesheet" href="style.css">
   <link rel="icon" href="https://fav.farm/🔥" />
 </head>
+<style>
+
+  html {
+  background: url('./green-forest.jpg') bottom center;
+  background-size: cover;
+}
+
+body,
+html {
+  font-family: cursive;
+}
+
+.key {
+  border: .4rem solid rgba(0, 3, 0, 0.5);
+  border-radius: .9rem;
+  color: #a7bba3;
+  background: rgba(0, 0, 0, 0.4);
+  text-shadow: 0 0 .5rem black;
+}
+
+.playing {
+  border-color: #90a18c;
+  box-shadow: 0 0 1rem #b7c9b3;
+}
+kbd {
+  font-family: inherit;
+}
+.sound {
+  color: #87f7baaf;
+}
+
+</style>
+
 <body>
 
 
   <div class="keys">
     <div data-key="65" class="key">
       <kbd>A</kbd>
-      <span class="sound">clap</span>
+      <span class="sound">goat</span>
     </div>
     <div data-key="83" class="key">
       <kbd>S</kbd>
-      <span class="sound">hihat</span>
+      <span class="sound">sparrow</span>
     </div>
     <div data-key="68" class="key">
       <kbd>D</kbd>
-      <span class="sound">kick</span>
+      <span class="sound">cat</span>
     </div>
     <div data-key="70" class="key">
       <kbd>F</kbd>
-      <span class="sound">openhat</span>
+      <span class="sound">eagle</span>
     </div>
     <div data-key="71" class="key">
       <kbd>G</kbd>
-      <span class="sound">boom</span>
+      <span class="sound">bird</span>
     </div>
     <div data-key="72" class="key">
       <kbd>H</kbd>
-      <span class="sound">ride</span>
+      <span class="sound">wolf</span>
     </div>
     <div data-key="74" class="key">
       <kbd>J</kbd>
-      <span class="sound">snare</span>
+      <span class="sound">horse</span>
     </div>
     <div data-key="75" class="key">
       <kbd>K</kbd>
-      <span class="sound">tom</span>
+      <span class="sound">cow</span>
     </div>
     <div data-key="76" class="key">
       <kbd>L</kbd>
-      <span class="sound">tink</span>
+      <span class="sound">werewolf</span>
     </div>
   </div>
 
-  <audio data-key="65" src="sounds/clap.wav"></audio>
-  <audio data-key="83" src="sounds/hihat.wav"></audio>
-  <audio data-key="68" src="sounds/kick.wav"></audio>
-  <audio data-key="70" src="sounds/openhat.wav"></audio>
-  <audio data-key="71" src="sounds/boom.wav"></audio>
-  <audio data-key="72" src="sounds/ride.wav"></audio>
-  <audio data-key="74" src="sounds/snare.wav"></audio>
-  <audio data-key="75" src="sounds/tom.wav"></audio>
-  <audio data-key="76" src="sounds/tink.wav"></audio>
+  <audio data-key="65" src="sounds/baby-goat-baa.wav"></audio>
+  <audio data-key="83" src="sounds/cartoon-creature-pain-scream.wav"></audio>
+  <audio data-key="68" src="sounds/cartoon-little-cat-meow.wav"></audio>
+  <audio data-key="70" src="sounds/eagle-calling.wav"></audio>
+  <audio data-key="71" src="sounds/double-little-bird-chirp.wav"></audio>
+  <audio data-key="72" src="sounds/monster-attack-dog-wolf.wav"></audio>
+  <audio data-key="74" src="sounds/horse-stallion-snore.wav"></audio>
+  <audio data-key="75" src="sounds/cow-sick-moo.wav"></audio>
+  <audio data-key="76" src="sounds/werewolf-roar.mp3"></audio>
 
-<script>
+  <script>
+    // Get all elements with class "key"
+    const keys = document.querySelectorAll(".key");
 
-</script>
+    // Get all audio elements with the data-key attribute
+    const audios = document.querySelectorAll("audio[data-key]");
+
+    // Add click event listener to each key element
+    keys.forEach((key) => {
+      key.addEventListener("click", () => {
+        const keyCode = key.getAttribute("data-key");
+
+        // Find the corresponding audio element with the same data-key attribute
+        const audio = document.querySelector(`audio[data-key="${keyCode}"]`);
+
+        if (audio) {
+          // Play the audio
+          audio.currentTime = 0; // Reset audio to the beginning
+          audio.play();
+        }
+
+        // Add the "playing" class to the element
+        key.classList.add("playing");
+
+        // Remove the "playing" class after 500 milliseconds
+        setTimeout(() => {
+          key.classList.remove("playing");
+        }, 300);
+      });
+    });
+
+    // Add keydown event listener to the document
+    document.addEventListener("keydown", (e) => {
+      // Find the corresponding key element based on the key code
+      const key = document.querySelector(`div[data-key="${e.keyCode}"]`);
+
+      if (key) {
+        // Simulate a click event on the key element
+        key.click();
+      }
+    });
+
+
+  </script>
 
 
 </body>
+
 </html>
