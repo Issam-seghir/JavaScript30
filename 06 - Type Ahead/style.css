@@ -39,6 +39,8 @@ input.search {
   margin: 0;
   padding: 0;
   position: relative;
+  height: calc((64px + 41px) * 5);
+  overflow-x: hidden;
   /*perspective: 20px;*/
 }
 
@@ -53,6 +55,7 @@ input.search {
   display: flex;
   justify-content: space-between;
   text-transform: capitalize;
+
 }
 
 .suggestions li:nth-child(even) {
