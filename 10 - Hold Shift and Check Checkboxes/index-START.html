@@ -1,13 +1,14 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
   <meta charset="UTF-8">
   <title>Hold Shift to Check Multiple Checkboxes</title>
   <link rel="icon" href="https://fav.farm/🔥" />
 </head>
+
 <body>
   <style>
-
     html {
       font-family: sans-serif;
       background: #ffc600;
@@ -18,7 +19,7 @@
       margin: 50px auto;
       background: white;
       border-radius: 5px;
-      box-shadow: 10px 10px 0 rgba(0,0,0,0.1);
+      box-shadow: 10px 10px 0 rgba(0, 0, 0, 0.1);
     }
 
     .item {
@@ -31,7 +32,7 @@
       border-bottom: 0;
     }
 
-    input:checked + p {
+    input:checked+p {
       background: #F9F9F9;
       text-decoration: line-through;
     }
@@ -45,13 +46,13 @@
       padding: 20px;
       transition: background 0.2s;
       flex: 1;
-      font-family:'helvetica neue';
+      font-family: 'helvetica neue';
       font-size: 20px;
       font-weight: 200;
       border-left: 1px solid #D1E2FF;
     }
   </style>
-   <!--
+  <!--
    The following is a common layout you would see in an email client.
 
    When a user clicks a checkbox, holds Shift, and then clicks another checkbox a few rows down, all the checkboxes inbetween those two checkboxes should be checked.
@@ -96,7 +97,27 @@
     </div>
   </div>
 
-<script>
-</script>
+  <script>
+    // Get the checkbox element.
+    const checkboxes = document.querySelectorAll("[type=checkbox]");
+
+    function handleCheckboxClick(e) {
+      // console.log(this.checked);
+
+
+      checkboxes.forEach(checkbox => {
+        if (e.shiftKey && this.checked) {
+          let next = this.parentNode.nextElementSibling
+          // console.log(i);
+          let siblingInputEl = next.querySelector('[type=checkbox]');
+          siblingInputEl.click();
+        }
+      });
+
+    }
+    checkboxes.forEach(checkbox => checkbox.addEventListener("click", handleCheckboxClick));
+
+  </script>
 </body>
+
 </html>
