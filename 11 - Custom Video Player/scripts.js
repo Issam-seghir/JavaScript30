@@ -27,12 +27,12 @@ function handleVideoPlayButton(e) {
 function handleVideoProgressBar(e) {
 	// console.log(e.target.value);
 	const progress = `${((video.currentTime * 100) / video.duration).toFixed(2)}%`;
-	console.log(progress);
+	// console.log(progress);
 	progressFilled.style.flexBasis = `${progress}`;
 }
 
 function handleVideoSkipButton() {
-	console.log(this.dataset.skip);
+	// console.log(this.dataset.skip);
 	video.currentTime += +this.dataset.skip;
 }
 
@@ -48,7 +48,7 @@ function handleVolume() {
 }
 
 function handlePlaybackRate() {
-	console.log(this.value);
+	// console.log(this.value);
 	video.playbackRate = this.value;
 
 	playbackRateText.innerHTML = `⚡${video.playbackRate}`;
@@ -76,5 +76,11 @@ skipButtons.forEach((skipBtn) => skipBtn.addEventListener("click", handleVideoSk
 playbackRate.addEventListener("change", handlePlaybackRate);
 volume.addEventListener("change", handleVolume);
 
+
+let mousedown = false;
+
 progress.addEventListener("click", scrub);
-progress.addEventListener("mousemove", scrub);
+progress.addEventListener("dragstart", scrub);
+progress.addEventListener("mousemove", (e) => mousedown && scrub(e));
+progress.addEventListener("mousedown", () => (mousedown = true));
+progress.addEventListener("mouseup", () => (mousedown = false));
