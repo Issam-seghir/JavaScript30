@@ -59,7 +59,6 @@ function handlePlaybackRate() {
 
 function scrub(e) {
   const scrubTime = 1/(progress.offsetWidth/e.offsetX ) *100
-    progressFilled.style.flexBasis = `${scrubTime.toFixed(2)}%`;
 	video.currentTime = (video.duration * scrubTime) / 100;
 	// console.log(e.offsetX);
 	// console.log(progress.offsetWidth);
