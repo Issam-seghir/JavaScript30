@@ -2,7 +2,7 @@ const playButton = document.querySelector("button.player__button.primary");
 const skipButtons = document.querySelectorAll("button.player__button:not(.primary)");
 
 const video = document.querySelector("video.player__video");
-// const progress = document.querySelector(".progress");
+const progress = document.querySelector(".progress");
 const progressFilled = document.querySelector(".progress__filled");
 
 const volume = document.querySelector("[name=volume]");
@@ -41,7 +41,7 @@ function handleVolume() {
 	// video.volume=this.value;
     	video.volume = this.value;
 
-		volumeText.innerHTML = `${video.volume} 🔊`;
+		volumeText.innerHTML = `%${video.volume * 100} 🔊`;
 		volumeText.classList.add("show");
 
 		setTimeout(() => volumeText.classList.remove("show"), 2000);
@@ -57,10 +57,25 @@ function handlePlaybackRate() {
 	setTimeout(() => playbackRateText.classList.remove("show"), 2000);
 }
 
-playButton.addEventListener("click", handleVideoPlayButton);
-skipButtons.forEach((skipBtn) => skipBtn.addEventListener("click", handleVideoSkipButton));
+function scrub(e) {
+  const scrubTime = 1/(progress.offsetWidth/e.offsetX ) *100
+    progressFilled.style.flexBasis = `${scrubTime.toFixed(2)}%`;
+	video.currentTime = (video.duration * scrubTime) / 100;
+	// console.log(e.offsetX);
+	// console.log(progress.offsetWidth);
+	// console.log(scrubTime);
+	// console.log(video.currentTime);
+
+}
 video.addEventListener("click", handleVideoPlayButton);
 video.addEventListener("timeupdate", handleVideoProgressBar);
-// progress.addEventListener("auxclick", handleVideoProgressBar);
-volume.addEventListener("change", handleVolume);
+
+playButton.addEventListener("click", handleVideoPlayButton);
+skipButtons.forEach((skipBtn) => skipBtn.addEventListener("click", handleVideoSkipButton));
+
+// ranges
 playbackRate.addEventListener("change", handlePlaybackRate);
+volume.addEventListener("change", handleVolume);
+
+progress.addEventListener("click", scrub);
+progress.addEventListener("mousemove", scrub);
