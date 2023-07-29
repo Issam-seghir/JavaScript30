@@ -93,38 +93,31 @@
   <audio data-key="76" src="sounds/werewolf-roar.mp3"></audio>
 
   <script>
-    // Get all elements with class "key"
-    const keys = document.querySelectorAll(".key");
 
-    // Get all audio elements with the data-key attribute
+    const keys = document.querySelectorAll(".key");
     const audios = document.querySelectorAll("audio[data-key]");
 
-    // Add click event listener to each key element
-    keys.forEach((key) => {
-      key.addEventListener("click", () => {
-        const keyCode = key.getAttribute("data-key");
+    function keyClicked(e) {
+      const keyCode = this.getAttribute("data-key");
 
-        // Find the corresponding audio element with the same data-key attribute
-        const audio = document.querySelector(`audio[data-key="${keyCode}"]`);
+      // Find the corresponding audio element with the same data-key attribute
+      const audio = document.querySelector(`audio[data-key="${keyCode}"]`);
 
-        if (audio) {
-          // Play the audio
-          audio.currentTime = 0; // Reset audio to the beginning
-          audio.play();
-        }
+      if (audio) {
+        audio.currentTime = 0; // Reset audio to the beginning
+        audio.play();
 
         // Add the "playing" class to the element
-        key.classList.add("playing");
+        this.classList.add("playing");
 
-        // Remove the "playing" class after 500 milliseconds
+        // Remove the "playing" class after 300 milliseconds
         setTimeout(() => {
-          key.classList.remove("playing");
+          this.classList.remove("playing");
         }, 300);
-      });
-    });
+      }
+    }
 
-    // Add keydown event listener to the document
-    document.addEventListener("keydown", (e) => {
+    window.addEventListener("keydown", (e) => {
       // Find the corresponding key element based on the key code
       const key = document.querySelector(`div[data-key="${e.keyCode}"]`);
 
@@ -134,6 +127,9 @@
       }
     });
 
+
+    // Add click event listener to each key element
+    keys.forEach((key) => key.addEventListener("click", keyClicked))
 
   </script>
 

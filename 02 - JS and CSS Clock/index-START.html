@@ -39,6 +39,7 @@
     <span class="second"></span>
   </div>
 
+  <audio src="./tick-tock.mp3"></audio>
 
   <style>
     :root {
@@ -109,6 +110,9 @@
       transform: rotate(90deg);
       transform-origin: right;
       border-radius: 6px;
+      transition: transform 0.5s cubic-bezier(0.3, 0.1, 0.4, 0.9);
+      /* transition:  transform 0.5s cubic-bezier(.92,-0.26,.84,-0.05) */
+      ;
     }
 
     .hour-hand {
@@ -233,7 +237,6 @@
       let currentHour = new Date().getHours();
       currentHour = (currentHour % 12) || 12; // Convert to 12-hour format
 
-      console.log(currentHour); // This will print the hour in the desired format
 
       // Update the position of the hours hand
       hourHand.style.transform = `rotate(${currentHour * (360 / 12) + currentMinute / 2 + 90}deg)`;
@@ -256,7 +259,17 @@
       hourSpan.textContent = hours;
       minuteSpan.textContent = minutes;
       secondSpan.textContent = seconds;
+
+
     }
+
+    // clock time sound
+    function clockSound() {
+      const audio = document.querySelector("audio")
+      if (audio) { audio.currentTime = 0; audio.play() }
+    }
+    clockSound()
+    setInterval(clockSound, 20000);
 
     // Call the updateClock function initially when the window loads
     window.onload = updateClock;
