@@ -83,21 +83,25 @@
       background-color: var(--base);
       filter: blur(var(--blur));
       border-radius: 15px;
+      box-shadow:
+        3px 6px 18px var(--base), 8px -5px 7px var(--base)
     }
 
     h2 {
-      text-underline-offset: 12px;
+      /* text-underline-offset: 12px;
       text-decoration-line: underline;
-      text-decoration-thickness: 8px;
+      text-decoration-thickness: 8px; */
+      font-size: 5rem;
     }
+
     span.hl {
       color: var(--base);
 
     }
+
     span.hl::selection {
-        background-color: rgba(0, 0, 0, 0.3)
-        ;
-      }
+      background-color: rgba(0, 0, 0, 0.3);
+    }
   </style>
 
   <script>
