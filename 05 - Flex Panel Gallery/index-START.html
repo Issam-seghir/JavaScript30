@@ -44,11 +44,12 @@
       transition:
         font-size 0.7s cubic-bezier(0.61, -0.19, 0.7, -0.11),
         flex 0.7s cubic-bezier(0.61, -0.19, 0.7, -0.11),
-        background 0.2s;
+        background 0.2s,
+        transform 3s cubic-bezier(0.61, -0.19, 0.7, -0.11);
       font-size: 20px;
       background-size: cover;
       background-position: center;
-      flex-basis: 25%;
+      flex: 1;
       display: flex;
       justify-content: space-around;
       align-items: center;
@@ -56,16 +57,16 @@
     }
 
     .panel.active {
-      flex: 1 1 50%;
-      font-size: 40px;
+      flex: 2;
+      font-size: 25px;
     }
 
     .panel.active p:first-child {
-      transform: translate(50px, -150px) scaleX(1.5);
+      transform: translateY(-999%);
     }
 
     .panel.active p:last-child {
-      transform: translate(50px, 150px) scaleX(1.5);
+      transform: translateY(999%);
     }
 
     .panel1 {
@@ -144,16 +145,10 @@
   <script>
 
     const images = document.querySelectorAll('.panel');
-    
+
 
     function handleImageClick() {
-      images.forEach((img) => {
-        if (img === this) {
-          img.classList.add("active");
-        } else {
-          img.classList.remove("active");
-        }
-      });
+        this.classList.toggle("active")
     }
 
     images.forEach((img) => img.addEventListener('click', handleImageClick));
