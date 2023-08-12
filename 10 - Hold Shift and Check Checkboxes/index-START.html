@@ -96,26 +96,33 @@
       <p>Don't forget to tweet your result!</p>
     </div>
   </div>
-
   <script>
     // Get the checkbox element.
     const checkboxes = document.querySelectorAll("[type=checkbox]");
-
+    let lastItemSelected = false;
     function handleCheckboxClick(e) {
-      // console.log(this.checked);
 
+      if (e.shiftKey && lastItemSelected) {
+        const lastItemSelectedIndex = Array.from(checkboxes).findIndex(checkbox => checkbox === lastItemSelected);
+        const thisIndex = Array.from(checkboxes).findIndex(checkbox => checkbox === this);
 
-      checkboxes.forEach(checkbox => {
-        if (e.shiftKey && this.checked) {
-          let next = this.parentNode.nextElementSibling
-          // console.log(i);
-          let siblingInputEl = next.querySelector('[type=checkbox]');
-          siblingInputEl.click();
+        if (thisIndex > lastItemSelectedIndex) {
+
+          for (let i = lastItemSelectedIndex + 1; i < thisIndex; i++) {
+            Array.from(checkboxes)[i].checked = true;
+          }
         }
-      });
+        else if (lastItemSelectedIndex > thisIndex) {
 
+          for (let i = lastItemSelectedIndex - 1; i > thisIndex; i--) {
+            Array.from(checkboxes)[i].checked = true;
+          }
+        }
+      }
+      lastItemSelected = this;
     }
     checkboxes.forEach(checkbox => checkbox.addEventListener("click", handleCheckboxClick));
+
 
   </script>
 </body>

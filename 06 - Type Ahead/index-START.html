@@ -42,7 +42,7 @@
 
     const citiesData = [];
     // const url = 'https://gist.githubusercontent.com/Miserlou/c5cd8364bf9b2420bb29/raw/2bf258763cdddd704f8ffd3ea9a3e81d25e2c6f6/cities.json';
-    const url = './data.json';
+    const url = './cities.json';
 
     // Fetch data only once
     async function getData() {
@@ -115,7 +115,7 @@
       return x.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ',');
     }
 
-    function displayCities(matchedCitiesArray) {
+    function displayCities(matchedCitiesArray, searchTerm) {
       const html = matchedCitiesArray.map(obj => {
         const regex = new RegExp(searchTerm, 'gi');
         const cityName = obj.city.replace(regex, `<span class="hl">${searchTerm}</span>`);
@@ -127,7 +127,7 @@
       </li>
     `;
       }).join('');
-      suggestions.innerHTML = html;
+      suggestionsList.innerHTML = html;
     }
 
     // Function to handle input changes with debounce

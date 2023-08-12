@@ -6,10 +6,9 @@ const progress = document.querySelector(".progress");
 const progressFilled = document.querySelector(".progress__filled");
 
 const volume = document.querySelector("[name=volume]");
-const volumeText = document.querySelector("span.volume");
-
 const playbackRate = document.querySelector("[name=playbackRate]");
-const playbackRateText = document.querySelector("span.playbackRate");
+
+const display = document.querySelector("span.display");
 
 function handleVideoPlayButton(e) {
 	playButton.classList.toggle("toggle");
@@ -36,26 +35,43 @@ function handleVideoSkipButton() {
 	video.currentTime += +this.dataset.skip;
 }
 
+
+
 function handleVolume() {
-	console.log(this.value);
-	// video.volume=this.value;
-    	video.volume = this.value;
+	video.volume = this.value;
 
-		volumeText.innerHTML = `%${video.volume * 100} 🔊`;
-		volumeText.classList.add("show");
+	const displayText = `%${(this.value * 100).toFixed(0)} 🔊`;
+	display.innerHTML = displayText;
 
-		setTimeout(() => volumeText.classList.remove("show"), 2000);
+	// Caching the Timeout ID: Store the timeout ID in a static property handleVolume.timeoutId
+	// to avoid potential issues with multiple timers running concurrently.
+	//  This ensures that any previous timeout is cleared before setting a new one.
+	clearTimeout(handleVolume.timeoutId);
+	display.classList.add("show");
+	handleVolume.timeoutId = setTimeout(() => {
+		display.classList.remove("show");
+	}, 2000);
 }
+handleVolume.timeoutId = null;
+
 
 function handlePlaybackRate() {
-	// console.log(this.value);
 	video.playbackRate = this.value;
 
-	playbackRateText.innerHTML = `⚡${video.playbackRate}`;
-	playbackRateText.classList.add("show");
+	const displayText = `⚡${video.playbackRate}`;
+	display.innerHTML = displayText;
 
-	setTimeout(() => playbackRateText.classList.remove("show"), 2000);
+	// Caching the Timeout ID: Store the timeout ID in a static property handleVolume.timeoutId
+	// to avoid potential issues with multiple timers running concurrently.
+	//  This ensures that any previous timeout is cleared before setting a new one.
+	clearTimeout(handlePlaybackRate.timeoutId);
+	display.classList.add("show");
+	handlePlaybackRate.timeoutId = setTimeout(() => {
+		display.classList.remove("show");
+	}, 2000);
 }
+handlePlaybackRate.timeoutId = null;
+
 
 function scrub(e) {
   const scrubTime = 1/(progress.offsetWidth/e.offsetX ) *100
@@ -75,6 +91,7 @@ skipButtons.forEach((skipBtn) => skipBtn.addEventListener("click", handleVideoSk
 // ranges
 playbackRate.addEventListener("change", handlePlaybackRate);
 volume.addEventListener("change", handleVolume);
+volume.addEventListener("mousemove", handleVolume);
 
 
 let mousedown = false;
