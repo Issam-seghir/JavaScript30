@@ -46,39 +46,53 @@
   <script>
     const addItems = document.querySelector('.add-items');
     const itemsList = document.querySelector('.plates');
-    const items = [];
+    // parse : convert the json to array of objects
+    const items = JSON.parse(localStorage.getItem('items')) || [];
 
     function addItemsToList(e) {
       e.preventDefault();
 
       const text = e.target[0].value;
       const item = {
-        text,
+        text: text,
+        checkState: false
       };
       items.push(item)
+      // stringify : add "items" to local storage as  a JSON string
       localStorage.setItem("items", JSON.stringify(items))
 
       fillList(items, itemsList)
-      // this.reset();
+      this.reset(); // empty the inputs in the form
     }
 
 
 
 
-    function fillList(items , itemsList) {
+    function fillList(items, itemsList) {
       itemsList.innerHTML = items.map((list, i) => {
         return `
         <li>
-          <input type="checkbox" data-index=${i} id="item${i}" ${list.done ? 'checked' : ''} />
+          <input type="checkbox" data-index=${i} id="item${i}" ${list.checkState ? 'checked' : ''} />
           <label for="item${i}">${list.text}</label>
         </li>
       `;
       }).join('');
     }
 
-
+    function toggleDone(e) {
+      if (e.target.matches('input')) {
+        const index = e.target.dataset.index;
+        console.log(
+          e.target + "\n index : "  + e.target.dataset.index
+        );
+        items[index].checkState = !items[index].checkState;
+        localStorage.setItem('items', JSON.stringify(items));
+        fillList(items, itemsList);
+      }
+    }
 
     addItems.addEventListener('submit', addItemsToList)
+    itemsList.addEventListener('click', toggleDone);
     fillList(JSON.parse(localStorage.getItem('items')) || [], itemsList);
   </script>
 

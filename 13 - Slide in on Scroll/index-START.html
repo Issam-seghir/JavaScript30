@@ -37,8 +37,8 @@
       quas laborum nam! Fuga ad tempora in aspernatur pariatur fugit quibusdam dolores sunt esse magni, ut, dignissimos.
     </p>
 
-    <!-- <img src="http://unsplash.it/400/400" class="align-left slide-in"> -->
-    <img src="../01 - JavaScript Drum Kit/green-forest.jpg" class="align-left slide-in">
+    <img src="http://unsplash.it/400/400" class="align-left slide-in test">
+    <!-- <img src="../01 - JavaScript Drum Kit/green-forest.jpg" class="align-left slide-in"> -->
 
     <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Voluptates, deserunt facilis et iste corrupti omnis
       tenetur est. Iste ut est dicta dolor itaque adipisci, dolorum minima, veritatis earum provident error molestias.
@@ -51,8 +51,8 @@
       expedita
       quam, nesciunt</p>
 
-    <!-- <img src="http://unsplash.it/400/401" class="align-right slide-in"> -->
-    <img src="../01 - JavaScript Drum Kit/green-forest.jpg" class="align-right slide-in">
+    <img src="http://unsplash.it/400/401" class="align-right slide-in">
+    <!-- <img src="../01 - JavaScript Drum Kit/green-forest.jpg" class="align-right slide-in"> -->
 
     <p> at provident praesentium atque quas rerum optio dignissimos repudiandae ullam illum quibusdam. Vel ad error
       quibusdam, illo ex totam placeat. Quos excepturi fuga, molestiae ea quisquam minus, ratione dicta consectetur
@@ -80,8 +80,8 @@
       explicabo nemo neque odio reprehenderit soluta sint eaque. Aperiam, qui ut tenetur, voluptate doloremque officiis
       dicta quaerat voluptatem rerum natus magni. Eum amet autem dolor ullam.</p>
 
-    <!-- <img src="http://unsplash.it/200/500" class="align-left slide-in"> -->
     <img src="http://unsplash.it/200/500" class="align-left slide-in">
+    <!-- <img src="http://unsplash.it/200/500" class="align-left slide-in"> -->
 
     <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Distinctio maiores adipisci quibusdam repudiandae dolor
       vero placeat esse sit! Quibusdam saepe aperiam explicabo placeat optio, consequuntur nihil voluptatibus expedita
@@ -112,8 +112,8 @@
       porro officiis, amet! Molestias, fugit, ut! Tempore non magnam, amet, facere ducimus accusantium eos veritatis
       neque.</p>
 
-    <!-- <img src="http://unsplash.it/400/400" class="align-right slide-in"> -->
-    <img src="../01 - JavaScript Drum Kit/green-forest.jpg" class="align-right slide-in">
+    <img src="http://unsplash.it/400/400" class="align-right slide-in">
+    <!-- <img src="../01 - JavaScript Drum Kit/green-forest.jpg" class="align-right slide-in"> -->
 
     <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Distinctio maiores adipisci quibusdam repudiandae dolor
       vero placeat esse sit! Quibusdam saepe aperiam explicabo placeat optio, consequuntur nihil voluptatibus expedita
@@ -174,44 +174,31 @@
   </div>
 
   <script>
-    function debounce(func, wait = 20, immediate = true) {
-      var timeout;
-      return function () {
-        var context = this, args = arguments;
-        var later = function () {
-          timeout = null;
-          if (!immediate) func.apply(context, args);
-        };
-        var callNow = immediate && !timeout;
-        clearTimeout(timeout);
-        timeout = setTimeout(later, wait);
-        if (callNow) func.apply(context, args);
-      };
-    }
+    const images = document.querySelectorAll('img');
 
+    const options = {
+      root: null, // Use the viewport as the root
+      rootMargin: '0px',
+      threshold: 0.5, // When at least 50% of the image is visible
+    };
 
-    const sliderImages = document.querySelectorAll('.slide-in');
-
-    function checkSlide() {
-      sliderImages.forEach(sliderImage => {
-        // half way through the image
-        const slideInAt = (window.scrollY + window.innerHeight) - sliderImage.height / 2;
-        // bottom of the image
-        const imageBottom = sliderImage.offsetTop + sliderImage.height;
-        const isHalfShown = slideInAt > sliderImage.offsetTop;
-        const isNotScrolledPast = window.scrollY < imageBottom;
-        if (isHalfShown && isNotScrolledPast) {
-          sliderImage.classList.add('active');
+    const intersectionObserver = new IntersectionObserver(entries => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('active');
+          console.log(`Image ${entry.target.src} is now active in the viewport.`);
         } else {
-          sliderImage.classList.remove('active');
+          entry.target.classList.remove('active');
         }
       });
-    }
+    }, options);
+
+    images.forEach(image => {
+      intersectionObserver.observe(image);
+    });
 
 
-    window.addEventListener("scroll", checkSlide)
 
-    
   </script>
 
   <style>
