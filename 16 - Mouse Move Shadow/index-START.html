@@ -1,41 +1,75 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
   <meta charset="UTF-8">
   <title>Mouse Shadow</title>
   <link rel="icon" href="https://fav.farm/🔥" />
 </head>
+
 <body>
 
   <div class="hero">
     <h1 contenteditable>🔥WOAH!</h1>
+
   </div>
 
   <style>
-  html {
-    color: black;
-    font-family: sans-serif;
-  }
+    html {
+      color: black;
+      font-family: sans-serif;
+    }
 
-  body {
-    margin: 0;
-  }
+    body {
+      margin: 0;
+    }
 
-  .hero {
-    min-height: 100vh;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    color: black;
-  }
+    .hero {
+      min-height: 100vh;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      color: black;
+    }
 
-  h1 {
-    text-shadow: 10px 10px 0 rgba(0,0,0,1);
-    font-size: 100px;
-  }
+    h1 {
+      position: relative;
+      text-shadow: 10px 10px 0 rgb(0, 0, 0);
+      font-size: 100px;
+    }
   </style>
 
-<script>
-</script>
+  <script>
+
+    const hero = document.querySelector(".hero");
+    const text = document.querySelector(".hero h1");
+    const walk = 500; // 500px
+
+    function shadowAnimation(e) {
+      let [x, y] = [e.offsetX, e.offsetY];
+
+      // fix event delegation problem : the offsetX/offsetY of h1 is trigger when mousemove enter h1 area
+      // the same as : if (!e.target.matches(".hero"))
+      if (this !== e.target) {
+        x += e.target.offsetLeft;
+        y += e.target.offsetTop;
+      };
+
+      const xWalk = Math.round((x / this.offsetWidth * walk) - (walk / 2));
+      const yWalk = Math.round((y / this.offsetHeight * walk) - (walk / 2));
+
+
+      console.log(`event: ${e.target.matches(".hero")} , offsetX : ${x} , offsetY : ${y}`);
+      text.style.textShadow = `
+        ${xWalk}px ${yWalk}px 0 rgb(255, 127, 217),
+        ${xWalk * -1}px ${yWalk}px 0 rgb(255, 246, 167),
+        ${yWalk}px ${xWalk * -1}px 0 rgb(131, 255, 162),
+        ${yWalk * -1}px ${xWalk}px 0 rgb(136, 231, 255)
+        `
+
+    }
+    hero.addEventListener("mousemove", shadowAnimation);
+  </script>
 </body>
+
 </html>
