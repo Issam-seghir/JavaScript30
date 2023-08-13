@@ -35,19 +35,18 @@ function handleVideoSkipButton() {
 	video.currentTime += +this.dataset.skip;
 }
 
-
-
+//* Caching the Timeout ID: Store the timeout ID in a static property handleVolume.timeoutId or (using closure)
+//* to avoid potential issues with multiple timers running concurrently.
+//*  This ensures that any previous timeout is cleared before setting a new one.
 function handleVolume() {
 	video.volume = this.value;
 
 	const displayText = `%${(this.value * 100).toFixed(0)} 🔊`;
 	display.innerHTML = displayText;
 
-	// Caching the Timeout ID: Store the timeout ID in a static property handleVolume.timeoutId
-	// to avoid potential issues with multiple timers running concurrently.
-	//  This ensures that any previous timeout is cleared before setting a new one.
-	clearTimeout(handleVolume.timeoutId);
 	display.classList.add("show");
+
+	clearTimeout(handleVolume.timeoutId);
 	handleVolume.timeoutId = setTimeout(() => {
 		display.classList.remove("show");
 	}, 2000);
@@ -55,17 +54,18 @@ function handleVolume() {
 handleVolume.timeoutId = null;
 
 
+//* Caching the Timeout ID: Store the timeout ID in a static property handlePlaybackRate.timeoutId or (using closure)
+//* to avoid potential issues with multiple timers running concurrently.
+//*  This ensures that any previous timeout is cleared before setting a new one.
 function handlePlaybackRate() {
 	video.playbackRate = this.value;
 
 	const displayText = `⚡${video.playbackRate}`;
 	display.innerHTML = displayText;
 
-	// Caching the Timeout ID: Store the timeout ID in a static property handleVolume.timeoutId
-	// to avoid potential issues with multiple timers running concurrently.
-	//  This ensures that any previous timeout is cleared before setting a new one.
-	clearTimeout(handlePlaybackRate.timeoutId);
 	display.classList.add("show");
+
+	clearTimeout(handlePlaybackRate.timeoutId);
 	handlePlaybackRate.timeoutId = setTimeout(() => {
 		display.classList.remove("show");
 	}, 2000);
@@ -74,14 +74,15 @@ handlePlaybackRate.timeoutId = null;
 
 
 function scrub(e) {
-  const scrubTime = 1/(progress.offsetWidth/e.offsetX ) *100
+	const scrubTime = (1 / (progress.offsetWidth / e.offsetX)) * 100;
 	video.currentTime = (video.duration * scrubTime) / 100;
 	// console.log(e.offsetX);
 	// console.log(progress.offsetWidth);
 	// console.log(scrubTime);
 	// console.log(video.currentTime);
-
 }
+
+
 video.addEventListener("click", handleVideoPlayButton);
 video.addEventListener("timeupdate", handleVideoProgressBar);
 
@@ -90,9 +91,9 @@ skipButtons.forEach((skipBtn) => skipBtn.addEventListener("click", handleVideoSk
 
 // ranges
 playbackRate.addEventListener("change", handlePlaybackRate);
+playbackRate.addEventListener("mousemove", handlePlaybackRate);
 volume.addEventListener("change", handleVolume);
 volume.addEventListener("mousemove", handleVolume);
-
 
 let mousedown = false;
 
