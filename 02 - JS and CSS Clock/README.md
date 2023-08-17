@@ -1,6 +1,8 @@
 
 # Clock with Ticking Sound Effects
 
+![gif](https://i.imgur.com/6ntUBKo.gif)
+
 In this exercise, I created a **dynamic** **clock** with rotating clock hands and an accompanying **ticking** **sound** **effect**.
 The **clock** displays the current time and provides an immersive audio-visual experience.
 Let's delve into the code and understand how I **achieved** this and what i **add/fix** from the original solution.

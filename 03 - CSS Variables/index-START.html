@@ -109,13 +109,13 @@
     const root = document.documentElement;
 
     function handleInput(event) {
-      const suffix = event.target.dataset.sizing || '';
-      root.style.setProperty(`--${event.target.name}`, `${event.target.value}${suffix}`);
+      const { target } = event;
+      const suffix = target.dataset.sizing || '';
+      root.style.setProperty(`--${target.name}`, `${target.value}${suffix}`);
     }
 
     inputs.forEach(input => {
-      input.addEventListener('mousemove', handleInput);
-      input.addEventListener('change', handleInput);
+      input.addEventListener('input', handleInput);
     });
 
 

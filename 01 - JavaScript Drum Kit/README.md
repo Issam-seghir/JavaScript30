@@ -1,6 +1,8 @@
 
 # Drum Kit
 
+![gif](https://i.imgur.com/reD1pKW.gif)
+
 I create  a **dynamic drum kit** that's both fun and interactive.
 Each key corresponds to a unique **animal sound** and triggers a cool **animation**.
 Let me walk you through how I **accomplished** this and what i **add/fix** from the original solution
