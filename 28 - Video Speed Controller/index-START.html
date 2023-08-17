@@ -1,21 +1,53 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
   <meta charset="UTF-8">
   <title>Video Speed Scrubber</title>
   <link rel="stylesheet" href="style.css">
   <link rel="icon" href="https://fav.farm/🔥" />
 </head>
+
 <body>
 
   <div class="wrapper">
-    <video class="flex" width="765" height="430" src="http://clips.vorwaerts-gmbh.de/VfE_html5.mp4" loop controls></video>
+    <!-- <video class="flex" width="765" height="430" src="http://clips.vorwaerts-gmbh.de/VfE_html5.mp4" loop -->
+    <video class="flex" width="765" height="430" src="../11 - Custom Video Player/652333414.mp4" loop controls></video>
     <div class="speed">
-      <div class="speed-bar">1×</div>
+      <div class="speed-bar">1⚡</div>
     </div>
   </div>
 
-<script>
-</script>
+  <script>
+    const video = document.querySelector("video")
+    const speedBar = document.querySelector(".speed")
+    const speedText = document.querySelector(".speed-bar")
+
+    function increaseSpeed(e) {
+      e.preventDefault();
+      const speed = ((e.offsetY / speedBar.offsetHeight) * 4).toFixed(2);
+      const parentage = (e.offsetY * 100 / speedBar.offsetHeight).toFixed(2);
+      video.playbackRate = speed;
+      speedText.textContent = `${speed}⚡`;
+      speedText.style.height = `${parentage}%`
+
+    }
+
+    function transitioned(e) {
+      speedText.classList.add("transition");
+
+      clearTimeout(speedText.timeoutId);
+      transitioned.timeoutId = setTimeout(() => {
+        speedText.classList.remove("transition");
+      }, 150);
+      console.log(speedText.style);
+    }
+    transitioned.timeoutId = null;
+
+    speedBar.addEventListener("mousemove", increaseSpeed)
+    speedBar.addEventListener("mousedown", increaseSpeed)
+    speedBar.addEventListener("mouseenter", transitioned)
+  </script>
 </body>
+
 </html>

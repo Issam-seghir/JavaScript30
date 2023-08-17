@@ -12,6 +12,10 @@ html {
 }
 
 .keys {
+  /*  prevent from selecting or or highlighting the text
+        within that element using mouse or keyboard input.*/
+  user-select: none;
+
   display: flex;
   flex: 1;
   min-height: 100vh;
@@ -25,7 +29,7 @@ html {
   margin: 1rem;
   font-size: 1.5rem;
   padding: 1rem .5rem;
-  transition: all .07s ease;
+  transition: all 180ms ease;
   width: 10rem;
   text-align: center;
   color: white;
@@ -50,4 +54,3 @@ kbd {
   letter-spacing: .1rem;
   color: #ffc600;
 }
-

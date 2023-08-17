@@ -10,7 +10,9 @@ body {
   margin: 0;
 }
 
-*, *:before, *:after {
+*,
+*:before,
+*:after {
   box-sizing: inherit;
 }
 
@@ -38,7 +40,7 @@ header {
 h1 {
   color: white;
   font-size: 7vw;
-  text-shadow: 3px 4px 0 rgba(0,0,0,0.2);
+  text-shadow: 3px 4px 0 rgba(0, 0, 0, 0.2);
 }
 
 nav {
@@ -50,9 +52,22 @@ nav {
   z-index: 1;
 }
 
+nav.sticky {
+  position: fixed;
+  box-shadow: 0 0 10px 5px rgba(151, 255, 255, 0.671);
+}
+
+nav.sticky .logo {
+  max-width: 100%;
+}
+
+nav.sticky~.site-wrap {
+  transform: scale(1);
+}
+
 nav ul {
   margin: 0;
-  padding:0;
+  padding: 0;
   list-style: none;
   display: flex;
 }

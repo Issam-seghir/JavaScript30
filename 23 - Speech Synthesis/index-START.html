@@ -33,13 +33,13 @@
 
   <script>
     const msg = new SpeechSynthesisUtterance();
-
     console.log(msg);
     let voices = [];
     const voicesDropdown = document.querySelector('[name="voice"]');
     const options = document.querySelectorAll('[type="range"], [name="text"]');
     const speakButton = document.querySelector('#speak');
     const stopButton = document.querySelector('#stop');
+    msg.text = document.querySelector('[name="text"]').value;
 
 
     function updateOptions(e) {
@@ -52,22 +52,33 @@
     }
 
     function populateVoices() {
-      voices = this.getVoices();
+      voices = speechSynthesis.getVoices();
       voicesDropdown.innerHTML = voices
         .filter(voice => voice.lang.includes('en'))
         .map(voice => `<option value="${voice.name}">${voice.name} (${voice.lang})</option>`)
         .join('');
-    }
-    function setVoice() {
-      msg.voice = voices.find(voice => voice.name === this.value);
-      toggle();
+
+      // Select a default voice if available
+      if (voicesDropdown.options.length > 0) {
+        voicesDropdown.value = voicesDropdown.options[0].value;
+        msg.voice = voices.find(voice => voice.name === voicesDropdown.value);
+      }
     }
 
+    function setVoice() {
+      msg.voice = voices.find(voice => voice.name === this.value);
+    }
+
+
+
+    // Populate voices when the page loads
+    populateVoices();
     speechSynthesis.addEventListener('voiceschanged', populateVoices);
     voicesDropdown.addEventListener('change', setVoice);
 
     options.forEach(option => {
       option.addEventListener('change', updateOptions)
+      option.addEventListener('input', updateOptions)
     });
 
     speakButton.addEventListener('click', startSpeech)

@@ -15,7 +15,7 @@ body {
 }
 
 video {
-  box-shadow: 0 0 1px 3px rgba(0,0,0,0.1);
+  box-shadow: 0 0 1px 3px rgba(0, 0, 0, 0.1);
 }
 
 .speed {
@@ -25,18 +25,27 @@ video {
   align-items: flex-start;
   margin: 10px;
   border-radius: 50px;
-  box-shadow: 0 0 1px 3px rgba(0,0,0,0.1);
+  box-shadow: 0 0 1px 3px rgba(0, 0, 0, 0.1);
   overflow: hidden;
 }
 
 .speed-bar {
   width: 100%;
   background: linear-gradient(-170deg, #2376ae 0%, #c16ecf 100%);
-  text-shadow: 1px 1px 0 rgba(0,0,0,0.2);
+  text-shadow: 1px 1px 0 rgba(0, 0, 0, 0.2);
   display: flex;
   align-items: center;
   justify-content: center;
   padding: 2px;
   color: white;
+  /* transition-property: all;
+  transition-timing-function: ease;
+  transition-duration: 100ms; */
   height: 16.3%;
+}
+
+.speed-bar.transition {
+  transition-property: all;
+  transition-timing-function: ease;
+  transition-duration: 100ms;
 }

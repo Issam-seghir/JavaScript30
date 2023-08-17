@@ -263,13 +263,18 @@
 
     }
 
+    // const audio = document.querySelector("audio")
+
     // clock time sound
-    function clockSound() {
-      const audio = document.querySelector("audio")
-      if (audio) { audio.currentTime = 0; audio.play() }
-    }
-    clockSound()
-    setInterval(clockSound, 20000);
+    // function clockSound() {
+    //   if (audio) { audio.currentTime = 0; audio.play() }
+    // }
+    // clockSound()
+    // setInterval(clockSound, 30000);
+    // let timer =  Math.round((audio.duration)) * 1000;
+    // console.log(timer);
+    // setInterval(clockSound, timer);
+    // window.onload = clockSound;
 
     // Call the updateClock function initially when the window loads
     window.onload = updateClock;

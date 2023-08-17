@@ -94,8 +94,8 @@
 
   <script>
 
-    const keys = document.querySelectorAll(".key");
-    const audios = document.querySelectorAll("audio[data-key]");
+      const keys = document.querySelectorAll(".key");
+      const audios = document.querySelectorAll("audio[data-key]");
 
     function keyClicked(e) {
       const keyCode = this.getAttribute("data-key");
@@ -110,26 +110,26 @@
         // Add the "playing" class to the element
         this.classList.add("playing");
 
-        // Remove the "playing" class after 300 milliseconds
-        setTimeout(() => {
+        // Listen for the 'transitionend' event and remove the class afterward
+        this.addEventListener("transitionend", () => {
           this.classList.remove("playing");
-        }, 300);
+        }, { once: true });
       }
     }
 
-    window.addEventListener("keydown", (e) => {
-      // Find the corresponding key element based on the key code
-      const key = document.querySelector(`div[data-key="${e.keyCode}"]`);
+      window.addEventListener("keydown", (e) => {
+        // Find the corresponding key element based on the key code
+        const key = document.querySelector(`div[data-key="${e.keyCode}"]`);
 
-      if (key) {
-        // Simulate a click event on the key element
-        key.click();
-      }
-    });
+        if (key) {
+          // Simulate a click event on the key element
+          key.click();
+        }
+      });
 
+      // Add click event listener to each key element
+      keys.forEach((key) => key.addEventListener("click", keyClicked))
 
-    // Add click event listener to each key element
-    keys.forEach((key) => key.addEventListener("click", keyClicked))
 
   </script>
 
