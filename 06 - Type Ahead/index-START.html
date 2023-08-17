@@ -7,7 +7,24 @@
   <link rel="stylesheet" href="style.css">
   <link rel="icon" href="https://fav.farm/🔥" />
 </head>
+<style>
+/* Box sizing rules */
+*,
+*::before,
+*::after {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+body{
+background-image: url("background.svg");
+min-height: 100svh;
+min-height: 100vh;
+background-attachment:fixed;
+background-size: cover;
+}
 
+</style>
 <body>
 
   <form class="search-form">
@@ -41,8 +58,8 @@
     }
 
     const citiesData = [];
-    // const url = 'https://gist.githubusercontent.com/Miserlou/c5cd8364bf9b2420bb29/raw/2bf258763cdddd704f8ffd3ea9a3e81d25e2c6f6/cities.json';
-    const url = './cities.json';
+    const url = 'https://gist.githubusercontent.com/Miserlou/c5cd8364bf9b2420bb29/raw/2bf258763cdddd704f8ffd3ea9a3e81d25e2c6f6/cities.json';
+    // const url = './cities.json';
 
     // Fetch data only once
     async function getData() {

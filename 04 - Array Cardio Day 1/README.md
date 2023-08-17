@@ -2,7 +2,9 @@
 
 ![1692297085317](image/README/1692297085317.png)
 
-In this coding exercise, I delved into various **array methods** to manipulate and analyze arrays of data. I applied **filtering**, **mapping**, **sorting**, and **reducing** techniques to perform specific tasks on arrays. Let's explore how I accomplished each of these tasks and what insights I gained from this experience.
+In this coding exercise, I delved into various **array methods** to manipulate and analyze arrays of data.
+I applied **filtering**, **mapping**, **sorting**, and **reducing** techniques to perform specific tasks on arrays.
+Let's delve into the code and understand how I **achieved** this and what i **add/fix** from the original solution.
 
 ## Table of Contents
 
