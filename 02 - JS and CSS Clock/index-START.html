@@ -229,9 +229,11 @@
 
     // ---------------------------------------------------------
     function updateClock() {
+      // Select the clock hands and elements that display hours, minutes, and seconds
       const minuteHand = document.querySelector('.min-hand');
       const secondHand = document.querySelector('.second-hand');
       const hourHand = document.querySelector('.hour-hand');
+      // Get the current time components: minutes, seconds, and hours
       let currentMinute = new Date().getMinutes();
       let currentSeconds = new Date().getSeconds();
       let currentHour = new Date().getHours();
@@ -247,7 +249,7 @@
       // Update the position of the second hand
       secondHand.style.transform = `rotate(${currentSeconds * (360 / 60) + 90}deg)`;
 
-
+      // Update the text content of display span
       const hourSpan = document.querySelector('.hour');
       const minuteSpan = document.querySelector('.minute');
       const secondSpan = document.querySelector('.second');
@@ -260,27 +262,31 @@
       minuteSpan.textContent = minutes;
       secondSpan.textContent = seconds;
 
-
     }
 
-    // const audio = document.querySelector("audio")
+    const audio = document.querySelector("audio");
 
-    // clock time sound
-    // function clockSound() {
-    //   if (audio) { audio.currentTime = 0; audio.play() }
-    // }
-    // clockSound()
-    // setInterval(clockSound, 30000);
-    // let timer =  Math.round((audio.duration)) * 1000;
-    // console.log(timer);
-    // setInterval(clockSound, timer);
-    // window.onload = clockSound;
+    // Function to play the clock sound
+    function clockSound() {
+      if (audio) {
+        audio.currentTime = 0;
+        audio.play();
+      }
+    }
 
-    // Call the updateClock function initially when the window loads
-    window.onload = updateClock;
+    // Call the clockSound function initially when the window loads
+    window.onload = function () {
+      updateClock();
 
-    // Call the updateClock function every second (1000 milliseconds)
-    setInterval(updateClock, 1000);
+      // Play sound initially
+      clockSound();
+
+      // Play sound again when the audio ends
+      audio.addEventListener('ended', clockSound);
+
+      // Update clock every second
+      setInterval(updateClock, 1000);
+    };
 
   </script>
 </body>

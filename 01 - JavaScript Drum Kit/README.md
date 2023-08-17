@@ -1,15 +1,24 @@
 
 # Drum Kit
 
-I create  a dynamic drum kit that's both fun and interactive.
-Each key corresponds to a unique sound and triggers a cool animation.
-Let me walk you through how I accomplished this and what i add/fix from the original solution
+I create  a **dynamic drum kit** that's both fun and interactive.
+Each key corresponds to a unique **animal sound** and triggers a cool **animation**.
+Let me walk you through how I **accomplished** this and what i **add/fix** from the original solution
+
+## Table of Contents
+- [Drum Kit](#drum-kit)
+  - [Table of Contents](#table-of-contents)
+  - [Features](#features)
+  - [How I Made It Happen](#how-i-made-it-happen)
+  - [What I Added or Fixed Compared to the Original Solution](#what-i-added-or-fixed-compared-to-the-original-solution)
+  - [What I Learned](#what-i-learned)
+
 
 ## Features
 
-- When I click a key or press the corresponding key on my keyboard, a lively sound is played, creating a truly immersive experience.
+- When I **click** a key or **press** the corresponding key on my keyboard, a lively sound is played, creating a truly immersive experience.
 - The animation I added gives the whole interface a playful vibe, making it more engaging and visually appealing.
-- I made sure the animation disappears seamlessly after the transition ends, keeping the user interface clean and smooth.
+- I made sure the animation disappears seamlessly after the **transition** ends, keeping the user interface clean and smooth.
 
 ## How I Made It Happen
 
@@ -22,25 +31,25 @@ Let me walk you through how I accomplished this and what i add/fix from the orig
 
 2. The `keyClicked` function became the driving force behind the magic, when i click/press a key on keyboard or mouse the `keyClicked()` function is called
 
-```javascript
-if (audio) {
-  // Reset the audio playback to the beginning
-  audio.currentTime = 0;
+  ```javascript
+  if (audio) {
+    // Reset the audio playback to the beginning
+    audio.currentTime = 0;
 
-  // Play the audio
-  audio.play();
+    // Play the audio
+    audio.play();
 
-  // Add the "playing" class to the clicked element
-  this.classList.add("playing");
+    // Add the "playing" class to the clicked element
+    this.classList.add("playing");
 
-  // Listen for the 'transitionend' event on the clicked element only 'once'
-  // This event is triggered when the CSS transition is completed
-  this.addEventListener("transitionend", () => {
-    // Remove the "playing" class from the element
-    this.classList.remove("playing");
-  }, { once: true });
-}
-```
+    // Listen for the 'transitionend' event on the clicked element only 'once'
+    // This event is triggered when the CSS transition is completed
+    this.addEventListener("transitionend", () => {
+      // Remove the "playing" class from the element
+      this.classList.remove("playing");
+    }, { once: true });
+  }
+  ```
 
 - `if (audio) { ... }`: This condition checks if an `audio` element is associated with the clicked key. If an `audio` element exists, it means there is a corresponding sound to play.
 
