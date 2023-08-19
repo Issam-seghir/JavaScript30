@@ -22,10 +22,13 @@ input {
 }
 
 input.search {
+transform: skew(-5.5deg, -2deg);
   margin: 0;
+  background-color: #0f1728;
+  color: rgba(235, 186, 247, 0.904);
   text-align: center;
   outline: 0;
-  border: 10px solid #F7F7F7;
+  border: 10px solid #a2276e;
   width: 120%;
   left: -10%;
   position: relative;
@@ -33,7 +36,7 @@ input.search {
   z-index: 2;
   border-radius: 5px;
   font-size: 40px;
-  box-shadow: 0 0 5px rgba(0, 0, 0, 0.12), inset 0 0 2px rgba(0, 0, 0, 0.19);
+  box-shadow: 0 0 5px rgba(206, 39, 156, 0.459), inset 0 0 2px rgba(173, 7, 104, 0.479);
 }
 
 .suggestions {
@@ -43,6 +46,7 @@ input.search {
   height: calc((64px + 41px) * 5);
   overflow-x: hidden;
   /*perspective: 20px;*/
+
 }
 
 /* .suggestions li {
@@ -72,31 +76,30 @@ input.search {
   background: linear-gradient(to top, #ffffff 0%, #EFEFEF 100%);
 } */
 .suggestions li {
+  background: rgba(66, 11, 59, 0.308);
+  padding: 20px;
+  /* transform: skew(4.5deg, -2deg); */
   transform: skew(-2.5deg, -2deg);
   display: flex;
   align-items: center;
   justify-content: space-between;
-  padding: 10px 15px;
+  padding: 15px 15px;
   font-size: 16px;
   border-bottom: 1px solid #ccc;
   transition: all 0.3s;
   opacity: 0.9;
 }
 
-.suggestions li:nth-child(even) {
-transform: skew(4.5deg, -2deg);
-  background-color: #f8f8f8;
+/* .suggestions li:nth-child(even) {
 }
 
 .suggestions li:nth-child(odd) {
-  transform: skew(4.5deg, -2deg);
-  background-color: #f5f5f5;
-}
+} */
 
 .suggestions li:hover {
     transform: skew(4.5deg, -2deg) scale(1.07);
     box-shadow: 0 25px 50px -12px rgb(0 0 0 / 0.25);
-  background-color: #f2f2f2;
+  background-color: #080b19;
   opacity: 1;
 }
 
