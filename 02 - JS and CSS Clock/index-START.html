@@ -1,317 +1,295 @@
 <!DOCTYPE html>
 <html lang="en">
+	<head>
+		<meta charset="UTF-8" />
+		<title>JS + CSS Clock</title>
+		<link rel="icon" href="https://fav.farm/🔥" />
+		<link href="https://fonts.googleapis.com/css?family=Monda:400,700" rel="stylesheet" type="text/css" />
+	</head>
+
+	<body>
+		<div class="clock">
+			<div class="clock-face">
+				<div class="hand hour-hand"></div>
+				<div class="hand min-hand"></div>
+				<div class="hand second-hand"></div>
+				<div class="point"></div>
+			</div>
+			<span class="number">1</span>
+			<span class="number">2</span>
+			<span class="number">3</span>
+			<span class="number">4</span>
+			<span class="number">5</span>
+			<span class="number">6</span>
+			<span class="number">7</span>
+			<span class="number">8</span>
+			<span class="number">9</span>
+			<span class="number">10</span>
+			<span class="number">11</span>
+			<span class="number">12</span>
+		</div>
+		<div class="time">
+			<span class="hour"></span>
+			<span class="colon">:</span>
+			<span class="minute"></span>
+			<span class="colon">:</span>
+			<span class="second"></span>
+		</div>
+
+		<audio src="./sounds/tick-tock.mp3"></audio>
+
+		<style>
+			:root {
+				--primary-light: #8abdff;
+				--primary: #6d5dfc;
+				--primary-dark: #5b0eeb;
+				--white: #fff;
+				--grey-light-1: #e4ebf5;
+				--grey-light-2: #c8d0e7;
+				--grey-light-3: #bec8e4;
+				--grey-dark: #9baacf;
+				--main-bg-color: #1e1f26;
+				--main-text-color: #ccc;
+			}
+
+			html {
+				font-family: "helvetica neue", sans-serif;
+				font-size: 10px;
+				text-align: center;
+
+				/* background: #018DED url(https://unsplash.it/1500/1000?image=881&blur=5); */
+				background-size: cover;
+			}
+
+			body {
+				position: relative;
+
+				display: flex;
+				flex: 1;
+				flex-direction: column;
+				align-items: center;
+				justify-content: center;
+
+				min-height: 100vh;
+				margin: 0;
+
+				font-size: 2rem;
+
+				background-color: var(--main-bg-color);
+
+				transition: all ease 0.2s;
+			}
+
+			.clock {
+				position: relative;
+
+				width: 30rem;
+				height: 30rem;
+				margin: 50px auto;
+				padding: 2rem;
+
+				border: 4px solid var(--main-bg-color);
+				border-radius: 50%;
+				box-shadow: 0 -15px 15px rgb(255 255 255 / 5%), inset 0 -15px 15px rgb(255 255 255 / 5%), 0 15px 15px rgb(0 0 0 / 30%), inset 0 15px 15px rgb(0 0 0 / 30%);
+
+				transition: all ease 0.2s;
+			}
+
+			.clock-face {
+				position: relative;
+				transform: translateY(-3px);
+				width: 100%;
+				height: 100%;
+			}
+
+			.hand {
+				position: absolute;
+				top: 50%;
+				transform-origin: right;
+				transform: rotate(90deg);
 
-<head>
-  <meta charset="UTF-8">
-  <title>JS + CSS Clock</title>
-  <link rel="icon" href="https://fav.farm/🔥" />
-  <link href="https://fonts.googleapis.com/css?family=Monda:400,700" rel="stylesheet" type="text/css">
-</head>
-
-<body>
-
-
-  <div class="clock">
-    <div class="clock-face">
-      <div class="hand hour-hand"></div>
-      <div class="hand min-hand"></div>
-      <div class="hand second-hand"></div>
-      <div class="point"></div>
-    </div>
-    <span class="number">1</span>
-    <span class="number">2</span>
-    <span class="number">3</span>
-    <span class="number">4</span>
-    <span class="number">5</span>
-    <span class="number">6</span>
-    <span class="number">7</span>
-    <span class="number">8</span>
-    <span class="number">9</span>
-    <span class="number">10</span>
-    <span class="number">11</span>
-    <span class="number">12</span>
-  </div>
-  <div class="time">
-    <span class="hour"></span>
-    <span class="colon">:</span>
-    <span class="minute"></span>
-    <span class="colon">:</span>
-    <span class="second"></span>
-  </div>
-
-  <audio src="./tick-tock.mp3"></audio>
-
-  <style>
-    :root {
-      --primary-light: #8abdff;
-      --primary: #6d5dfc;
-      --primary-dark: #5b0eeb;
-      --white: #FFF;
-      --greyLight-1: #E4EBF5;
-      --greyLight-2: #c8d0e7;
-      --greyLight-3: #bec8e4;
-      --greyDark: #9baacf;
-      --main-bg-color: #1e1f26;
-      --main-text-color: #ccc;
-    }
-
-    html {
-      font-family: 'helvetica neue';
-      font-size: 10px;
-      text-align: center;
-
-      /* background: #018DED url(https://unsplash.it/1500/1000?image=881&blur=5); */
-      background-size: cover;
-    }
-
-    body {
-      position: relative;
-
-      display: flex;
-      flex: 1;
-      flex-direction: column;
-      align-items: center;
-      justify-content: center;
-
-      min-height: 100vh;
-      margin: 0;
+				background: black;
+				border-radius: 6px;
+
+				transition: transform 0.5s cubic-bezier(0.3, 0.1, 0.4, 0.9);
 
-      font-size: 2rem;
-
-      background-color: var(--main-bg-color);
-
-      transition: all ease 0.2s;
-    }
-
-
-    .clock {
-      position: relative;
-
-      width: 30rem;
-      height: 30rem;
-      margin: 50px auto;
-      padding: 2rem;
-
-      border: 4px solid var(--main-bg-color);
-      border-radius: 50%;
-      box-shadow: 0 -15px 15px rgb(255 255 255 / 5%),
-        inset 0 -15px 15px rgb(255 255 255 / 5%), 0 15px 15px rgb(0 0 0 / 30%),
-        inset 0 15px 15px rgb(0 0 0 / 30%);
-
-      transition: all ease 0.2s;
-    }
-
-
-    .clock-face {
-      position: relative;
-      transform: translateY(-3px);
-      width: 100%;
-      height: 100%;
-
-    }
-
-    .hand {
-      position: absolute;
-      top: 50%;
-      transform-origin: right;
-      transform: rotate(90deg);
-
-      background: black;
-      border-radius: 6px;
-
-      transition: transform 0.5s cubic-bezier(0.3, 0.1, 0.4, 0.9);
-
-      /* transition:  transform 0.5s cubic-bezier(.92,-0.26,.84,-0.05) */
-      ;
-    }
-
-    .hour-hand {
-      z-index: 3;
-      left: 23%;
-
-      width: 8rem;
-      height: 6px;
-
-      background: var(--greyLight-3);
-
-    }
-
-    .min-hand {
-      z-index: 2;
-      left: 10%;
-
-      width: 12rem;
-      height: 5px;
-
-      background: var(--greyDark);
-
-    }
-
-    .second-hand {
-      z-index: 1;
-      left: 10%;
-
-      width: 12rem;
-      height: 4px;
-
-      background: var(--primary);
-    }
-
-
-    .number {
-      position: absolute;
-
-      width: 20px;
-      height: 20px;
-
-      font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
-      font-size: 2rem;
-      line-height: 20px;
-      color: var(--main-text-color);
-      text-align: center;
-
-      border-radius: 50%;
-    }
-
-
-    .point {
-      position: absolute;
-      z-index: 4;
-      top: 51%;
-      left: 50%;
-      transform: translate(-50%, -50%);
-
-      width: .8rem;
-      height: .8rem;
-      padding: .2rem;
-
-      background: var(--primary);
-      border: 3px solid var(--main-bg-color);
-      border-radius: 50%;
-
-
-    }
-
-
-    .time {
-      display: flex;
-      font-size: 2rem;
-    }
-
-    .time span {
-      padding: 7px 8px;
-      font-family: Monda, Arial, sans-serif;
-      font-size: 20px;
-      font-weight: 400;
-    }
-
-    .colon {
-      color: #ccc;
-    }
-
-    /* Style the hour, minute, and second spans to give a beautiful appearance */
-    .hour,
-    .minute,
-    .second {
-      padding: 5px 10px;
-
-      font-weight: bold;
-      color: var(--main-text-color);
-
-      border-radius: 5px;
-      box-shadow: 0 2px 5px rgb(0 0 0 / 56.8%);
-    }
-  </style>
-
-  <script>
-    // Get all number elements
-    const numbers = document.querySelectorAll(".number");
-
-    // Function to calculate the position of numbers around the clock face
-    function calculateNumberPosition(numberIndex, totalNumbers) {
-      const angle = (360 / totalNumbers) * numberIndex;
-      const radius = 15; // Adjust the radius to position the numbers closer or farther from the center
-      const centerX = 16; // X-coordinate of the center of the clock
-      const centerY = 16; // Y-coordinate of the center of the clock
-
-      // Calculate the X and Y coordinates based on the angle and radius
-      const x = centerX + radius * Math.cos((angle - 90) * (Math.PI / 180));
-      const y = centerY + radius * Math.sin((angle - 90) * (Math.PI / 180));
-
-      return { x, y };
-    }
-
-    // Position each number around the clock face using trigonometry
-    for (const [index, number] of numbers.entries()) {
-  const position = calculateNumberPosition(index + 1, numbers.length);
-  number.style.left = position.x + "rem";
-  number.style.top = position.y + "rem";
-}
-
-
-
-    // ---------------------------------------------------------
-    function updateClock() {
-      // Select the clock hands and elements that display hours, minutes, and seconds
-      const minuteHand = document.querySelector('.min-hand');
-      const secondHand = document.querySelector('.second-hand');
-      const hourHand = document.querySelector('.hour-hand');
-      // Get the current time components: minutes, seconds, and hours
-      let currentMinute = new Date().getMinutes();
-      let currentSeconds = new Date().getSeconds();
-      let currentHour = new Date().getHours();
-      currentHour = (currentHour % 12) || 12; // Convert to 12-hour format
-
-
-      // Update the position of the hours hand
-      hourHand.style.transform = `rotate(${currentHour * (360 / 12) + currentMinute / 2 + 90}deg)`;
-
-      // Update the position of the minute hand
-      minuteHand.style.transform = `rotate(${currentMinute * (360 / 60) + 90}deg)`;
-
-      // Update the position of the second hand
-      secondHand.style.transform = `rotate(${currentSeconds * (360 / 60) + 90}deg)`;
-
-      // Update the text content of display span
-      const hourSpan = document.querySelector('.hour');
-      const minuteSpan = document.querySelector('.minute');
-      const secondSpan = document.querySelector('.second');
-
-      const hours = currentHour.toString().padStart(2, '0');
-      const minutes = currentMinute.toString().padStart(2, '0');
-      const seconds = currentSeconds.toString().padStart(2, '0');
-
-      hourSpan.textContent = hours;
-      minuteSpan.textContent = minutes;
-      secondSpan.textContent = seconds;
-
-    }
-
-    const audio = document.querySelector("audio");
-
-    // Function to play the clock sound
-    function clockSound() {
-      if (audio) {
-        audio.currentTime = 0;
-        audio.play();
-      }
-    }
-
-    // Call the clockSound function initially when the window loads
-    window.onload = function () {
-      updateClock();
-
-      // Play sound initially
-      clockSound();
-
-      // Play sound again when the audio ends
-      audio.addEventListener('ended', clockSound);
-
-      // Update clock every second
-      setInterval(updateClock, 1000);
-    };
-
-  </script>
-</body>
-
+				/* transition:  transform 0.5s cubic-bezier(.92,-0.26,.84,-0.05) */
+			}
+
+			.hour-hand {
+				z-index: 3;
+				left: 23%;
+
+				width: 8rem;
+				height: 6px;
+
+				background: var(--grey-light-3);
+			}
+
+			.min-hand {
+				z-index: 2;
+				left: 10%;
+
+				width: 12rem;
+				height: 5px;
+
+				background: var(--grey-dark);
+			}
+
+			.second-hand {
+				z-index: 1;
+				left: 10%;
+
+				width: 12rem;
+				height: 4px;
+
+				background: var(--primary);
+			}
+
+			.number {
+				position: absolute;
+
+				width: 20px;
+				height: 20px;
+
+				font-family: "Franklin Gothic Medium", "Arial Narrow", Arial, sans-serif;
+				font-size: 2rem;
+				line-height: 20px;
+				color: var(--main-text-color);
+				text-align: center;
+
+				border-radius: 50%;
+			}
+
+			.point {
+				position: absolute;
+				z-index: 4;
+				top: 51%;
+				left: 50%;
+				transform: translate(-50%, -50%);
+
+				width: 0.8rem;
+				height: 0.8rem;
+				padding: 0.2rem;
+
+				background: var(--primary);
+				border: 3px solid var(--main-bg-color);
+				border-radius: 50%;
+			}
+
+			.time {
+				display: flex;
+				font-size: 2rem;
+			}
+
+			.time span {
+				padding: 7px 8px;
+				font-family: Monda, Arial, sans-serif;
+				font-size: 20px;
+				font-weight: 400;
+			}
+
+			.colon {
+				color: #ccc;
+			}
+
+			/* Style the hour, minute, and second spans to give a beautiful appearance */
+			.hour,
+			.minute,
+			.second {
+				padding: 5px 10px;
+
+				font-weight: bold;
+				color: var(--main-text-color);
+
+				border-radius: 5px;
+				box-shadow: 0 2px 5px rgb(0 0 0 / 56.8%);
+			}
+		</style>
+
+		<script>
+			// Get all number elements
+			const numbers = document.querySelectorAll(".number");
+
+			// Function to calculate the position of numbers around the clock face
+			function calculateNumberPosition(numberIndex, totalNumbers) {
+				const angle = (360 / totalNumbers) * numberIndex;
+				const radius = 15; // Adjust the radius to position the numbers closer or farther from the center
+				const centerX = 16; // X-coordinate of the center of the clock
+				const centerY = 16; // Y-coordinate of the center of the clock
+
+				// Calculate the X and Y coordinates based on the angle and radius
+				const x = centerX + radius * Math.cos((angle - 90) * (Math.PI / 180));
+				const y = centerY + radius * Math.sin((angle - 90) * (Math.PI / 180));
+
+				return { x, y };
+			}
+
+			// Position each number around the clock face using trigonometry
+			for (const [index, number] of numbers.entries()) {
+				const position = calculateNumberPosition(index + 1, numbers.length);
+				number.style.left = position.x + "rem";
+				number.style.top = position.y + "rem";
+			}
+
+			// ---------------------------------------------------------
+			function updateClock() {
+				// Select the clock hands and elements that display hours, minutes, and seconds
+				const minuteHand = document.querySelector(".min-hand");
+				const secondHand = document.querySelector(".second-hand");
+				const hourHand = document.querySelector(".hour-hand");
+				// Get the current time components: minutes, seconds, and hours
+				let currentMinute = new Date().getMinutes();
+				let currentSeconds = new Date().getSeconds();
+				let currentHour = new Date().getHours();
+				currentHour = currentHour % 12 || 12; // Convert to 12-hour format
+
+				// Update the position of the hours hand
+				hourHand.style.transform = `rotate(${currentHour * (360 / 12) + currentMinute / 2 + 90}deg)`;
+
+				// Update the position of the minute hand
+				minuteHand.style.transform = `rotate(${currentMinute * (360 / 60) + 90}deg)`;
+
+				// Update the position of the second hand
+				secondHand.style.transform = `rotate(${currentSeconds * (360 / 60) + 90}deg)`;
+
+				// Update the text content of display span
+				const hourSpan = document.querySelector(".hour");
+				const minuteSpan = document.querySelector(".minute");
+				const secondSpan = document.querySelector(".second");
+
+				const hours = currentHour.toString().padStart(2, "0");
+				const minutes = currentMinute.toString().padStart(2, "0");
+				const seconds = currentSeconds.toString().padStart(2, "0");
+
+				hourSpan.textContent = hours;
+				minuteSpan.textContent = minutes;
+				secondSpan.textContent = seconds;
+			}
+
+			const audio = document.querySelector("audio");
+
+			// Function to play the clock sound
+			function clockSound() {
+				if (audio) {
+					audio.currentTime = 0;
+					audio.play();
+				}
+			}
+
+			// Call the clockSound function initially when the window loads
+			window.addEventListener("load", function () {
+				updateClock();
+
+				// Play sound initially
+				clockSound();
+
+				// Play sound again when the audio ends
+				audio.addEventListener("ended", clockSound);
+
+				// Update clock every second
+				setInterval(updateClock, 1000);
+			});
+		</script>
+	</body>
 </html>

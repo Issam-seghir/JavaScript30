@@ -21,7 +21,7 @@ Let's delve into the code and understand how I **achieved** this and what i **ad
     - [Overcoming Audio Repetition Challenges](#overcoming-audio-repetition-challenges)
       - [Initial Approach: Using Intervals for Audio Repetition](#initial-approach-using-intervals-for-audio-repetition)
       - [Unveiling the Root Cause: `NaN` and Audio Duration Availability](#unveiling-the-root-cause-nan-and-audio-duration-availability)
-        - [Solution 1: Utilizing the `loadedmetadata` Event](#solution-1-utilizing-the-loadedmetadata-event)
+      - [Solution 1: Utilizing the `loadedmetadata` Event](#solution-1-utilizing-the-loadedmetadata-event)
       - [Solution 2: Leveraging the `ended` Event](#solution-2-leveraging-the-ended-event)
   - [What I Learned](#what-i-learned)
 
@@ -169,11 +169,9 @@ Certainly! Here are the features of the code for the clock with ticking sound ef
 
 ```
 
-
 ## What I Added or Fixed Compared to the Original Solution
 
 1. **My Own style**
-
 
 1. **Dynamic Number Positioning:**
 
@@ -195,7 +193,6 @@ Certainly! Here are the features of the code for the clock with ticking sound ef
 
    I utilized the `window.onload` event to ensure that the clock display and ticking sound are initiated once the window and its contents are fully loaded.
    This prevents any potential issues that might arise from trying to manipulate elements before they are ready.
-
 
 ## The challenges I faced
 
@@ -237,12 +234,12 @@ Certainly! Here are the features of the code for the clock with ticking sound ef
     };
 ```
 
-
-##### Solution 1: Utilizing the `loadedmetadata` Event
+#### Solution 1: Utilizing the `loadedmetadata` Event
 
 - One solution I explored was utilizing the `loadedmetadata` event of the `audio` element.
+- The `loadedmetadata`  It is triggered when the **metadata** of the media, such as **duration** and **dimensions**, has been **loaded**.
 - By attaching an event listener to this event, I ensured that the `duration` property would be accurately populated before attempting to calculate the `timer` value.
--  Once the `timer` was calculated, I successfully set up an interval for the `clockSound` function, resulting in the desired audio repetition behavior.
+- Once the `timer` was calculated, I successfully set up an interval for the `clockSound` function, resulting in the desired audio repetition behavior.
 
 Here's a snippet of how I implemented this solution:
 
@@ -290,9 +287,8 @@ By attaching the `ended` event listener to the `audio` element, I ensured that t
     };
 ```
 
-
 ## What I Learned
 
 - The exploration of events in JavaScript, such as the `loadedmetadata` and `ended` events of the `audio` element, was instrumental in overcoming challenges related to audio repetition.
 - **Handling Asynchronous Operations** : Encountering the issue of the `NaN` value when calculating the audio duration exposed me to the concept of asynchronous operations in JavaScript. I learned that certain properties, like the `duration` of an `audio` element, may not be immediately available upon element creation. Employing techniques such as event listeners and callbacks enabled me to handle asynchronous scenarios effectively.
-- Developing a clock that updates in real time required a deeper understanding of date and time manipulation.
+- Developing a clock that updates in real time required a deeper **understanding** of **date** and **time** **manipulation**.
