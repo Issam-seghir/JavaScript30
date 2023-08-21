@@ -11,14 +11,14 @@ html {
 }
 
 *,
-*:before,
-*:after {
+*::before,
+*::after {
   box-sizing: inherit;
 }
 
 svg {
   fill: white;
-  background: rgba(0, 0, 0, 0.1);
+  background: rgb(0 0 0 / 10%);
   padding: 20px;
   border-radius: 50%;
   width: 200px;
@@ -28,8 +28,8 @@ svg {
 .wrapper {
   padding: 20px;
   max-width: 350px;
-  background: rgba(255, 255, 255, 0.95);
-  box-shadow: 0 0 0 10px rgba(0, 0, 0, 0.1);
+  background: rgb(255 255 255 / 95%);
+  box-shadow: 0 0 0 10px rgb(0 0 0 / 10%);
 }
 
 h2 {
@@ -46,7 +46,7 @@ h2 {
 }
 
 .plates li {
-  border-bottom: 1px solid rgba(0, 0, 0, 0.2);
+  border-bottom: 1px solid rgb(0 0 0 / 20%);
   padding: 10px 0;
   font-weight: 100;
   display: flex;
@@ -61,12 +61,12 @@ h2 {
   display: none;
 }
 
-.plates input + label:before {
+.plates input + label::before {
   content: "⬜️";
   margin-right: 10px;
 }
 
-.plates input:checked + label:before {
+.plates input:checked + label::before {
   content: "🌮";
 }
 
@@ -77,5 +77,5 @@ h2 {
 .add-items input {
   padding: 10px;
   outline: 0;
-  border: 1px solid rgba(0, 0, 0, 0.1);
+  border: 1px solid rgb(0 0 0 / 10%);
 }

@@ -3,7 +3,7 @@ html {
   box-sizing: border-box;
 }
 
-*, *:before, *:after {
+*, *::before, *::after {
   box-sizing: inherit;
 }
 
@@ -15,7 +15,6 @@ body {
   display: flex;
   min-height: 100vh;
   align-items: center;
-
   background-image:
   radial-gradient(circle at 100% 150%, #3BC1AC 24%, #42D2BB 25%, #42D2BB 28%, #3BC1AC 29%, #3BC1AC 36%, #42D2BB 36%, #42D2BB 40%, transparent 40%, transparent),
   radial-gradient(circle at 0    150%, #3BC1AC 24%, #42D2BB 25%, #42D2BB 28%, #3BC1AC 29%, #3BC1AC 36%, #42D2BB 36%, #42D2BB 40%, transparent 40%, transparent),
@@ -34,7 +33,7 @@ body {
   background: white;
   overflow: hidden;
   z-index: 1;
-  box-shadow: 0 0 5px 5px rgba(0,0,0,0.1);
+  box-shadow: 0 0 5px 5px rgb(0 0 0 / 10%);
 }
 
 h1 {
@@ -46,7 +45,7 @@ h1 {
   text-align: center;
   font-size: 5rem;
   font-weight: 100;
-  font-family: 'Pacifico', cursive;
+  font-family: Pacifico, cursive;
   text-shadow: 3px 3px 0 #F3C010;
 }
 
@@ -73,7 +72,7 @@ textarea {
   border: 0;
   width: 49%;
   float: left;
-  font-family: 'Pacifico', cursive;
+  font-family: Pacifico, cursive;
   margin-bottom: 0;
   font-size: 2rem;
   border-bottom: 5px solid #F3C010;

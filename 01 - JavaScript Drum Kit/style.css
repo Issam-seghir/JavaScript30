@@ -13,9 +13,8 @@ html {
 
 .keys {
   /*  prevent from selecting or or highlighting the text
-        within that element using mouse or keyboard input.*/
+        within that element using mouse or keyboard input. */
   user-select: none;
-
   display: flex;
   flex: 1;
   min-height: 100vh;
@@ -33,7 +32,7 @@ html {
   width: 10rem;
   text-align: center;
   color: white;
-  background: rgba(0, 0, 0, 0.4);
+  background: rgb(0 0 0 / 40%);
   text-shadow: 0 0 .5rem black;
 }
 

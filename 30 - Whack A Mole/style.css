@@ -4,7 +4,7 @@ html {
   background: #ffc600;
 }
 
-*, *:before, *:after {
+*, *::before, *::after {
   box-sizing: inherit;
 }
 
@@ -22,7 +22,7 @@ h1 {
 }
 
 .score {
-  background: rgba(255,255,255,0.2);
+  background: rgb(255 255 255 / 20%);
   padding: 0 3rem;
   line-height: 1;
   border-radius: 1rem;
@@ -42,9 +42,9 @@ h1 {
   position: relative;
 }
 
-.hole:after {
+.hole::after {
   display: block;
-  background: url(dirt.svg) bottom center no-repeat;
+  background: url("dirt.svg") bottom center no-repeat;
   background-size: contain;
   content: '';
   width: 100%;

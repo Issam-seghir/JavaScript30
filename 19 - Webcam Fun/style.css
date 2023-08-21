@@ -2,7 +2,7 @@ html {
   box-sizing: border-box;
 }
 
-*, *:before, *:after {
+*, *::before, *::after {
   box-sizing: inherit;
 }
 
@@ -18,8 +18,8 @@ html {
   border-radius: 2px;
 }
 
-/*clearfix*/
-.photobooth:after {
+/* clearfix */
+.photobooth::after {
   content: '';
   display: block;
   clear: both;
@@ -48,8 +48,8 @@ html {
 .strip img {
   width: 100px;
   overflow-x: scroll;
-  padding: 0.8rem 0.8rem 2.5rem 0.8rem;
-  box-shadow: 0 0 3px rgba(0,0,0,0.2);
+  padding: 0.8rem 0.8rem 2.5rem;
+  box-shadow: 0 0 3px rgb(0 0 0 / 20%);
   background: white;
 }
 

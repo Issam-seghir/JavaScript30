@@ -1,183 +1,176 @@
 <!DOCTYPE html>
 <html lang="en">
+	<head>
+		<meta charset="UTF-8" />
+		<title>Type Ahead 👀</title>
+		<link rel="stylesheet" href="style.css" />
+		<link rel="icon" href="https://fav.farm/🔥" />
+	</head>
+	<style>
+		/* Box sizing rules */
+		*,
+		*::before,
+		*::after {
+			margin: 0;
+			padding: 0;
+			box-sizing: border-box;
+		}
 
-<head>
-  <meta charset="UTF-8">
-  <title>Type Ahead 👀</title>
-  <link rel="stylesheet" href="style.css">
-  <link rel="icon" href="https://fav.farm/🔥" />
-</head>
-<style>
-/* Box sizing rules */
-*,
-*::before,
-*::after {
-  margin: 0;
-  padding: 0;
-  box-sizing: border-box;
-}
-body{
-background-image: url("background.svg");
-min-height: 100svh;
-min-height: 100vh;
-background-attachment:fixed;
-background-size: cover;
-}
+		body {
+			background-image: url("background.svg");
+			min-height: 100svh;
+			min-height: 100vh;
+			background-attachment: fixed;
+			background-size: cover;
+		}
+	</style>
 
-</style>
-<body>
+	<body>
+		<form class="search-form">
+			<input type="text" class="search" placeholder="City or State" />
+			<ul class="suggestions">
+				<li>Filter for a city</li>
+				<li>or a state</li>
+			</ul>
+		</form>
 
-  <form class="search-form">
-    <input type="text" class="search" placeholder="City or State">
-    <ul class="suggestions">
-      <li>Filter for a city</li>
-      <li>or a state</li>
-    </ul>
-  </form>
+		<script>
+			async function fetchData(url) {
+				try {
+					const response = await fetch(url);
 
-  <script>
+					if (!response.ok) {
+						throw new Error(`HTTP error! Status: ${response.status}`);
+					}
 
+					const data = await response.json();
+					console.log(data);
 
-    async function fetchData(url) {
-      try {
-        const response = await fetch(url);
+					return data;
+				} catch (error) {
+					console.error("Error:", error.message);
+					// Handle the error or provide fallback data
+					return null;
+				}
+			}
 
-        if (!response.ok) {
-          throw new Error(`HTTP error! Status: ${response.status}`);
-        }
+			const citiesData = [];
+			const url =
+				"https://gist.githubusercontent.com/Miserlou/c5cd8364bf9b2420bb29/raw/2bf258763cdddd704f8ffd3ea9a3e81d25e2c6f6/cities.json";
+			// const url = './cities.json';
 
-        const data = await response.json();
-        console.log(data);
+			// Fetch data only once
+			async function getData() {
+				try {
+					const data = await fetchData(url);
+					citiesData.push(...data);
+				} catch (error) {
+					console.error("Error fetching data:", error.message);
+					// Handle the error or provide fallback data
+				}
+			}
 
-        return data;
-      } catch (error) {
-        console.error('Error:', error.message);
-        // Handle the error or provide fallback data
-        return null;
-      }
-    }
+			// Function to filter cities based on search term
+			function filterCities(cities, searchItem) {
+				const regex = new RegExp(searchItem, "gi");
+				const filteredCities = cities.filter((obj) => obj.state.match(regex) || obj.city.match(regex));
+				const defaultMessage = [{ city: "no match city", state: "no match state", population: "/" }];
+				return !filteredCities.length ? defaultMessage : filteredCities;
+			}
+			// function filterCitiesTwo(cities, searchItem) {
+			//   return cities.filter(function (obj) {
+			//     return obj.city.toLowerCase().includes(searchItem.toLowerCase()) || obj.state.toLowerCase().includes(searchItem.toLowerCase());
+			//   });
+			// }
 
-    const citiesData = [];
-    const url = 'https://gist.githubusercontent.com/Miserlou/c5cd8364bf9b2420bb29/raw/2bf258763cdddd704f8ffd3ea9a3e81d25e2c6f6/cities.json';
-    // const url = './cities.json';
+			// Function to test the performance of the first method : filterCities()
+			// function testMethodOne(citiesData, searchItem) {
 
-    // Fetch data only once
-    async function getData() {
-      try {
-        const data = await fetchData(url);
-        citiesData.push(...data);
-      } catch (error) {
-        console.error('Error fetching data:', error.message);
-        // Handle the error or provide fallback data
-      }
-    }
+			//   const startTime = performance.now();
+			//   const result = filterCities(citiesData, searchItem);
+			//   const endTime = performance.now();
+			//   const executionTime = (endTime - startTime).toFixed(3); // Display 3 decimal places
 
+			//   console.log('Method One - Result:', result);
+			//   console.log('Method One - Execution Time:', executionTime,"ms");
+			// }
 
-    // Function to filter cities based on search term
-    function filterCities(cities, searchItem) {
-      const regex = new RegExp(searchItem, 'gi');
-      const filteredCities = cities.filter((obj) => obj.state.match(regex) || obj.city.match(regex))
-      const defaultMessage = [{ city: "no match city", state: "no match state", population: "/" }]
-      return !filteredCities.length ? defaultMessage : filteredCities
-    }
-    // function filterCitiesTwo(cities, searchItem) {
-    //   return cities.filter(function (obj) {
-    //     return obj.city.toLowerCase().includes(searchItem.toLowerCase()) || obj.state.toLowerCase().includes(searchItem.toLowerCase());
-    //   });
-    // }
+			// Function to test the performance of the second method : filterCitiesTwo()
+			// function testMethodTwo(citiesData, searchItem) {
 
-    // Function to test the performance of the first method : filterCities()
-    // function testMethodOne(citiesData, searchItem) {
+			//   const startTime = performance.now();
+			//   const result = filterCitiesTwo(citiesData, searchItem);
+			//   const endTime = performance.now();
+			//   const executionTime = (endTime - startTime).toFixed(3); // Display 3 decimal places
 
-    //   const startTime = performance.now();
-    //   const result = filterCities(citiesData, searchItem);
-    //   const endTime = performance.now();
-    //   const executionTime = (endTime - startTime).toFixed(3); // Display 3 decimal places
+			//   console.log('Method Two - Result:', result);
+			//   console.log('Method Two - Execution Time:', executionTime,"ms");
+			// }
 
-    //   console.log('Method One - Result:', result);
-    //   console.log('Method One - Execution Time:', executionTime,"ms");
-    // }
+			// Function to display filtered cities
+			// function displayCities(matchedCitiesArray) {
 
-    // Function to test the performance of the second method : filterCitiesTwo()
-    // function testMethodTwo(citiesData, searchItem) {
+			//   const hlgtWord = new RegExp(searchItem, 'gi');
+			//   suggestionsList.innerHTML = matchedCitiesArray
+			//     .map((obj) => `
+			//   <li>
+			//     <span class="name">${obj.city}, ${obj.state}</span>
+			//     <span class="population">${obj.population}</span>
+			//   </li>
+			// `)
+			//     .join('');
+			// }
 
-    //   const startTime = performance.now();
-    //   const result = filterCitiesTwo(citiesData, searchItem);
-    //   const endTime = performance.now();
-    //   const executionTime = (endTime - startTime).toFixed(3); // Display 3 decimal places
+			function numberWithCommas(x) {
+				return x.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
+			}
 
-    //   console.log('Method Two - Result:', result);
-    //   console.log('Method Two - Execution Time:', executionTime,"ms");
-    // }
-
-
-
-
-    // Function to display filtered cities
-    // function displayCities(matchedCitiesArray) {
-
-    //   const hlgtWord = new RegExp(searchItem, 'gi');
-    //   suggestionsList.innerHTML = matchedCitiesArray
-    //     .map((obj) => `
-    //   <li>
-    //     <span class="name">${obj.city}, ${obj.state}</span>
-    //     <span class="population">${obj.population}</span>
-    //   </li>
-    // `)
-    //     .join('');
-    // }
-
-
-    function numberWithCommas(x) {
-      return x.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ',');
-    }
-
-    function displayCities(matchedCitiesArray, searchTerm) {
-      const html = matchedCitiesArray.map(obj => {
-        const regex = new RegExp(searchTerm, 'gi');
-        const cityName = obj.city.replace(regex, `<span class="hl">${searchTerm}</span>`);
-        const stateName = obj.state.replace(regex, `<span class="hl">${searchTerm}</span>`);
-        return `
-      <li>
+			function displayCities(matchedCitiesArray, searchTerm) {
+				const html = matchedCitiesArray
+					.map((obj) => {
+						const regex = new RegExp(searchTerm, "gi");
+						const cityName = obj.city.replace(regex, `<span class="hl">${searchTerm}</span>`);
+						const stateName = obj.state.replace(regex, `<span class="hl">${searchTerm}</span>`);
+						return `
+    <li>
         <span class="name">${cityName}, ${stateName}</span>
         <span class="population">${numberWithCommas(obj.population)}</span>
-      </li>
+    </li>
     `;
-      }).join('');
-      suggestionsList.innerHTML = html;
-    }
+					})
+					.join("");
+				suggestionsList.innerHTML = html;
+			}
 
-    // Function to handle input changes with debounce
-    function debounce(func, delay) {
-      let timer;
-      return function (...args) {
-        clearTimeout(timer);
-        timer = setTimeout(() => func.apply(this, args), delay);
-      };
-    }
+			// Function to handle input changes with debounce
+			function debounce(func, delay) {
+				let timer;
+				return function (...args) {
+					clearTimeout(timer);
+					timer = setTimeout(() => func.apply(this, args), delay);
+				};
+			}
 
-    // Handler for input changes
-    function handleInput(event) {
-      const searchTerm = event.target.value;
-      // console.log("Search Term:", searchTerm);
+			// Handler for input changes
+			function handleInput(event) {
+				const searchTerm = event.target.value;
+				// console.log("Search Term:", searchTerm);
 
-      const matchedCitiesArray = filterCities(citiesData, searchTerm);
-      displayCities(matchedCitiesArray, searchTerm);
-      // for testing purposes
-      // testMethodOne(citiesData, searchTerm);
-      // testMethodTwo(citiesData, searchTerm);
-    }
+				const matchedCitiesArray = filterCities(citiesData, searchTerm);
+				displayCities(matchedCitiesArray, searchTerm);
+				// for testing purposes
+				// testMethodOne(citiesData, searchTerm);
+				// testMethodTwo(citiesData, searchTerm);
+			}
 
-    const suggestionsList = document.querySelector('.suggestions');
-    const searchInput = document.querySelector('.search');
+			const suggestionsList = document.querySelector(".suggestions");
+			const searchInput = document.querySelector(".search");
 
-    // Add the input event listener with debounce (300ms delay)
-    searchInput.addEventListener('input', debounce(handleInput, 300));
+			// Add the input event listener with debounce (300ms delay)
+			searchInput.addEventListener("input", debounce(handleInput, 300));
 
-    // Fetch data once the page loads
-    getData();
-
-  </script>
-</body>
-
+			// Fetch data once the page loads
+			getData();
+		</script>
+	</body>
 </html>

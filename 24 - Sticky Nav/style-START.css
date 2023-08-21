@@ -1,6 +1,6 @@
 html {
   box-sizing: border-box;
-  background: #eeeeee;
+  background: #eee;
   font-family: 'helvetica neue';
   font-size: 20px;
   font-weight: 200;
@@ -11,8 +11,8 @@ body {
 }
 
 *,
-*:before,
-*:after {
+*::before,
+*::after {
   box-sizing: inherit;
 }
 
@@ -22,7 +22,7 @@ body {
   background: white;
   padding: 40px;
   text-align: justify;
-  box-shadow: 0 0 10px 5px rgba(0, 0, 0, 0.05);
+  box-shadow: 0 0 10px 5px rgb(0 0 0 / 5%);
   transform: scale(0.98);
   transition: transform 0.5s;
 }
@@ -30,7 +30,7 @@ body {
 header {
   text-align: center;
   height: 50vh;
-  background: url(https://source.unsplash.com/GKN6rpDr0EI/960x640) bottom center no-repeat;
+  background: url("https://source.unsplash.com/GKN6rpDr0EI/960x640") bottom center no-repeat;
   background-size: cover;
   display: flex;
   align-items: center;
@@ -40,7 +40,7 @@ header {
 h1 {
   color: white;
   font-size: 7vw;
-  text-shadow: 3px 4px 0 rgba(0, 0, 0, 0.2);
+  text-shadow: 3px 4px 0 rgb(0 0 0 / 20%);
 }
 
 nav {
@@ -54,7 +54,7 @@ nav {
 
 nav.sticky {
   position: fixed;
-  box-shadow: 0 0 10px 5px rgba(151, 255, 255, 0.671);
+  box-shadow: 0 0 10px 5px rgb(151 255 255 / 67.1%);
 }
 
 nav.sticky .logo {

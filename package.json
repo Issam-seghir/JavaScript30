@@ -1,0 +1,32 @@
+{
+	"name": "javascript30",
+	"version": "1.0.0",
+	"description": "![](https://javascript30.com/images/JS3-social-share.png)",
+	"main": "index.js",
+	"type": "module",
+	"scripts": {
+		"lint": "npx eslint  \"*.html\" ",
+		"lint:fix": "npm run lint -- --fix",
+		"lint:style": "npx stylelint \"**/*.{css,less,postcss,scss,html,vue,svelte,astro}\"",
+		"lint:style:fix": "npx stylelint \"**/*.{css,less,postcss,scss,html,vue,svelte,astro}\" --fix"
+	},
+	"author": "issam-seghir",
+	"license": "MIT",
+	"devDependencies": {
+		"eslint": "^8.47.0",
+		"eslint-config-prettier": "^9.0.0",
+		"eslint-plugin-compat": "^4.1.4",
+		"eslint-plugin-html": "^7.1.0",
+		"eslint-plugin-import": "^2.28.1",
+		"eslint-plugin-security": "^1.7.1",
+		"eslint-plugin-simple-import-sort": "^10.0.0",
+		"eslint-plugin-sonarjs": "^0.20.0",
+		"eslint-plugin-unicorn": "^48.0.1",
+		"postcss-html": "^1.5.0",
+		"stylelint": "^15.10.3",
+		"stylelint-config-clean-order": "^5.2.0",
+		"stylelint-config-html": "^1.1.0",
+		"stylelint-config-standard": "^34.0.0",
+		"stylelint-config-standard-scss": "^10.0.0"
+	}
+}
