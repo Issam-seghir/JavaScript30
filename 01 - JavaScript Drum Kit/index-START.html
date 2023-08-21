@@ -1,139 +1,135 @@
 <!DOCTYPE html>
 <html lang="en">
+	<head>
+		<meta charset="UTF-8" />
+		<title>JS Drum Kit</title>
+		<link rel="stylesheet" href="style.css" />
+		<link rel="icon" href="https://fav.farm/🔥" />
+	</head>
+	<style>
+		html {
+			background: url("./green-forest.jpg") bottom center !important;
+			background-size: cover !important;
+		}
 
-<head>
-  <meta charset="UTF-8">
-  <title>JS Drum Kit</title>
-  <link rel="stylesheet" href="style.css">
-  <link rel="icon" href="https://fav.farm/🔥" />
-</head>
-<style>
-  html {
-    background: url('./green-forest.jpg') bottom center !important;
-    background-size: cover !important;
-  }
+		body,
+		html {
+			font-family: cursive !important;
+		}
 
-  body,
-  html {
-    font-family: cursive !important;
-  }
+		.key {
+			color: #a7bba3 !important;
+			text-shadow: 0 0 0.5rem black !important;
 
-  .key {
-    border: .4rem solid rgba(0, 3, 0, 0.5) !important;
-    border-radius: .9rem !important;
-    color: #a7bba3 !important;
-    background: rgba(0, 0, 0, 0.4) !important;
-    text-shadow: 0 0 .5rem black !important;
-  }
+			background: rgb(0 0 0 / 40%) !important;
+			border: 0.4rem solid rgb(0 3 0 / 50%) !important;
+			border-radius: 0.9rem !important;
+		}
 
-  .playing {
-    border-color: #90a18c !important;
-    box-shadow: 0 0 1rem #b7c9b3 !important;
-  }
+		.playing {
+			border-color: #90a18c !important;
+			box-shadow: 0 0 1rem #b7c9b3 !important;
+		}
 
-  kbd {
-    font-family: inherit !important;
-  }
+		kbd {
+			font-family: inherit !important;
+		}
 
-  .sound {
-    color: #87f7baaf !important;
-  }
-</style>
+		.sound {
+			color: #87f7baaf !important;
+		}
+	</style>
 
-<body>
+	<body>
+		<div class="keys">
+			<div data-key="65" class="key">
+				<kbd>A</kbd>
+				<span class="sound">goat</span>
+			</div>
+			<div data-key="83" class="key">
+				<kbd>S</kbd>
+				<span class="sound">sparrow</span>
+			</div>
+			<div data-key="68" class="key">
+				<kbd>D</kbd>
+				<span class="sound">cat</span>
+			</div>
+			<div data-key="70" class="key">
+				<kbd>F</kbd>
+				<span class="sound">eagle</span>
+			</div>
+			<div data-key="71" class="key">
+				<kbd>G</kbd>
+				<span class="sound">bird</span>
+			</div>
+			<div data-key="72" class="key">
+				<kbd>H</kbd>
+				<span class="sound">wolf</span>
+			</div>
+			<div data-key="74" class="key">
+				<kbd>J</kbd>
+				<span class="sound">horse</span>
+			</div>
+			<div data-key="75" class="key">
+				<kbd>K</kbd>
+				<span class="sound">cow</span>
+			</div>
+			<div data-key="76" class="key">
+				<kbd>L</kbd>
+				<span class="sound">werewolf</span>
+			</div>
+		</div>
 
+		<audio data-key="65" src="sounds/baby-goat-baa.wav"></audio>
+		<audio data-key="83" src="sounds/cartoon-creature-pain-scream.wav"></audio>
+		<audio data-key="68" src="sounds/cartoon-little-cat-meow.wav"></audio>
+		<audio data-key="70" src="sounds/eagle-calling.wav"></audio>
+		<audio data-key="71" src="sounds/double-little-bird-chirp.wav"></audio>
+		<audio data-key="72" src="sounds/monster-attack-dog-wolf.wav"></audio>
+		<audio data-key="74" src="sounds/horse-stallion-snore.wav"></audio>
+		<audio data-key="75" src="sounds/cow-sick-moo.wav"></audio>
+		<audio data-key="76" src="sounds/werewolf-roar.mp3"></audio>
 
-  <div class="keys">
-    <div data-key="65" class="key">
-      <kbd>A</kbd>
-      <span class="sound">goat</span>
-    </div>
-    <div data-key="83" class="key">
-      <kbd>S</kbd>
-      <span class="sound">sparrow</span>
-    </div>
-    <div data-key="68" class="key">
-      <kbd>D</kbd>
-      <span class="sound">cat</span>
-    </div>
-    <div data-key="70" class="key">
-      <kbd>F</kbd>
-      <span class="sound">eagle</span>
-    </div>
-    <div data-key="71" class="key">
-      <kbd>G</kbd>
-      <span class="sound">bird</span>
-    </div>
-    <div data-key="72" class="key">
-      <kbd>H</kbd>
-      <span class="sound">wolf</span>
-    </div>
-    <div data-key="74" class="key">
-      <kbd>J</kbd>
-      <span class="sound">horse</span>
-    </div>
-    <div data-key="75" class="key">
-      <kbd>K</kbd>
-      <span class="sound">cow</span>
-    </div>
-    <div data-key="76" class="key">
-      <kbd>L</kbd>
-      <span class="sound">werewolf</span>
-    </div>
-  </div>
+		<script>
+			const keys = document.querySelectorAll(".key");
 
-  <audio data-key="65" src="sounds/baby-goat-baa.wav"></audio>
-  <audio data-key="83" src="sounds/cartoon-creature-pain-scream.wav"></audio>
-  <audio data-key="68" src="sounds/cartoon-little-cat-meow.wav"></audio>
-  <audio data-key="70" src="sounds/eagle-calling.wav"></audio>
-  <audio data-key="71" src="sounds/double-little-bird-chirp.wav"></audio>
-  <audio data-key="72" src="sounds/monster-attack-dog-wolf.wav"></audio>
-  <audio data-key="74" src="sounds/horse-stallion-snore.wav"></audio>
-  <audio data-key="75" src="sounds/cow-sick-moo.wav"></audio>
-  <audio data-key="76" src="sounds/werewolf-roar.mp3"></audio>
+			function keyClicked() {
+				// Get the value of the 'data-key' attribute from the clicked element
+				const keyCode = this.dataset.key;
 
-  <script>
+				// Find the corresponding audio element with the same data-key attribute
+				const audio = document.querySelector(`audio[data-key="${keyCode}"]`);
 
-      const keys = document.querySelectorAll(".key");
-      const audios = document.querySelectorAll("audio[data-key]");
+				if (audio) {
+					audio.currentTime = 0; // Reset audio to the beginning
+					audio.play();
 
-    function keyClicked(e) {
-      const keyCode = this.getAttribute("data-key");
+					// Add the "playing" class to the element
+					this.classList.add("playing");
 
-      // Find the corresponding audio element with the same data-key attribute
-      const audio = document.querySelector(`audio[data-key="${keyCode}"]`);
+					// Listen for the 'transitionend' event and remove the class afterward
+					this.addEventListener(
+						"transitionend",
+						() => {
+							this.classList.remove("playing");
+						},
+						{ once: true }
+					);
+				}
+			}
 
-      if (audio) {
-        audio.currentTime = 0; // Reset audio to the beginning
-        audio.play();
+			window.addEventListener("keydown", (e) => {
+				// Find the corresponding key element based on the key code
+				// eslint-disable-next-line unicorn/prefer-keyboard-event-key
+				const key = document.querySelector(`div[data-key="${e.keyCode}"]`);
 
-        // Add the "playing" class to the element
-        this.classList.add("playing");
+				if (key) {
+					// Simulate a click event on the key element
+					key.click();
+				}
+			});
 
-        // Listen for the 'transitionend' event and remove the class afterward
-        this.addEventListener("transitionend", () => {
-          this.classList.remove("playing");
-        }, { once: true });
-      }
-    }
-
-      window.addEventListener("keydown", (e) => {
-        // Find the corresponding key element based on the key code
-        const key = document.querySelector(`div[data-key="${e.keyCode}"]`);
-
-        if (key) {
-          // Simulate a click event on the key element
-          key.click();
-        }
-      });
-
-      // Add click event listener to each key element
-      keys.forEach((key) => key.addEventListener("click", keyClicked))
-
-
-  </script>
-
-
-</body>
-
+			keys.forEach((key) => key.addEventListener("click", keyClicked));
+		</script>
+	</body>
 </html>

@@ -8,13 +8,13 @@ Each key corresponds to a unique **animal sound** and triggers a cool **animatio
 Let me walk you through how I **accomplished** this and what i **add/fix** from the original solution
 
 ## Table of Contents
+
 - [Drum Kit](#drum-kit)
   - [Table of Contents](#table-of-contents)
   - [Features](#features)
   - [How I Made It Happen](#how-i-made-it-happen)
   - [What I Added or Fixed Compared to the Original Solution](#what-i-added-or-fixed-compared-to-the-original-solution)
   - [What I Learned](#what-i-learned)
-
 
 ## Features
 
@@ -24,32 +24,41 @@ Let me walk you through how I **accomplished** this and what i **add/fix** from 
 
 ## How I Made It Happen
 
-1. I started by selecting all the `.key` elements and their corresponding `audio` elements:
+1. I started by selecting all the `.key` elements
 
    ```javascript
    const keys = document.querySelectorAll(".key");
-   const audios = document.querySelectorAll("audio[data-key]");
    ```
 
 2. The `keyClicked` function became the driving force behind the magic, when i click/press a key on keyboard or mouse the `keyClicked()` function is called
 
   ```javascript
-  if (audio) {
-    // Reset the audio playback to the beginning
-    audio.currentTime = 0;
+  function keyClicked() {
+    // Get the value of the 'data-key' attribute from the clicked element
+    const keyCode = this.dataset.key;
 
-    // Play the audio
-    audio.play();
+    // Find the corresponding audio element with the same data-key attribute
+    const audio = document.querySelector(`audio[data-key="${keyCode}"]`);
+    if (audio) {
+      // Reset the audio playback to the beginning
+      audio.currentTime = 0;
 
-    // Add the "playing" class to the clicked element
-    this.classList.add("playing");
+      // Play the audio
+      audio.play();
 
-    // Listen for the 'transitionend' event on the clicked element only 'once'
-    // This event is triggered when the CSS transition is completed
-    this.addEventListener("transitionend", () => {
-      // Remove the "playing" class from the element
-      this.classList.remove("playing");
-    }, { once: true });
+      // Add the "playing" class to the clicked element
+      this.classList.add("playing");
+
+      // Listen for the 'transitionend' event on the clicked element only 'once'
+      // This event is triggered when the CSS transition is completed
+      this.addEventListener("transitionend", () => {
+          // Remove the "playing" class from the element
+          this.classList.remove("playing");
+          },
+          // executed only once
+          { once: true }
+        );
+    }
   }
   ```
 
@@ -69,6 +78,7 @@ Let me walk you through how I **accomplished** this and what i **add/fix** from 
 
    ```javascript
    window.addEventListener("keydown", (e) => {
+    // Find the corresponding key element based on the key code
      const key = document.querySelector(`div[data-key="${e.keyCode}"]`);
 
     // Check if a corresponding key element was found
@@ -76,6 +86,7 @@ Let me walk you through how I **accomplished** this and what i **add/fix** from 
     // Simulate a click event on the key element
     key.click();
     }
+   });
    ```
 
 4. To ensure a consistent and delightful experience, I added a `click` event listener to each `.key` element:

@@ -34,6 +34,7 @@ module.exports = {
 		ecmaVersion: "latest",
 		sourceType: "module",
 	},
+	ignorePatterns: ["**/index-finished.html", "**/script-finished.js"],
 	rules: {
 		// Organize imports using simple-import-sort
 		"simple-import-sort/imports": "error",
@@ -47,5 +48,30 @@ module.exports = {
 		"import/no-duplicates": "error",
 		// Allow empty named blocks in imports (with a warning)
 		"import/no-empty-named-blocks": "warn",
+
+		// disables the default e -> event / error
+		// add custom abbreviations err -> error
+		"unicorn/prevent-abbreviations": [
+			"error",
+			{
+				replacements: {
+					e: false,
+					err: {
+						error: true,
+					},
+				},
+			},
+		],
+		// "unicorn/prevent-abbreviations": [
+		// 	"error",
+		// 	{
+		// 		allowList: { Param: true, Req: true, Res: true },
+		// 	},
+		// ],
+		"unicorn/no-array-reduce": "off",
+		"unicorn/no-array-for-each": "off",
+
+		//! deactive rules only for this project
+		"unicorn/filename-case": ["off"],
 	},
 };
