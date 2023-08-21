@@ -1,126 +1,120 @@
 <!DOCTYPE html>
 <html lang="en">
+	<head>
+		<meta charset="UTF-8" />
+		<title>Scoped CSS Variables and JS</title>
+		<link rel="icon" href="https://fav.farm/🔥" />
+	</head>
 
-<head>
-  <meta charset="UTF-8">
-  <title>Scoped CSS Variables and JS</title>
-  <link rel="icon" href="https://fav.farm/🔥" />
-</head>
+	<body>
+		<h2>Update CSS Variables with <span class="hl">JS</span></h2>
 
-<body>
-  <h2>Update CSS Variables with <span class="hl">JS</span></h2>
+		<div class="controls">
+			<label for="spacing">Spacing:</label>
+			<input id="spacing" type="range" name="spacing" min="10" max="200" value="10" data-sizing="px" />
 
-  <div class="controls">
-    <label for="spacing">Spacing:</label>
-    <input id="spacing" type="range" name="spacing" min="10" max="200" value="10" data-sizing="px">
+			<label for="blur">Blur:</label>
+			<input id="blur" type="range" name="blur" min="0" max="25" value="10" data-sizing="px" />
 
-    <label for="blur">Blur:</label>
-    <input id="blur" type="range" name="blur" min="0" max="25" value="10" data-sizing="px">
+			<label for="base">Base Color</label>
+			<input id="base" type="color" name="base" value="#ffc600" />
+		</div>
 
-    <label for="base">Base Color</label>
-    <input id="base" type="color" name="base" value="#ffc600">
-  </div>
+		<img src="./images/img.jpg" alt="boats" />
 
-  <img src="./img.jpg">
-
-  <style>
-    /*
+		<style>
+			/*
       misc styles, nothing to do with CSS variables
     */
-    :root {
-      --spacing: .2rem;
-      --blur: .2rem;
-      --base: yellow;
-      overflow-y: scroll;
-      scrollbar-color: var(--base) #0000009d;
-      scrollbar-width: 5px;
+			:root {
+				--spacing: 0.2rem;
+				--blur: 0.2rem;
+				--base: yellow;
 
-    }
+				scrollbar-color: var(--base) #0000009d;
+				scrollbar-width: 5px;
+				overflow-y: scroll;
+			}
 
-    ::selection {
-      background-color: var(--base);
-    }
+			::selection {
+				background-color: var(--base);
+			}
 
-    /* For Chrome and other browsers */
-    ::-webkit-scrollbar-track {
-      -webkit-box-shadow: inset 0 0 6px rgba(0, 0, 0, 0.3);
-      border-radius: 10px;
-      background-color: #0000009d;
-    }
+			/* For Chrome and other browsers */
+			::-webkit-scrollbar-track {
+				background-color: #0000009d;
+				border-radius: 10px;
+				box-shadow: inset 0 0 6px rgb(0 0 0 / 30%);
+			}
 
-    ::-webkit-scrollbar {
-      width: 12px;
-      background-color: #0000009d;
-    }
+			::-webkit-scrollbar {
+				width: 12px;
+				background-color: #0000009d;
+			}
 
-    ::-webkit-scrollbar-thumb {
-      border-radius: 10px;
-      -webkit-box-shadow: inset 0 0 6px rgba(0, 0, 0, .3);
-      background-color: var(--base);
-    }
+			::-webkit-scrollbar-thumb {
+				background-color: var(--base);
+				border-radius: 10px;
+				box-shadow: inset 0 0 6px rgb(0 0 0 / 30%);
+			}
 
+			body {
+				font-family: "Gill Sans", "Gill Sans MT", Calibri, "Trebuchet MS", sans-serif;
+				font-size: 50px;
+				font-weight: 400;
+				color: rgb(0 0 0 / 54.1%);
+				text-align: center;
 
-    body {
-      text-align: center;
-      background: #56dfcc9d;
-      color: rgba(0, 0, 0, 0.541);
-      accent-color: var(--base);
-      font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
-      font-weight: 400;
-      font-size: 50px;
-    }
+				accent-color: var(--base);
+				background: #56dfcc9d;
+			}
 
-    .controls {
-      margin-bottom: 50px;
-    }
+			.controls {
+				margin-bottom: 50px;
+			}
 
-    input {
-      width: 100px;
-    }
+			input {
+				width: 100px;
+			}
 
-    img {
-      padding: var(--spacing);
-      background-color: var(--base);
-      filter: blur(var(--blur));
-      border-radius: 15px;
-      box-shadow:
-        3px 6px 18px var(--base), 8px -5px 7px var(--base)
-    }
+			img {
+				padding: var(--spacing);
 
-    h2 {
-      /* text-underline-offset: 12px;
+				background-color: var(--base);
+				filter: blur(var(--blur));
+				border-radius: 15px;
+				box-shadow: 3px 6px 18px var(--base), 8px -5px 7px var(--base);
+			}
+
+			h2 {
+				/* text-underline-offset: 12px;
       text-decoration-line: underline;
       text-decoration-thickness: 8px; */
-      font-size: 5rem;
-    }
+				font-size: 5rem;
+			}
 
-    span.hl {
-      color: var(--base);
+			span.hl {
+				color: var(--base);
+			}
 
-    }
+			span.hl::selection {
+				background-color: rgb(0 0 0 / 30%);
+			}
+		</style>
 
-    span.hl::selection {
-      background-color: rgba(0, 0, 0, 0.3);
-    }
-  </style>
+		<script>
+			const inputs = document.querySelectorAll("input");
+			const root = document.documentElement;
 
-  <script>
-    const inputs = document.querySelectorAll('input');
-    const root = document.documentElement;
+			function handleInput(event) {
+				const { target } = event;
+				const suffix = target.dataset.sizing || "";
+				root.style.setProperty(`--${target.name}`, `${target.value}${suffix}`);
+			}
 
-    function handleInput(event) {
-      const { target } = event;
-      const suffix = target.dataset.sizing || '';
-      root.style.setProperty(`--${target.name}`, `${target.value}${suffix}`);
-    }
-
-    inputs.forEach(input => {
-      input.addEventListener('input', handleInput);
-    });
-
-
-  </script>
-
-</body>
-
+			inputs.forEach((input) => {
+				input.addEventListener("input", handleInput);
+			});
+		</script>
+	</body>
 </html>

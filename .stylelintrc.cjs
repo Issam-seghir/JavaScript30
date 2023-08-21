@@ -18,7 +18,7 @@ module.exports = {
 			customSyntax: "postcss-html",
 		},
 	],
-	ignorePatterns: ["**/index-finished.html", "**/style-finished.css"],
+	ignoreFiles: ["**/index-FINISHED.html", "**/style-FINISHED.css"],
 	rules: {},
 	// lower the security level for all rule
 	defaultSeverity: "warning",
