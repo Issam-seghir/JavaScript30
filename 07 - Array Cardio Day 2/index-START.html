@@ -1,58 +1,92 @@
 <!DOCTYPE html>
 <html lang="en">
+	<head>
+		<meta charset="UTF-8" />
+		<title>Array Cardio 💪💪</title>
+		<link rel="icon" href="https://fav.farm/🔥" />
+	</head>
+	<style>
+		@import "https://fonts.googleapis.com/css2?family=Ruwudu:wght@700&display=swap";
 
-<head>
-  <meta charset="UTF-8">
-  <title>Array Cardio 💪💪</title>
-  <link rel="icon" href="https://fav.farm/🔥" />
-</head>
+		body {
+			display: flex;
+			flex-direction: column;
+			align-items: center;
+			justify-content: center;
 
-<body>
-  <p><em>Psst: have a look at the JavaScript Console</em> 💁</p>
-  <script>
-    // ## Array Cardio Day 2
+			min-height: 100svh;
+			min-height: 100vh;
 
-    const people = [
-      { name: 'Wes', year: 1988 },
-      { name: 'Kait', year: 1986 },
-      { name: 'Irv', year: 1970 },
-      { name: 'Lux', year: 2015 }
-    ];
+			font-family: Ruwudu, serif;
+			font-size: 2.25rem;
+			color: rgb(252 211 77);
+			text-align: center;
+			text-shadow: rgb(218 247 92 / 30%) 0 5px 15px;
 
-    const comments = [
-      { text: 'Love this!', id: 523423 },
-      { text: 'Super good', id: 823423 },
-      { text: 'You are the best', id: 2039842 },
-      { text: 'Ramen is my fav food ever', id: 123523 },
-      { text: 'Nice Nice Nice!', id: 542328 }
-    ];
+			background-color: #b5eebf4d;
+			background-image: url("data:image/svg+xml,<svg id='patternId' width='100%' height='100%' xmlns='http://www.w3.org/2000/svg'><defs><pattern id='a' patternUnits='userSpaceOnUse' width='87' height='50.232' patternTransform='scale(2) rotate(0)'><rect x='0' y='0' width='100%' height='100%' fill='hsla(342, 90%, 19%, 0.98)'/><path d='M0 54.424l14.5-8.373c4.813 2.767 9.705 5.573 14.5 8.37l14.5-8.373V29.303M0 4.193v16.744l-14.5 8.373L0 37.68l14.5-8.374V12.562l29-16.746m43.5 58.6l-14.5-8.37v-33.49c-4.795-2.797-9.687-5.603-14.5-8.37m43.5 25.111L87 37.67c-4.795-2.797-24.187-13.973-29-16.74l-14.5 8.373-14.5-8.37v-33.489m72.5 8.365L87 4.183l-14.5-8.37M87 4.183v16.745L58 37.673v16.744m0-66.976V4.185L43.5 12.56c-4.795-2.797-24.187-13.973-29-16.74L0 4.192l-14.5-8.37m29 33.484c4.813 2.767 9.705 5.573 14.5 8.37V54.42'  stroke-linejoin='round' stroke-linecap='round' stroke-width='4.5' stroke='hsla(341, 100%, 70%, 1)' fill='none'/></pattern></defs><rect width='800%' height='800%' transform='translate(0,-0.928)' fill='url(%23a)'/></svg>");
+			background-attachment: fixed;
+			background-size: cover;
+		}
 
-    // Some and Every Checks
-    // Array.prototype.some() // is at least one person 19 or older?
-    let display = people.some(obj => new Date().getFullYear() - obj.year >= 19)
-    console.log(display);
+		p {
+			margin: 0;
+		}
 
-    // Array.prototype.every() // is everyone 19 or older?
-    display = people.every(obj => new Date().getFullYear() - obj.year >= 19)
-    console.log(display);
+		.container {
+			padding: 1rem;
+			backdrop-filter: blur(8px);
+			border-radius: 0.5rem;
+			box-shadow: rgb(0 0 0 / 30%) 0 5px 15px;
+		}
+	</style>
+	<body>
+		<div class="container">
+			<p>Array Cardio Day II 🃏</p>
+			<p>Have a look at the JavaScript Console 🚀</p>
+		</div>
 
-    // Array.prototype.find()
-    // Find is like filter, but instead returns just the one you are looking for
-    // find the comment with the ID of 823423
-    display = comments.find(obj => obj.id === 823423)
-    console.log(display);
+		<script>
+			// ## Array Cardio Day 2
 
-    // Array.prototype.findIndex()
-    // Find the comment with this ID
-    const index = comments.findIndex(obj => obj.id === 823423)
-    console.log(index);
-    // delete the comment with the ID of 823423
-        const newComments = [
-            ...comments.slice(0, index),
-            ...comments.slice(index + 1)
-          ];
+			const people = [
+				{ name: "Wes", year: 1988 },
+				{ name: "Kait", year: 1986 },
+				{ name: "Irv", year: 1970 },
+				{ name: "Lux", year: 2015 },
+			];
 
-  </script>
-</body>
+			const comments = [
+				{ text: "Love this!", id: 523_423 },
+				{ text: "Super good", id: 823_423 },
+				{ text: "You are the best", id: 2_039_842 },
+				{ text: "Ramen is my fav food ever", id: 123_523 },
+				{ text: "Nice Nice Nice!", id: 542_328 },
+			];
 
+			// Some and Every Checks
+			// Array.prototype.some() // is at least one person 19 or older?
+			let display = people.some((object) => new Date().getFullYear() - object.year >= 19);
+			console.log(display);
+
+			// Array.prototype.every() // is everyone 19 or older?
+			display = people.every((object) => new Date().getFullYear() - object.year >= 19);
+			console.log(display);
+
+			// Array.prototype.find()
+			// Find is like filter, but instead returns just the one you are looking for
+			// find the comment with the ID of 823423
+			display = comments.find((object) => object.id === 823_423);
+			console.log(display);
+
+			// Array.prototype.findIndex()
+			// Find the comment with this ID
+			const index = comments.findIndex((object) => object.id === 823_423);
+			console.log(index);
+
+			// delete the comment with the ID of 823423
+			const newComments = [...comments.slice(0, index), ...comments.slice(index + 1)];
+			console.log(newComments);
+		</script>
+	</body>
 </html>

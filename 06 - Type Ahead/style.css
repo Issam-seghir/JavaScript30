@@ -1,6 +1,6 @@
 html {
 	box-sizing: border-box;
-	font-family: "helvetica neue";
+	font-family: "helvetica neue", sans-serif;
 	font-size: 20px;
 	font-weight: 200;
 }
@@ -22,29 +22,34 @@ input {
 }
 
 input.search {
+	position: relative;
+	z-index: 2;
+	top: 10px;
+	left: -10%;
 	transform: skew(-5.5deg, -2deg);
+
+	width: 120%;
 	margin: 0;
-	background-color: #0f1728;
+
+	font-size: 40px;
 	color: rgb(235 186 247 / 90.4%);
 	text-align: center;
-	outline: 0;
+
+	background-color: #0f1728;
 	border: 10px solid #a2276e;
-	width: 120%;
-	left: -10%;
-	position: relative;
-	top: 10px;
-	z-index: 2;
 	border-radius: 5px;
-	font-size: 40px;
+	outline: 0;
 	box-shadow: 0 0 5px rgb(206 39 156 / 45.9%), inset 0 0 2px rgb(173 7 104 / 47.9%);
 }
 
 .suggestions {
+	position: relative;
+
+	overflow-x: hidden;
+
+	height: calc((64px + 41px) * 5);
 	margin: 0;
 	padding: 0;
-	position: relative;
-	height: calc((64px + 41px) * 5);
-	overflow-x: hidden;
 
 	/* perspective: 20px; */
 }
@@ -76,18 +81,22 @@ input.search {
   background: linear-gradient(to top, #ffffff 0%, #EFEFEF 100%);
 } */
 .suggestions li {
-	background: rgb(66 11 59 / 30.8%);
-
 	/* transform: skew(4.5deg, -2deg); */
 	transform: skew(-2.5deg, -2deg);
+
 	display: flex;
 	align-items: center;
 	justify-content: space-between;
+
 	padding: 15px;
+
 	font-size: 16px;
-	border-bottom: 1px solid #ccc;
-	transition: all 0.3s;
+
 	opacity: 0.9;
+	background: rgb(66 11 59 / 30.8%);
+	border-bottom: 1px solid #ccc;
+
+	transition: all 0.3s;
 }
 
 /* .suggestions li:nth-child(even) {
@@ -98,9 +107,9 @@ input.search {
 
 .suggestions li:hover {
 	transform: skew(4.5deg, -2deg) scale(1.07);
-	box-shadow: 0 25px 50px -12px rgb(0 0 0 / 25%);
-	background-color: #080b19;
 	opacity: 1;
+	background-color: #080b19;
+	box-shadow: 0 25px 50px -12px rgb(0 0 0 / 25%);
 }
 
 span.population {
