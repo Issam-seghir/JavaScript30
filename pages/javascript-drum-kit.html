@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<title>JavaScript Drum Kit</title>
+		<link rel="stylesheet" href="../cobalt.css" />
+		<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/styles/atom-one-dark.min.css" />
+		<style>
+			/* Additional styles as needed */
+
+			/* Styles for the TOC container */
+			.toc-container {
+				padding: 20px;
+				border-left: 1px solid #ccc;
+			}
+
+			/* Styles for the TOC links */
+			.toc a {
+				display: block;
+
+				padding: 4px 0;
+
+				color: #333;
+				text-decoration: none;
+
+				transition: color 0.3s ease;
+			}
+
+			/* Styles for different heading levels */
+			.toc-level-2 {
+				margin-left: 10px;
+			}
+
+			.toc-level-3 {
+				margin-left: 20px;
+			}
+
+			/* Responsive styles */
+			@media (width <= 768px) {
+				.toc-container {
+					display: none; /* Hide TOC on small screens */
+				}
+			}
+		</style>
+	</head>
+	<body>
+		<!-- Sidebar TOC container -->
+		<div class="toc-container">
+			<h2>Table of Contents</h2>
+			<nav class="toc"></nav>
+		</div>
+
+		<div class="markdown-content" id="write">
+			<!-- The converted Markdown content will be inserted here -->
+		</div>
+
+		<!-- Include external scripts -->
+		<script src="https://cdnjs.cloudflare.com/ajax/libs/showdown/2.1.0/showdown.min.js" integrity="sha512-LhccdVNGe2QMEfI3x4DVV3ckMRe36TfydKss6mJpdHjNFiV07dFpS2xzeZedptKZrwxfICJpez09iNioiSZ3hA==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+		<script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/highlight.min.js"></script>
+		<script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/languages/javascript.min.js"></script>
+		<script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/languages/css.min.js"></script>
+		<script>
+			// use gfm :  github markdown syntax
+			showdown.setFlavor("github");
+			/* parse GitHub-style mentions in the Markdown document.
+			This means that when a user types a GitHub username in the Markdown document, it will be converted into a link to that user's GitHub profile.
+			*/
+			// showdown.setOption("ghMentions", true);
+
+			// change option globally  : affects all Showdown instances
+			console.log(showdown.getOptions());
+
+			const markdownToHtml = new showdown.Converter();
+
+			async function fetchAndConvertMarkdownToHTML(filePath) {
+				const markdownResponse = await fetch(filePath);
+				let markdown = await markdownResponse.text();
+				// Remove the "Table of Contents" heading and its content from markdown text
+				markdown = markdown.replace(/## Table of Contents[\S\s]*?(?=## )/, "");
+				return markdownToHtml.makeHtml(markdown);
+			}
+
+			async function loadMarkdownContent() {
+				const markdownContent = await fetchAndConvertMarkdownToHTML("../01 - JavaScript Drum Kit/README.md");
+				const markdownContainer = document.querySelector(".markdown-content");
+				markdownContainer.innerHTML = markdownContent;
+
+				// Dispatch custom event after markdown content is inserted
+				const markdownContentLoadedEvent = new Event("markdownContentLoaded");
+				document.dispatchEvent(markdownContentLoadedEvent);
+			}
+
+			loadMarkdownContent();
+
+			// Listen for the custom event after markdown content is loaded
+			document.addEventListener("markdownContentLoaded", function () {
+				// Apply syntax highlighting after Markdown is inserted
+				hljs.highlightAll();
+				// Generate and insert the TOC
+				generateAndInsertTOC();
+			});
+
+			function generateAndInsertTOC() {
+				// Get all headings with IDs
+				const headings = document.querySelectorAll("h2[id], h3[id], h4[id], h5[id], h6[id]");
+				const tocContainer = document.querySelector(".toc");
+
+				// Generate the TOC
+				let tocHTML = "<ul>";
+				headings.forEach((heading) => {
+					const id = heading.getAttribute("id");
+					const text = heading.textContent;
+					const level = Number.parseInt(heading.tagName.charAt(1));
+
+					tocHTML += `<li><a href="#${id}" class="toc-level-${level}">${text}</a></li>`;
+				});
+				tocHTML += "</ul>";
+
+				tocContainer.innerHTML = tocHTML;
+			}
+		</script>
+	</body>
+</html>

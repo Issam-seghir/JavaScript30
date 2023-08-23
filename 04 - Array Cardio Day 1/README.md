@@ -1,4 +1,4 @@
-# Exploring Array Methods
+# Exploring Array Methods  - Array Cardio Day 1
 
 ![img](assets/image/background.png)
 
@@ -8,7 +8,7 @@ Let's delve into the code and understand how I **achieved** this and what i **ad
 
 ## Table of Contents
 
-- [Exploring Array Methods](#exploring-array-methods)
+- [Exploring Array Methods  - Array Cardio Day 1](#exploring-array-methods----array-cardio-day-1)
   - [Table of Contents](#table-of-contents)
   - [How I Made It Happen](#how-i-made-it-happen)
     - [1. Filtering Inventors](#1-filtering-inventors)

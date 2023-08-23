@@ -2,6 +2,7 @@ module.exports = {
 	// Specify the environments where your code will run
 	env: {
 		browser: true,
+		node: true,
 		es2023: true,
 	},
 	// Extend configurations from various ESLint plugins
