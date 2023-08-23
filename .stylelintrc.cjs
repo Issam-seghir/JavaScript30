@@ -1,3 +1,11 @@
+const { propertyGroups } = require("stylelint-config-clean-order");
+
+const propertiesOrder = propertyGroups.map((properties) => ({
+	noEmptyLineBetween: true,
+	emptyLineBefore: "never", // Don't add empty lines between order groups.
+	properties,
+}));
+
 module.exports = {
 	// Specify your Stylelint rules and configurations here
 
@@ -6,7 +14,7 @@ module.exports = {
 		// "stylelint-config-recommended", // Recommended stylelint rules
 		"stylelint-config-standard-scss", // for scss , this will use standard config too but for scss so you can delete the first line
 		"stylelint-config-html",
-		"stylelint-config-clean-order",
+		"stylelint-config-clean-order", // alternative : stylelint-config-recess-order / stylelint-config-property-sort-order-smacss
 	],
 	overrides: [
 		// {
@@ -19,7 +27,16 @@ module.exports = {
 		},
 	],
 	ignoreFiles: ["**/index-FINISHED.html", "**/style-FINISHED.css"],
-	rules: {},
+	rules: {
+		// Don't add empty lines between order groups.
+		"order/properties-order": [
+			propertiesOrder,
+			{
+				severity: "warning",
+				unspecified: "bottomAlphabetical",
+			},
+		],
+	},
 	// lower the security level for all rule
 	defaultSeverity: "warning",
 	// Automatically fix, where possible, problems reported by rules.

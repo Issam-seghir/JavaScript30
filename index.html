@@ -3,11 +3,341 @@
 	<head>
 		<meta charset="UTF-8" />
 		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
-		<title>Markdown Pages</title>
+		<title>JS30 Exercises</title>
+		<link rel="stylesheet" href="cobalt.css" />
 	</head>
+	<style>
+		/* styles.css */
+
+		body {
+			margin: 0;
+			font-family: Arial, sans-serif;
+		}
+
+		.grid-container {
+			display: grid;
+			grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+			gap: 20px;
+			padding: 20px;
+		}
+
+		.card {
+			position: relative;
+			padding: 10px;
+			background-color: #111720;
+			border: 1px solid #ddd;
+			border-radius: 5px;
+			transition: transform 0.2s, box-shadow 0.2s;
+		}
+
+		.card:hover {
+			transform: translateY(-5px);
+			box-shadow: 0 5px 10px rgb(0 0 0 / 10%);
+		}
+
+		.card a {
+			color: #333;
+			text-decoration: none;
+		}
+
+		.card-gif {
+			display: block;
+			width: 100%;
+			height: auto;
+			border-radius: 5px;
+			transition: opacity 0.2s;
+		}
+
+		.card:hover .card-gif {
+			opacity: 0.7;
+		}
+
+		.card-title {
+			margin-top: 10px;
+			font-size: 1.25rem;
+		}
+
+		/* Reset some default styles */
+		* {
+			box-sizing: border-box;
+			margin: 0;
+			padding: 0;
+		}
+
+		/* Set a background color for the body */
+		body {
+			font-family: Arial, sans-serif;
+		}
+
+		/* Style for the intro section */
+		.intro {
+			padding: 60px 0;
+			color: #fff;
+			text-align: center;
+			background-color: #1812018e;
+		}
+
+		.intro h1 {
+			margin-bottom: 20px;
+			font-size: 2.5rem;
+		}
+
+		.intro p {
+			margin-bottom: 30px;
+			font-size: 1.25rem;
+		}
+
+		/* Style for the useful links */
+		.useful-links {
+			display: flex;
+			gap: 20px;
+			justify-content: center;
+		}
+
+		.useful-links a {
+			display: flex;
+			align-items: center;
+			font-size: 1.2rem;
+			color: #fff;
+			text-decoration: none;
+			transition: color 0.3s ease;
+		}
+
+		.useful-links a:hover {
+			color: #f4c25e;
+		}
+
+		.useful-links i {
+			margin-right: 8px;
+			font-size: 1.5rem;
+		}
+
+		/* Media queries for responsiveness */
+		@media (width <= 768px) {
+			.grid-container {
+				grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+			}
+		}
+
+		@media (width <= 576px) {
+			.card {
+				padding: 5px;
+			}
+		}
+	</style>
 	<body>
-        <div>
-            <a href="./pages/javascript-drum-kit.html">first exercice </a>
-        </div>
+		<section class="intro">
+			<h1>Welcome to JS30 Exercises!</h1>
+			<p>Explore a collection of JavaScript 30-day coding challenges.</p>
+			<div class="useful-links">
+				<a href="https://github.com/yourusername/js30-exercises" target="_blank" rel="noopener">
+					<i class="fab fa-github"></i>
+					GitHub Repository
+				</a>
+				<a href="https://twitter.com/yourusername" target="_blank" rel="noopener">
+					<i class="fab fa-twitter"></i>
+					Twitter
+				</a>
+				<!-- Add more social media links -->
+			</div>
+		</section>
+		<div class="grid-container">
+			<!-- Card 1 -->
+			<div class="card">
+				<a href="./pages/javascript-drum-kit.html">
+					<img class="card-gif" src="./01 - JavaScript Drum Kit/assets/images/green-forest.jpg" alt="Exercise 1" />
+					<h2 class="card-title">Exercise 1</h2>
+				</a>
+			</div>
+			<!-- Add more cards for other exercises -->
+			<!-- Card 2 -->
+			<div class="card">
+				<a href="./pages/javascript-drum-kit.html">
+					<img class="card-gif" src="./02 - JS and CSS Clock/assets/images/showcase.gif" alt="Exercise 2" />
+					<h2 class="card-title">Exercise 2</h2>
+				</a>
+			</div>
+
+			<div class="card">
+				<a href="./pages/javascript-drum-kit.html">
+					<img class="card-gif" src="./03 - CSS Variables/assets/images/img.jpg" alt="Exercise 2" />
+					<h2 class="card-title">Exercise 2</h2>
+				</a>
+			</div>
+			<div class="card">
+				<a href="./pages/javascript-drum-kit.html">
+					<img class="card-gif" src="./04 - Array Cardio Day 1/assets/image/background.png" alt="Exercise 2" />
+					<h2 class="card-title">Exercise 2</h2>
+				</a>
+			</div>
+			<div class="card">
+				<a href="./pages/javascript-drum-kit.html">
+					<img class="card-gif" src="./05 - Flex Panel Gallery/assets/images/showcase.gif" alt="Exercise 2" />
+					<h2 class="card-title">Exercise 2</h2>
+				</a>
+			</div>
+			<div class="card">
+				<a href="./pages/javascript-drum-kit.html">
+					<img class="card-gif" src="./06 - Type Ahead/assets/images/background.svg" alt="Exercise 2" />
+					<h2 class="card-title">Exercise 2</h2>
+				</a>
+			</div>
+			<div class="card">
+				<a href="./pages/javascript-drum-kit.html">
+					<img class="card-gif" src="./07 - Array Cardio Day 2/assets/image/background.png" alt="Exercise 2" />
+					<h2 class="card-title">Exercise 2</h2>
+				</a>
+			</div>
+			<div class="card">
+				<a href="./pages/javascript-drum-kit.html">
+					<img class="card-gif" src="./08 - Fun with HTML5 Canvas/assets/images/showcase.gif" alt="Exercise 2" />
+					<h2 class="card-title">Exercise 2</h2>
+				</a>
+			</div>
+			<div class="card">
+				<a href="./pages/javascript-drum-kit.html">
+					<img class="card-gif" src="./09 - Dev Tools Domination/assets/images/showcase.gif" alt="Exercise 2" />
+					<h2 class="card-title">Exercise 2</h2>
+				</a>
+			</div>
+			<div class="card">
+				<a href="./pages/javascript-drum-kit.html">
+					<img class="card-gif" src="./10 - Hold Shift and Check Checkboxes/assets/images/showcase.gif" alt="Exercise 2" />
+					<h2 class="card-title">Exercise 2</h2>
+				</a>
+			</div>
+			<div class="card">
+				<a href="./pages/javascript-drum-kit.html">
+					<img class="card-gif" src="./11 - Custom Video Player/assets/images/showcase.gif" alt="Exercise 2" />
+					<h2 class="card-title">Exercise 2</h2>
+				</a>
+			</div>
+			<div class="card">
+				<a href="./pages/javascript-drum-kit.html">
+					<img class="card-gif" src="./12 - Key Sequence Detection/assets/images/showcase.gif" alt="Exercise 2" />
+					<h2 class="card-title">Exercise 2</h2>
+				</a>
+			</div>
+			<div class="card">
+				<a href="./pages/javascript-drum-kit.html">
+					<img class="card-gif" src="./13 - Slide in on Scroll/assets/images/showcase.gif" alt="Exercise 2" />
+					<h2 class="card-title">Exercise 2</h2>
+				</a>
+			</div>
+			<div class="card">
+				<a href="./pages/javascript-drum-kit.html">
+					<img class="card-gif" src="./14 - JavaScript References VS Copying/assets/images/showcase.gif" alt="Exercise 2" />
+					<h2 class="card-title">Exercise 2</h2>
+				</a>
+			</div>
+			<div class="card">
+				<a href="./pages/javascript-drum-kit.html">
+					<img class="card-gif" src="./15 - LocalStorage/oh-la-la.jpeg" alt="Exercise 2" />
+					<h2 class="card-title">Exercise 2</h2>
+				</a>
+			</div>
+			<div class="card">
+				<a href="./pages/javascript-drum-kit.html" >
+					<img class="card-gif" src="" alt="Exercise 2" />
+					<h2 class="card-title">Exercise 2</h2>
+				</a>
+			</div>
+			<div class="card">
+				<a href="./pages/javascript-drum-kit.html">
+					<img class="card-gif" src="./" alt="Exercise 2" />
+					<h2 class="card-title">Exercise 2</h2>
+				</a>
+			</div>
+			<div class="card">
+				<a href="./pages/javascript-drum-kit.html">
+					<img class="card-gif" src="./assets/images/showcase.gif" alt="Exercise 2" />
+					<h2 class="card-title">Exercise 2</h2>
+				</a>
+			</div>
+			<div class="card">
+				<a href="./pages/javascript-drum-kit.html">
+					<img class="card-gif" src="./assets/images/showcase.gif" alt="Exercise 2" />
+					<h2 class="card-title">Exercise 2</h2>
+				</a>
+			</div>
+			<div class="card">
+				<a href="./pages/javascript-drum-kit.html">
+					<img class="card-gif" src="./assets/images/showcase.gif" alt="Exercise 2" />
+					<h2 class="card-title">Exercise 2</h2>
+				</a>
+			</div>
+			<div class="card">
+				<a href="./pages/javascript-drum-kit.html">
+					<img class="card-gif" src="./assets/images/showcase.gif" alt="Exercise 2" />
+					<h2 class="card-title">Exercise 2</h2>
+				</a>
+			</div>
+			<div class="card">
+				<a href="./pages/javascript-drum-kit.html">
+					<img class="card-gif" src="./assets/images/showcase.gif" alt="Exercise 2" />
+					<h2 class="card-title">Exercise 2</h2>
+				</a>
+			</div>
+			<div class="card">
+				<a href="./pages/javascript-drum-kit.html">
+					<img class="card-gif" src="./assets/images/showcase.gif" alt="Exercise 2" />
+					<h2 class="card-title">Exercise 2</h2>
+				</a>
+			</div>
+			<div class="card">
+				<a href="./pages/javascript-drum-kit.html">
+					<img class="card-gif" src="./assets/images/showcase.gif" alt="Exercise 2" />
+					<h2 class="card-title">Exercise 2</h2>
+				</a>
+			</div>
+			<div class="card">
+				<a href="./pages/javascript-drum-kit.html">
+					<img class="card-gif" src="./assets/images/showcase.gif" alt="Exercise 2" />
+					<h2 class="card-title">Exercise 2</h2>
+				</a>
+			</div>
+			<div class="card">
+				<a href="./pages/javascript-drum-kit.html">
+					<img class="card-gif" src="./assets/images/showcase.gif" alt="Exercise 2" />
+					<h2 class="card-title">Exercise 2</h2>
+				</a>
+			</div>
+			<div class="card">
+				<a href="./pages/javascript-drum-kit.html">
+					<img class="card-gif" src="./assets/images/showcase.gif" alt="Exercise 2" />
+					<h2 class="card-title">Exercise 2</h2>
+				</a>
+			</div>
+			<div class="card">
+				<a href="./pages/javascript-drum-kit.html">
+					<img class="card-gif" src="./assets/images/showcase.gif" alt="Exercise 2" />
+					<h2 class="card-title">Exercise 2</h2>
+				</a>
+			</div>
+			<div class="card">
+				<a href="./pages/javascript-drum-kit.html">
+					<img class="card-gif" src="./assets/images/showcase.gif" alt="Exercise 2" />
+					<h2 class="card-title">Exercise 2</h2>
+				</a>
+			</div>
+			<div class="card">
+				<a href="./pages/javascript-drum-kit.html">
+					<img class="card-gif" src="./assets/images/showcase.gif" alt="Exercise 2" />
+					<h2 class="card-title">Exercise 2</h2>
+				</a>
+			</div>
+			<div class="card">
+				<a href="./pages/javascript-drum-kit.html">
+					<img class="card-gif" src="./assets/images/showcase.gif" alt="Exercise 2" />
+					<h2 class="card-title">Exercise 2</h2>
+				</a>
+			</div>
+			<div class="card">
+				<a href="./pages/javascript-drum-kit.html">
+					<img class="card-gif" src="./assets/images/showcase.gif" alt="Exercise 2" />
+					<h2 class="card-title">Exercise 2</h2>
+				</a>
+			</div>
+		</div>
 	</body>
 </html>
