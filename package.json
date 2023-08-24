@@ -4,6 +4,10 @@
 	"description": "![](https://javascript30.com/images/JS3-social-share.png)",
 	"main": "index.js",
 	"type": "module",
+	"browserslist": [
+		"defaults and supports es6-module",
+		"maintained node versions"
+	],
 	"scripts": {
 		"lint:js": "npx eslint \"**/*.{html,js,ts,jsx,tsx}\"",
 		"lint:js:fix": "npm run lint:js -- --fix",

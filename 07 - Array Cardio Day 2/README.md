@@ -4,13 +4,11 @@
 
 In this coding exercise, I explored various **array methods** to manipulate and analyze arrays of data.
 I worked with arrays of people's information and comments, performing operations such as **filtering**, **checking**, **finding**, and **deleting**.
-Let's delve into the code and understand how I **achieved** this and what i **add/fix** from the original solution.
 
 ## Table of Contents
 
 - [Exploring Array Methods - Array Cardio Day 2](#exploring-array-methods---array-cardio-day-2)
   - [Table of Contents](#table-of-contents)
-  - [How I Made It Happen](#how-i-made-it-happen)
   - [Some and Every Checks](#some-and-every-checks)
     - [1. Checking if at Least One Person is 19 or Older](#1-checking-if-at-least-one-person-is-19-or-older)
     - [2. Checking if Everyone is 19 or Older](#2-checking-if-everyone-is-19-or-older)
@@ -19,8 +17,6 @@ Let's delve into the code and understand how I **achieved** this and what i **ad
   - [Array.prototype.findIndex()](#arrayprototypefindindex)
     - [Find Index of Comment with a Specific ID](#find-index-of-comment-with-a-specific-id)
     - [Delete Comment with a Specific ID](#delete-comment-with-a-specific-id)
-
-## How I Made It Happen
 
 ## Some and Every Checks
 

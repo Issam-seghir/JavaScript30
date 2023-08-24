@@ -2,7 +2,6 @@ module.exports = {
 	// Specify the environments where your code will run
 	env: {
 		browser: true,
-		node: true,
 		es2023: true,
 	},
 	// Extend configurations from various ESLint plugins
@@ -12,14 +11,27 @@ module.exports = {
 		"plugin:security/recommended",
 		"plugin:unicorn/recommended",
 		"plugin:sonarjs/recommended",
-		"plugin:compat/recommended",
+		"plugin:compat/recommended", // see browse list in package.json
 		"prettier", // Make sure this is the last,
 	],
 	plugins: ["html", "import", "simple-import-sort", "unicorn", "sonarjs"],
 	// Configure settings for certain plugins
 	settings: {
 		"import/docstyle": ["jsdoc", "tomdoc"],
+		// compat plugin : polyfills web api
+		polyfills: [
+			// Example of marking entire API and all methods and properties as polyfilled
+			"Promise",
+			// Example of marking specific method of an API as polyfilled
+			"WebAssembly.compile",
+			// Example of API with no property (i.e. a function)
+			"fetch",
+			// Example of instance method, must add `.prototype.`
+			"Array.prototype.push",
+		],
 	},
+
+
 	overrides: [
 		{
 			files: [".eslintrc.{js,cjs}"],

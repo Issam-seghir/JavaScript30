@@ -3,47 +3,58 @@
 	<head>
 		<meta charset="UTF-8" />
 		<title>HTML5 Canvas</title>
-		<link rel="icon" href="https://fav.farm/🔥" />
+		<link rel="icon" href="https://fav.farm/✅" />
+		<style>
+			body {
+				overflow: hidden;
+				margin: 0;
+				background-color: #f2ffc5;
+				background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='100%25' height='100%25' viewBox='0 0 1600 800'%3E%3Cg stroke='%23F9FFF5' stroke-width='62.1' stroke-opacity='0.15' %3E%3Ccircle fill='%23F2FFC5' cx='0' cy='0' r='1800'/%3E%3Ccircle fill='%23e5f4bb' cx='0' cy='0' r='1700'/%3E%3Ccircle fill='%23d8e9b1' cx='0' cy='0' r='1600'/%3E%3Ccircle fill='%23cbdea8' cx='0' cy='0' r='1500'/%3E%3Ccircle fill='%23bed49e' cx='0' cy='0' r='1400'/%3E%3Ccircle fill='%23b2c995' cx='0' cy='0' r='1300'/%3E%3Ccircle fill='%23a6be8c' cx='0' cy='0' r='1200'/%3E%3Ccircle fill='%2399b483' cx='0' cy='0' r='1100'/%3E%3Ccircle fill='%238eaa7a' cx='0' cy='0' r='1000'/%3E%3Ccircle fill='%23829f71' cx='0' cy='0' r='900'/%3E%3Ccircle fill='%23769568' cx='0' cy='0' r='800'/%3E%3Ccircle fill='%236b8b60' cx='0' cy='0' r='700'/%3E%3Ccircle fill='%235f8157' cx='0' cy='0' r='600'/%3E%3Ccircle fill='%2354774f' cx='0' cy='0' r='500'/%3E%3Ccircle fill='%23496d47' cx='0' cy='0' r='400'/%3E%3Ccircle fill='%233e643f' cx='0' cy='0' r='300'/%3E%3Ccircle fill='%23345a38' cx='0' cy='0' r='200'/%3E%3Ccircle fill='%23295130' cx='0' cy='0' r='100'/%3E%3C/g%3E%3C/svg%3E");
+				background-attachment: fixed;
+				background-size: cover;
+			}
+
+			canvas {
+				position: absolute;
+				top: 0;
+				left: 0;
+				display: block;
+			}
+		</style>
 	</head>
 	<body>
-	<!-- disable for  -->
-		<canvas id="draw" width="800" height="800"></canvas>
+		<canvas id="draw"></canvas>
 		<script>
 			const canvas = document.querySelector("#draw");
 			const context = canvas.getContext("2d");
 			canvas.width = window.innerWidth;
 			canvas.height = window.innerHeight;
-			context.strokeStyle = "#BADA55";
 			context.lineJoin = "round";
 			context.lineCap = "round";
-			context.lineWidth = 100;
-			// ctx.globalCompositeOperation = 'multiply';
+			context.lineWidth = 10;
 
 			let isDrawing = false;
 			let lastX = 0;
 			let lastY = 0;
-			let hue = 0;
 			let direction = true;
 
-			function draw(e) {
-				if (!isDrawing) return; // stop the fn from running when they are not moused down
-				console.log(e);
-				context.strokeStyle = `hsl(${hue}, 100%, 50%)`;
-				context.beginPath();
-				// start from
-				context.moveTo(lastX, lastY);
-				// go to
-				context.lineTo(e.offsetX, e.offsetY);
-				context.stroke();
-				[lastX, lastY] = [e.offsetX, e.offsetY];
+			const greenPalette = ["#fafff8", "#f5fff0", "#ebffe1", "#e0ffd2", "#d6ffc3", "#ccffb4", "#a3cc90", "#7a996c", "#526648"];
 
-				hue++;
-				if (hue >= 360) {
-					hue = 0;
-				}
+			function draw(e) {
+				if (!isDrawing) return;
+
+				const randomGreen = greenPalette[Math.floor(Math.random() * greenPalette.length)];
+				context.strokeStyle = randomGreen; // Set a random green color from the palette
+				context.beginPath();
+				context.moveTo(lastX, lastY);
+				context.lineTo(e.clientX, e.clientY);
+				context.stroke();
+				[lastX, lastY] = [e.clientX, e.clientY];
+
 				if (context.lineWidth >= 100 || context.lineWidth <= 1) {
 					direction = !direction;
 				}
+
 				if (direction) {
 					context.lineWidth++;
 				} else {
@@ -53,20 +64,12 @@
 
 			canvas.addEventListener("mousedown", (e) => {
 				isDrawing = true;
-				[lastX, lastY] = [e.offsetX, e.offsetY];
+				[lastX, lastY] = [e.clientX, e.clientY];
 			});
 
 			canvas.addEventListener("mousemove", draw);
 			canvas.addEventListener("mouseup", () => (isDrawing = false));
 			canvas.addEventListener("mouseout", () => (isDrawing = false));
 		</script>
-
-		<style>
-			html,
-			body {
-				margin: 0;
-			}
-
-		</style>
 	</body>
 </html>

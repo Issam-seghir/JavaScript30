@@ -1,92 +1,118 @@
 <!DOCTYPE html>
 <html lang="en">
+	<head>
+		<meta charset="UTF-8" />
+		<title>Console Tricks!</title>
+		<link rel="icon" href="https://fav.farm/🔥" />
+	</head>
+	<style>
+		@import "https://fonts.googleapis.com/css2?family=Ruwudu:wght@700&display=swap";
 
-<head>
-  <meta charset="UTF-8">
-  <title>Console Tricks!</title>
-  <link rel="icon" href="https://fav.farm/🔥" />
-</head>
+		body {
+			display: flex;
+			flex-direction: column;
+			align-items: center;
+			justify-content: center;
+			min-height: 100svh;
+			min-height: 100vh;
+			font-family: Ruwudu, serif;
+			font-size: 2.25rem;
+			color: rgb(252 211 77);
+			text-align: center;
+			text-shadow: rgb(218 247 92 / 30%) 0 5px 15px;
+			background-color: #b5eebf4d;
+			background-image: url("data:image/svg+xml,<svg id='patternId' width='100%' height='100%' xmlns='http://www.w3.org/2000/svg'><defs><pattern id='a' patternUnits='userSpaceOnUse' width='87' height='50.232' patternTransform='scale(2) rotate(0)'><rect x='0' y='0' width='100%' height='100%' fill='hsla(210, 90%, 19%, 0.98)'/><path d='M0 54.424l14.5-8.373c4.813 2.767 9.705 5.573 14.5 8.37l14.5-8.373V29.303M0 4.193v16.744l-14.5 8.373L0 37.68l14.5-8.374V12.562l29-16.746m43.5 58.6l-14.5-8.37v-33.49c-4.795-2.797-9.687-5.603-14.5-8.37m43.5 25.111L87 37.67c-4.795-2.797-24.187-13.973-29-16.74l-14.5 8.373-14.5-8.37v-33.489m72.5 8.365L87 4.183l-14.5-8.37M87 4.183v16.745L58 37.673v16.744m0-66.976V4.185L43.5 12.56c-4.795-2.797-24.187-13.973-29-16.74L0 4.192l-14.5-8.37m29 33.484c4.813 2.767 9.705 5.573 14.5 8.37V54.42'  stroke-linejoin='round' stroke-linecap='round' stroke-width='4.5' stroke='hsla(200, 100%, 70%, 1)' fill='none'/></pattern></defs><rect width='800%' height='800%' transform='translate(0,-0.928)' fill='url(%23a)'/></svg>");
+			background-attachment: fixed;
+			background-size: cover;
+		}
 
-<body>
+		p {
+			margin: 0;
+		}
 
-  <p onClick="makeGreen()">×BREAK×DOWN×</p>
+		.container {
+			padding: 1rem;
+			backdrop-filter: blur(8px);
+			border-radius: 0.5rem;
+			box-shadow: rgb(0 0 0 / 30%) 0 5px 15px;
+		}
+	</style>
+	<body>
+		<div class="container">
+			<p>Dev Tool Domination 💻</p>
+			<p>Have a look at the JavaScript Console 🚀</p>
+		</div>
 
-  <script>
-    const dogs = [{ name: 'Snickers', age: 2 }, { name: 'hugo', age: 8 }];
+		<script type="module">
+			const cats = [
+				{ name: "lolo", age: 2 },
+				{ name: "cutty", age: 8 },
+			];
 
-    function makeGreen() {
-      const p = document.querySelector('p');
-      p.style.color = '#BADA55';
-      p.style.fontSize = '50px';
-    }
+			// Regular
+			console.log("Marhaba 👋");
 
-    // Regular
-    console.log('hello');
+			// Interpolated
+			console.log("Hello I am a %s !", "🦄");
 
-    // Interpolated
-    console.log('Hello I am a %s string!', '💩');
+			// Styled
+			// console.log('%c I am some great text', 'font-size:50px; background:red; text-shadow: 10px 10px 0 blue')
 
-    // Styled
-    // console.log('%c I am some great text', 'font-size:50px; background:red; text-shadow: 10px 10px 0 blue')
+			// warning!
+			console.warn("Oops ⚠");
 
-    // warning!
-    console.warn('OH NOOO');
+			// Error :|
+			console.error("keep away 📛!");
 
-    // Error :|
-    console.error('Shit!');
+			// Info
+			console.info("Why do programmers prefer using the dark mode? Because light attracts bugs!");
 
-    // Info
-    console.info('Crocodiles eat 3-4 people per year');
+			// Testing
+			const p = document.querySelector("p");
 
-    // Testing
-    const p = document.querySelector('p');
+			console.assert(p.classList.contains("ouch"), "That is wrong!");
 
-    console.assert(p.classList.contains('ouch'), 'That is wrong!');
+			// clearing
+			console.clear();
 
-    // clearing
-    console.clear();
+			// Viewing DOM Elements
+			console.log(p);
+			console.dir(p);
 
-    // Viewing DOM Elements
-    console.log(p);
-    console.dir(p);
+			console.clear();
 
-    console.clear();
+			// Grouping together
+			cats.forEach((dog) => {
+				console.groupCollapsed(`${dog.name}`);
+				console.log(`This is ${dog.name}`);
+				console.log(`${dog.name} is ${dog.age} years old`);
+				console.log(`${dog.name} is ${dog.age * 7} dog years old`);
+				console.groupEnd(`${dog.name}`);
+			});
 
-    // Grouping together
-    dogs.forEach(dog => {
-      console.groupCollapsed(`${dog.name}`);
-      console.log(`This is ${dog.name}`);
-      console.log(`${dog.name} is ${dog.age} years old`);
-      console.log(`${dog.name} is ${dog.age * 7} dog years old`);
-      console.groupEnd(`${dog.name}`);
-    });
+			// counting
 
-    // counting
+			console.count("issam");
+			console.count("issam");
+			console.count("seghir");
+			console.count("seghir");
+			console.count("issam");
+			console.count("seghir");
+			console.count("issam");
+			console.count("seghir");
+			console.count("seghir");
+			console.count("seghir");
+			console.count("seghir");
+			console.count("seghir");
 
-    console.count('Wes');
-    console.count('Wes');
-    console.count('Steve');
-    console.count('Steve');
-    console.count('Wes');
-    console.count('Steve');
-    console.count('Wes');
-    console.count('Steve');
-    console.count('Steve');
-    console.count('Steve');
-    console.count('Steve');
-    console.count('Steve');
+			// timing
+			console.time("fetching data");
+			const response = await fetch("https://api.github.com/users/wesbos");
+			const data = await response.json();
+			console.timeEnd("fetching data");
+			console.log(data);
 
-    // timing
-    console.time('fetching data');
-    fetch('https://api.github.com/users/wesbos')
-      .then(data => data.json())
-      .then(data => {
-        console.timeEnd('fetching data');
-        console.log(data);
-      });
-
-    console.table(dogs);
-  </script>
-</body>
-
+			console.table(cats);
+		</script>
+	</body>
 </html>
