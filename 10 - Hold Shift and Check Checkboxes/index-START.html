@@ -21,7 +21,7 @@
 
 			::selection {
 				color: white; /* Text color for selected text */
-				background-color:#ceb24260 ; /* Background color for selected text */
+				background-color: #ceb24260; /* Background color for selected text */
 			}
 
 			:root {
@@ -49,9 +49,9 @@
 				max-width: 400px;
 				margin: 50px auto;
 				padding: 0.5rem;
-				background-color: #20242cd0;
+				background-color: #2f394b;
 				border-radius: 5px;
-				box-shadow: 10px 10px 0 rgb(0 0 0 / 10%);
+				box-shadow: 10px 10px 0 #33415954;
 			}
 
 			.item {
@@ -100,12 +100,7 @@
 				transition: all 0.3s ease;
 			}
 		</style>
-		<!--
-   The following is a common layout you would see in an email client.
 
-   When a user clicks a checkbox, holds Shift, and then clicks another checkbox a few rows down, all the checkboxes inbetween those two checkboxes should be checked.
-
-  -->
 		<div class="inbox">
 			<div class="item">
 				<input type="checkbox" />
@@ -150,19 +145,20 @@
 			let lastItemSelected = false;
 
 			function handleCheckboxClick(checkbox, shiftKey) {
-				if (shiftKey && lastItemSelected) {
-					console.log("handleCheckboxClick", checkbox);
+				if (shiftKey && lastItemSelected && lastItemSelected.checked) {
 					const checkboxes = [...inbox.querySelectorAll("[type=checkbox]")];
 					const lastItemSelectedIndex = checkboxes.indexOf(lastItemSelected);
 					const thisIndex = checkboxes.indexOf(checkbox);
 
 					if (thisIndex > lastItemSelectedIndex) {
 						for (let index = lastItemSelectedIndex + 1; index < thisIndex; index++) {
-							checkboxes[index].checked = true;
+							checkboxes[index].checked = !checkboxes[index].checked;
+							// checkboxes[index].checked = true;
 						}
 					} else if (lastItemSelectedIndex > thisIndex) {
 						for (let index = lastItemSelectedIndex - 1; index > thisIndex; index--) {
-							checkboxes[index].checked = true;
+							checkboxes[index].checked = !checkboxes[index].checked;
+							// checkboxes[index].checked = true;
 						}
 					}
 				}
@@ -174,8 +170,7 @@
 
 				const checkbox = clickedElement.closest(".item")?.querySelector("input[type=checkbox]");
 				if (checkbox) {
-					console.log(clickedElement.matches("input[type=checkbox]"));
-					if (!clickedElement.matches("input[type=checkbox]")) checkbox.checked = !checkbox.checked; // Check the clicked checkbox
+					if (!clickedElement.matches("input[type=checkbox]")) checkbox.checked = !checkbox.checked;
 					const shiftKey = e.shiftKey;
 					handleCheckboxClick(checkbox, shiftKey);
 				}
