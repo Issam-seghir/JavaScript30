@@ -8,7 +8,7 @@
 
 	<body>
 		<style>
-			@import "https://fonts.googleapis.com/css2?family=Ubuntu&display=swap";
+			@import url("https://fonts.googleapis.com/css2?family=Ubuntu&display=swap");
 
 			/* Box sizing rules */
 			*,
@@ -140,41 +140,48 @@
 			</div>
 		</div>
 		<script>
-				// Get the checkbox element.
-				const inbox = document.querySelector(".inbox");
-				let lastItemSelected = false;
+			// Get the checkbox element.
+			const inbox = document.querySelector(".inbox");
+			let lastItemSelected = false;
 
-				function handleCheckboxClick(checkbox, shiftKey) {
-					if (shiftKey && lastItemSelected && lastItemSelected.checked) {
-						const checkboxes = [...inbox.querySelectorAll("[type=checkbox]")];
-						const lastItemSelectedIndex = checkboxes.indexOf(lastItemSelected);
-						const thisIndex = checkboxes.indexOf(checkbox);
+			function handleCheckboxClick(checkbox, shiftKey) {
+				// Check if shift key is pressed and a checkbox was previously clicked
+				if (shiftKey && lastItemSelected && lastItemSelected.checked) {
+					const checkboxes = [...inbox.querySelectorAll("[type=checkbox]")];
 
-						if (thisIndex > lastItemSelectedIndex) {
-							for (let index = lastItemSelectedIndex + 1; index < thisIndex; index++) {
-								checkboxes[index].checked = !checkboxes[index].checked;
-								// checkboxes[index].checked = true;
-							}
-						} else if (lastItemSelectedIndex > thisIndex) {
-							for (let index = lastItemSelectedIndex - 1; index > thisIndex; index--) {
-								checkboxes[index].checked = !checkboxes[index].checked;
-								// checkboxes[index].checked = true;
-							}
+					// Identify the index of the last clicked checkbox and the current checkbox
+					const lastItemSelectedIndex = checkboxes.indexOf(lastItemSelected);
+					const thisIndex = checkboxes.indexOf(checkbox);
+
+					// Select checkboxes between the last clicked checkbox and the current checkbox
+					if (thisIndex > lastItemSelectedIndex) {
+						for (let index = lastItemSelectedIndex + 1; index < thisIndex; index++) {
+							checkboxes[index].checked = !checkboxes[index].checked;
+							// checkboxes[index].checked = true;
+						}
+					} else if (lastItemSelectedIndex > thisIndex) {
+						for (let index = lastItemSelectedIndex - 1; index > thisIndex; index--) {
+							checkboxes[index].checked = !checkboxes[index].checked;
+							// checkboxes[index].checked = true;
 						}
 					}
-					lastItemSelected = checkbox;
 				}
+				// Store the current checkbox as the last clicked checkbox
+				lastItemSelected = checkbox;
+			}
 
-				inbox.addEventListener("click", (e) => {
-					const clickedElement = e.target;
+			inbox.addEventListener("click", (e) => {
+				const clickedElement = e.target;
+				const checkbox = clickedElement.closest(".item")?.querySelector("input[type=checkbox]");
 
-					const checkbox = clickedElement.closest(".item")?.querySelector("input[type=checkbox]");
-					if (checkbox) {
-						if (!clickedElement.matches("input[type=checkbox]")) checkbox.checked = !checkbox.checked;
-						const shiftKey = e.shiftKey;
-						handleCheckboxClick(checkbox, shiftKey);
-					}
-				});
+				if (checkbox) {
+					// If the clicked element is not the checkbox itself, toggle its checked state
+					if (!clickedElement.matches("input[type=checkbox]")) checkbox.checked = !checkbox.checked;
+
+					const shiftKey = e.shiftKey;
+					handleCheckboxClick(checkbox, shiftKey);
+				}
+			});
 		</script>
 	</body>
 </html>
