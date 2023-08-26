@@ -5,10 +5,24 @@
 		<title>HTML5 Canvas</title>
 		<link rel="icon" href="https://fav.farm/✅" />
 		<style>
-			body {
-				overflow: hidden;
+			/* Box sizing rules */
+			*,
+			*::before,
+			*::after {
+				box-sizing: border-box;
 				margin: 0;
-				background-color: #f2ffc5;
+				padding: 0;
+			}
+
+			html,
+			body {
+				overflow: auto;
+				min-height: 100vh;
+				min-height: 100svh;
+			}
+
+			body {
+				background-color: #a3cc90;
 				background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='100%25' height='100%25' viewBox='0 0 1600 800'%3E%3Cg stroke='%23F9FFF5' stroke-width='62.1' stroke-opacity='0.15' %3E%3Ccircle fill='%23F2FFC5' cx='0' cy='0' r='1800'/%3E%3Ccircle fill='%23e5f4bb' cx='0' cy='0' r='1700'/%3E%3Ccircle fill='%23d8e9b1' cx='0' cy='0' r='1600'/%3E%3Ccircle fill='%23cbdea8' cx='0' cy='0' r='1500'/%3E%3Ccircle fill='%23bed49e' cx='0' cy='0' r='1400'/%3E%3Ccircle fill='%23b2c995' cx='0' cy='0' r='1300'/%3E%3Ccircle fill='%23a6be8c' cx='0' cy='0' r='1200'/%3E%3Ccircle fill='%2399b483' cx='0' cy='0' r='1100'/%3E%3Ccircle fill='%238eaa7a' cx='0' cy='0' r='1000'/%3E%3Ccircle fill='%23829f71' cx='0' cy='0' r='900'/%3E%3Ccircle fill='%23769568' cx='0' cy='0' r='800'/%3E%3Ccircle fill='%236b8b60' cx='0' cy='0' r='700'/%3E%3Ccircle fill='%235f8157' cx='0' cy='0' r='600'/%3E%3Ccircle fill='%2354774f' cx='0' cy='0' r='500'/%3E%3Ccircle fill='%23496d47' cx='0' cy='0' r='400'/%3E%3Ccircle fill='%233e643f' cx='0' cy='0' r='300'/%3E%3Ccircle fill='%23345a38' cx='0' cy='0' r='200'/%3E%3Ccircle fill='%23295130' cx='0' cy='0' r='100'/%3E%3C/g%3E%3C/svg%3E");
 				background-attachment: fixed;
 				background-size: cover;
@@ -41,20 +55,25 @@
 			const greenPalette = ["#fafff8", "#f5fff0", "#ebffe1", "#e0ffd2", "#d6ffc3", "#ccffb4", "#a3cc90", "#7a996c", "#526648"];
 
 			function draw(e) {
-				if (!isDrawing) return;
+				if (!isDrawing) return; // If mouse button is not pressed, exit the function
 
+				// Select a random green color from the palette
 				const randomGreen = greenPalette[Math.floor(Math.random() * greenPalette.length)];
-				context.strokeStyle = randomGreen; // Set a random green color from the palette
-				context.beginPath();
-				context.moveTo(lastX, lastY);
-				context.lineTo(e.clientX, e.clientY);
-				context.stroke();
+				context.strokeStyle = randomGreen;
+				context.beginPath(); // Start a new path
+				context.moveTo(lastX, lastY); // Move to the last mouse position
+				context.lineTo(e.clientX, e.clientY); // Draw a line to the current mouse position
+				context.stroke(); // Apply the stroke to render the line
+
+				// Update last mouse position
 				[lastX, lastY] = [e.clientX, e.clientY];
 
+				// Check if the line width is within certain bounds
 				if (context.lineWidth >= 100 || context.lineWidth <= 1) {
 					direction = !direction;
 				}
 
+				// Increase or decrease the line width based on the direction
 				if (direction) {
 					context.lineWidth++;
 				} else {
@@ -62,14 +81,15 @@
 				}
 			}
 
-			canvas.addEventListener("mousedown", (e) => {
+			// Event listener for when the pointer (mouse, touch, etc.) presses down on the canvas
+			canvas.addEventListener("pointerdown", (e) => {
 				isDrawing = true;
-				[lastX, lastY] = [e.clientX, e.clientY];
+				[lastX, lastY] = [e.clientX, e.clientY]; // Store the initial pointer position
 			});
 
-			canvas.addEventListener("mousemove", draw);
-			canvas.addEventListener("mouseup", () => (isDrawing = false));
-			canvas.addEventListener("mouseout", () => (isDrawing = false));
+			canvas.addEventListener("pointermove", draw);
+			canvas.addEventListener("pointerup", () => (isDrawing = false));
+			canvas.addEventListener("pointerout", () => (isDrawing = false));
 		</script>
 	</body>
 </html>

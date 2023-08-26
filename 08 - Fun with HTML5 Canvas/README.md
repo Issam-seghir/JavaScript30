@@ -132,9 +132,9 @@ This event indicates that the input pointer (mouse, touch) has been released, si
 
 ## What I Added/Fixed
 
-- I add my own style with cool svg background
-- I add a randomized green color palette, allowing each line to be drawn with a different shade of green.
-- I chose to utilize pointer events instead of traditional mouse events, leading to an enhanced and more versatile drawing experience.
+- **My own style** with cool svg background
+- **Randomized green color palette**, allowing each line to be drawn with a different shade of green.
+- **Utilize pointer events** instead of traditional mouse events, leading to an enhanced and more versatile drawing experience.
 
 ## What I Learned
 
