@@ -6,25 +6,6 @@
 		<link rel="stylesheet" href="style.css" />
 		<link rel="icon" href="https://fav.farm/🔥" />
 	</head>
-	<style>
-		/* Box sizing rules */
-		*,
-		*::before,
-		*::after {
-			box-sizing: border-box;
-			margin: 0;
-			padding: 0;
-		}
-
-		body {
-			min-height: 100svh;
-			min-height: 100vh;
-
-			background-image: url("assets/images/background.svg");
-			background-attachment: fixed;
-			background-size: cover;
-		}
-	</style>
 
 	<body>
 		<form class="search-form">
@@ -36,6 +17,7 @@
 		</form>
 
 		<script>
+			// fetch data from a URL
 			async function fetchData(url) {
 				try {
 					const response = await fetch(url);
@@ -55,12 +37,13 @@
 				}
 			}
 
+			// An array to store cities data and URL to fetch data from
 			const citiesData = [];
 			const url = "https://gist.githubusercontent.com/Miserlou/c5cd8364bf9b2420bb29/raw/2bf258763cdddd704f8ffd3ea9a3e81d25e2c6f6/cities.json";
 			//? for offline access
 			// const url = 'data/cities.json';
 
-			// Fetch data only once
+			// copy fetched data into the global var citiesData
 			async function getData() {
 				try {
 					const data = await fetchData(url);
@@ -79,6 +62,7 @@
 				return filteredCities.length === 0 ? defaultMessage : filteredCities;
 			}
 
+			// Function to format (population) numbers  with commas
 			function numberWithCommas(x) {
 				return x.toString().replaceAll(/\B(?=(\d{3})+(?!\d))/g, ",");
 			}
@@ -100,7 +84,7 @@
 				suggestionsList.innerHTML = html;
 			}
 
-			// Function to handle input changes with debounce
+			// Debounce function to delay execution of a function for more performance
 			function debounce(function_, delay) {
 				let timer;
 				return function (...arguments_) {
@@ -112,10 +96,9 @@
 			// Handler for input changes
 			function handleInput(event) {
 				const searchTerm = event.target.value;
-				// console.log("Search Term:", searchTerm);
+
 				const matchedCitiesArray = filterCities(citiesData, searchTerm);
 				displayCities(matchedCitiesArray, searchTerm);
-
 			}
 
 			const suggestionsList = document.querySelector(".suggestions");

@@ -140,41 +140,41 @@
 			</div>
 		</div>
 		<script>
-			// Get the checkbox element.
-			const inbox = document.querySelector(".inbox");
-			let lastItemSelected = false;
+				// Get the checkbox element.
+				const inbox = document.querySelector(".inbox");
+				let lastItemSelected = false;
 
-			function handleCheckboxClick(checkbox, shiftKey) {
-				if (shiftKey && lastItemSelected && lastItemSelected.checked) {
-					const checkboxes = [...inbox.querySelectorAll("[type=checkbox]")];
-					const lastItemSelectedIndex = checkboxes.indexOf(lastItemSelected);
-					const thisIndex = checkboxes.indexOf(checkbox);
+				function handleCheckboxClick(checkbox, shiftKey) {
+					if (shiftKey && lastItemSelected && lastItemSelected.checked) {
+						const checkboxes = [...inbox.querySelectorAll("[type=checkbox]")];
+						const lastItemSelectedIndex = checkboxes.indexOf(lastItemSelected);
+						const thisIndex = checkboxes.indexOf(checkbox);
 
-					if (thisIndex > lastItemSelectedIndex) {
-						for (let index = lastItemSelectedIndex + 1; index < thisIndex; index++) {
-							checkboxes[index].checked = !checkboxes[index].checked;
-							// checkboxes[index].checked = true;
-						}
-					} else if (lastItemSelectedIndex > thisIndex) {
-						for (let index = lastItemSelectedIndex - 1; index > thisIndex; index--) {
-							checkboxes[index].checked = !checkboxes[index].checked;
-							// checkboxes[index].checked = true;
+						if (thisIndex > lastItemSelectedIndex) {
+							for (let index = lastItemSelectedIndex + 1; index < thisIndex; index++) {
+								checkboxes[index].checked = !checkboxes[index].checked;
+								// checkboxes[index].checked = true;
+							}
+						} else if (lastItemSelectedIndex > thisIndex) {
+							for (let index = lastItemSelectedIndex - 1; index > thisIndex; index--) {
+								checkboxes[index].checked = !checkboxes[index].checked;
+								// checkboxes[index].checked = true;
+							}
 						}
 					}
+					lastItemSelected = checkbox;
 				}
-				lastItemSelected = checkbox;
-			}
 
-			inbox.addEventListener("click", (e) => {
-				const clickedElement = e.target;
+				inbox.addEventListener("click", (e) => {
+					const clickedElement = e.target;
 
-				const checkbox = clickedElement.closest(".item")?.querySelector("input[type=checkbox]");
-				if (checkbox) {
-					if (!clickedElement.matches("input[type=checkbox]")) checkbox.checked = !checkbox.checked;
-					const shiftKey = e.shiftKey;
-					handleCheckboxClick(checkbox, shiftKey);
-				}
-			});
+					const checkbox = clickedElement.closest(".item")?.querySelector("input[type=checkbox]");
+					if (checkbox) {
+						if (!clickedElement.matches("input[type=checkbox]")) checkbox.checked = !checkbox.checked;
+						const shiftKey = e.shiftKey;
+						handleCheckboxClick(checkbox, shiftKey);
+					}
+				});
 		</script>
 	</body>
 </html>

@@ -40,14 +40,9 @@
 
 		<style>
 			:root {
-				--primary-light: #8abdff;
 				--primary: #6d5dfc;
-				--primary-dark: #5b0eeb;
-				--white: #fff;
-				--grey-light-1: #e4ebf5;
-				--grey-light-2: #c8d0e7;
-				--grey-light-3: #bec8e4;
-				--grey-dark: #9baacf;
+				--secondary-100: #bec8e4;
+				--secondary-200: #9baacf;
 				--main-bg-color: #1e1f26;
 				--main-text-color: #ccc;
 			}
@@ -63,35 +58,27 @@
 
 			body {
 				position: relative;
-
 				display: flex;
 				flex: 1;
 				flex-direction: column;
 				align-items: center;
 				justify-content: center;
-
 				min-height: 100vh;
 				margin: 0;
-
 				font-size: 2rem;
-
 				background-color: var(--main-bg-color);
-
 				transition: all ease 0.2s;
 			}
 
 			.clock {
 				position: relative;
-
 				width: 30rem;
 				height: 30rem;
 				margin: 50px auto;
 				padding: 2rem;
-
 				border: 4px solid var(--main-bg-color);
 				border-radius: 50%;
 				box-shadow: 0 -15px 15px rgb(255 255 255 / 5%), inset 0 -15px 15px rgb(255 255 255 / 5%), 0 15px 15px rgb(0 0 0 / 30%), inset 0 15px 15px rgb(0 0 0 / 30%);
-
 				transition: all ease 0.2s;
 			}
 
@@ -107,10 +94,8 @@
 				top: 50%;
 				transform-origin: right;
 				transform: rotate(90deg);
-
 				background: black;
 				border-radius: 6px;
-
 				transition: transform 0.5s cubic-bezier(0.3, 0.1, 0.4, 0.9);
 
 				/* transition:  transform 0.5s cubic-bezier(.92,-0.26,.84,-0.05) */
@@ -119,45 +104,36 @@
 			.hour-hand {
 				z-index: 3;
 				left: 23%;
-
 				width: 8rem;
 				height: 6px;
-
-				background: var(--grey-light-3);
+				background: var(--secondary-100);
 			}
 
 			.min-hand {
 				z-index: 2;
 				left: 10%;
-
 				width: 12rem;
 				height: 5px;
-
-				background: var(--grey-dark);
+				background: var(--secondary-200);
 			}
 
 			.second-hand {
 				z-index: 1;
 				left: 10%;
-
 				width: 12rem;
 				height: 4px;
-
 				background: var(--primary);
 			}
 
 			.number {
 				position: absolute;
-
 				width: 20px;
 				height: 20px;
-
 				font-family: "Franklin Gothic Medium", "Arial Narrow", Arial, sans-serif;
 				font-size: 2rem;
 				line-height: 20px;
 				color: var(--main-text-color);
 				text-align: center;
-
 				border-radius: 50%;
 			}
 
@@ -167,11 +143,9 @@
 				top: 51%;
 				left: 50%;
 				transform: translate(-50%, -50%);
-
 				width: 0.8rem;
 				height: 0.8rem;
 				padding: 0.2rem;
-
 				background: var(--primary);
 				border: 3px solid var(--main-bg-color);
 				border-radius: 50%;
@@ -198,10 +172,8 @@
 			.minute,
 			.second {
 				padding: 5px 10px;
-
 				font-weight: bold;
 				color: var(--main-text-color);
-
 				border-radius: 5px;
 				box-shadow: 0 2px 5px rgb(0 0 0 / 56.8%);
 			}

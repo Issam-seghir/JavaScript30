@@ -9,24 +9,27 @@
 
 	<body>
 		<style>
-			html {
-				box-sizing: border-box;
-
-				font-family: "helvetica neue", sans-serif;
-				font-size: 20px;
-				font-weight: 200;
-
-				background: #ffc600;
-			}
-
-			body {
-				margin: 0;
-			}
-
+			/* Box sizing rules */
 			*,
 			*::before,
 			*::after {
-				box-sizing: inherit;
+				box-sizing: border-box;
+				margin: 0;
+				padding: 0;
+			}
+
+			html,
+			body {
+				overflow: auto;
+				min-height: 100vh;
+				min-height: 100svh;
+			}
+
+			html {
+				font-family: "helvetica neue", sans-serif;
+				font-size: 20px;
+				font-weight: 200;
+				background: #ffc600;
 			}
 
 			.panels {
@@ -41,11 +44,9 @@
 				flex-direction: column;
 				align-items: center;
 				justify-content: space-around;
-
 				font-size: 20px;
 				color: white;
 				text-align: center;
-
 				background: #6b0f9c;
 				background-position: center;
 				background-size: cover;

@@ -1,7 +1,7 @@
 
 # Drum Kit
 
-![gif](https://i.imgur.com/reD1pKW.gif)
+![gif](assets/images/showcase.gif)
 
 I create  a **dynamic drum kit** that's both fun and interactive.
 Each key corresponds to a unique **animal sound** and triggers a cool **animation**.
@@ -19,8 +19,8 @@ Let me walk you through how I **accomplished** this and what i **add/fix** from 
 ## Features
 
 - When I **click** a key or **press** the corresponding key on my keyboard, a lively sound is played, creating a truly immersive experience.
-- The animation I added gives the whole interface a playful vibe, making it more engaging and visually appealing.
-- I made sure the animation disappears seamlessly after the **transition** ends, keeping the user interface clean and smooth.
+- The **animation** I added gives the whole interface a playful vibe, making it more engaging and visually appealing.
+- I made sure the animation disappears seamlessly after the transition ends, keeping the user interface clean and smooth.
 
 ## How I Made It Happen
 
@@ -97,8 +97,9 @@ Let me walk you through how I **accomplished** this and what i **add/fix** from 
 
 ## What I Added or Fixed Compared to the Original Solution
 
-1. my own style and audio
-2. fix styling problem with `user-select: none;`
+1. My own style and audio
+2. Another useful technique is to ensure that an **event** triggers only once by utilizing the `{ once: true }` option, This can be particularly advantageous for achieving **smooth** **animations**, By implementing this, even if the user **types** **rapidly**, the event will be triggered only once. This not only enhances **performance** but also guarantees a **seamless** **animation** **experience**.
+3. Fix styling problem with `user-select: none;`
      the problem is when user click on window area an courser appear by keys and the text is selectable on keys and the span ,
      to fix this i add : `user-select: none;` to the `.keys` classe :
 

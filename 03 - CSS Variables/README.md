@@ -1,6 +1,6 @@
 # Customizable CSS Variables
 
-![gif](https://i.imgur.com/HL01agb.gif)
+![gif](./assets/images/showcase.gif)
 
 In this exercise, I explored the use of **CSS variables** to create a dynamic and interactive styling experience for a web page.
 By leveraging these variables, I enabled users to adjust visual aspects of the page in real-time.
@@ -21,7 +21,7 @@ Let's delve into the code and understand how I **achieved** this and what i **ad
 
 Here are the key features of the customizable CSS variables code:
 
-1. **Real-Time Styling**: The code utilizes CSS variables to allow users to adjust various styling properties in real-time, such as spacing, blur, and base color.
+1. **Real-Time Styling**: The code utilizes CSS variables to allow users to adjust various styling properties in real-time, such as **spacing**, **blur**, and **base** **color**.
 
 2. **Interactive Controls**: Users can interact with input controls to modify the values of the CSS variables and instantly see the changes applied to the page.
 
@@ -30,64 +30,70 @@ Here are the key features of the customizable CSS variables code:
 4. **Box Shadow Effect**: An image on the page showcases a box shadow effect whose properties can be adjusted through CSS variables.
 
 5. **Consistent Selected Text Styling**: Changing the color will change the color of the selected text too
+6. **Consistent Accent Color**: Changing the color will change the color of the Accent  too.
 
 ## How I Made It Happen
 
 ### 1. Defining CSS Variables
 
-- I started by defining CSS variables using the `:root` pseudo-class. These variables hold values for spacing, blur, and base color that can be customized.
+- I started by defining CSS variables using the `:root` pseudo-class. These variables hold values for **spacing**, **blur**, **base** **color** , **selection** and **accent / box shadow / scrollbar** **color**   that can be customized.
 
 ```css
 :root {
   --spacing: .2rem;
   --blur: .2rem;
   --base: yellow;
-    overflow-y: scroll;
-    scrollbar-color: var(--base) #0000009d;
-    scrollbar-width: 5px;
+
+  scrollbar-color: var(--base) #0000009d;
+  scrollbar-width: 5px;
+  overflow-y: scroll;
 }
 
 /* change selected text color */
     ::selection {
-      background-color: var(--base);
+     background-color: var(--base);
     }
 
     /* For Chrome and other browsers */
     ::-webkit-scrollbar-track {
-      -webkit-box-shadow: inset 0 0 6px rgba(0, 0, 0, 0.3);
-      border-radius: 10px;
-      background-color: #0000009d;
+     background-color: #0000009d;
+     border-radius: 10px;
+     box-shadow: inset 0 0 6px rgb(0 0 0 / 30%);
     }
 
     ::-webkit-scrollbar {
-      width: 12px;
-      background-color: #0000009d;
+     width: 12px;
+     background-color: #0000009d;
     }
 
     ::-webkit-scrollbar-thumb {
-      border-radius: 10px;
-      -webkit-box-shadow: inset 0 0 6px rgba(0, 0, 0, .3);
-      background-color: var(--base);
+     background-color: var(--base);
+     border-radius: 10px;
+     box-shadow: inset 0 0 6px rgb(0 0 0 / 30%);
     }
+
 
 ```
 
 ### 2. Handling User Input
 
-- I used JavaScript to handle user input and synchronize it with the CSS variables. I selected input elements and attached event listeners to track changes.
+- I handle user input and synchronize it with the CSS variables. I selected input elements and attached event listeners to track changes.
 
 ```js
-    const inputs = document.querySelectorAll('input');
+    const inputs = document.querySelectorAll("input");
     const root = document.documentElement;
 
     function handleInput(event) {
-      const { target } = event;
-      const suffix = target.dataset.sizing || '';
-      root.style.setProperty(`--${target.name}`, `${target.value}${suffix}`);
+     const { target } = event;
+     // Get the data-sizing attribute (px,...)
+     const suffix = target.dataset.sizing || "";
+
+     // Update the CSS variable
+     root.style.setProperty(`--${target.name}`, `${target.value}${suffix}`);
     }
 
-    inputs.forEach(input => {
-      input.addEventListener('input', handleInput);
+    inputs.forEach((input) => {
+    input.addEventListener("input", handleInput);
     });
 ```
 

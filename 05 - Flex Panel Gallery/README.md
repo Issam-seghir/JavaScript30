@@ -1,11 +1,11 @@
 # Flex Panel Gallery
 
-<video src="assets/images/showcase.mp4" controls title="Title"></video>
-
-<!-- ![Alt text](assets/images/showcase.gif) -->
-<img src="assets/images/showcase.gif" alt="drawing" width="100%"/>
-
-![Alt text](assets/images/showcase.png)
+<div class="video-container">
+  <video controls poster="assets/images/showcase.png">
+    <source src="assets/images/showcase.mp4" type="video/mp4">
+    Your browser does not support the video tag.
+  </video>
+</div>
 
 In this exercise, I created an interactive **flex panel gallery** that allows users to click on individual panels to reveal additional content.
 The clicked panel expands both in size and reveals hidden text, providing an engaging and dynamic user experience.

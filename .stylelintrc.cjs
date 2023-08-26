@@ -11,8 +11,8 @@ module.exports = {
 
 	// Use Prettier for consistent code formatting
 	extends: [
-		// "stylelint-config-recommended", // Recommended stylelint rules
-		"stylelint-config-standard-scss", // for scss , this will use standard config too but for scss so you can delete the first line
+		"stylelint-config-standard", // standard stylelint rules for css
+		// "stylelint-config-standard-scss", // for scss , this will use standard config too but for scss so you can delete the first line
 		"stylelint-config-html",
 		"stylelint-config-clean-order", // alternative : stylelint-config-recess-order / stylelint-config-property-sort-order-smacss
 	],
@@ -36,6 +36,14 @@ module.exports = {
 				unspecified: "bottomAlphabetical",
 			},
 		],
+
+		// for tailwind
+		// "scss/at-rule-no-unknown": [
+		// 	true,
+		// 	{
+		// 		ignoreAtRules: ["tailwind"],
+		// 	},
+		// ],
 	},
 	// lower the security level for all rule
 	defaultSeverity: "warning",

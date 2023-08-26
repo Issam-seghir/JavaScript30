@@ -23,9 +23,22 @@
 		<img src="assets/images/img.jpg" alt="boats" />
 
 		<style>
-			/*
-      misc styles, nothing to do with CSS variables
-    */
+			/* Box sizing rules */
+			*,
+			*::before,
+			*::after {
+				box-sizing: border-box;
+				margin: 0;
+				padding: 0;
+			}
+
+			html,
+			body {
+				overflow: auto;
+				min-height: 100vh;
+				min-height: 100svh;
+			}
+
 			:root {
 				--spacing: 0.2rem;
 				--blur: 0.2rem;
@@ -64,9 +77,8 @@
 				font-weight: 400;
 				color: rgb(0 0 0 / 54.1%);
 				text-align: center;
-
 				accent-color: var(--base);
-				background: #56dfcc9d;
+				background: #449993;
 			}
 
 			.controls {
@@ -79,7 +91,6 @@
 
 			img {
 				padding: var(--spacing);
-
 				background-color: var(--base);
 				filter: blur(var(--blur));
 				border-radius: 15px;
@@ -87,9 +98,7 @@
 			}
 
 			h2 {
-				/* text-underline-offset: 12px;
-      text-decoration-line: underline;
-      text-decoration-thickness: 8px; */
+				margin-top: 3rem;
 				font-size: 5rem;
 			}
 
@@ -108,7 +117,10 @@
 
 			function handleInput(event) {
 				const { target } = event;
+				// Get the data-sizing attribute (px,...)
 				const suffix = target.dataset.sizing || "";
+
+				// Update the CSS variable
 				root.style.setProperty(`--${target.name}`, `${target.value}${suffix}`);
 			}
 
