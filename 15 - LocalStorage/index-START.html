@@ -1,102 +1,134 @@
 <!DOCTYPE html>
 <html lang="en">
+	<head>
+		<meta charset="UTF-8" />
+		<title>LocalStorage</title>
+		<link rel="stylesheet" href="style.css" />
+		<link rel="icon" href="https://fav.farm/🔥" />
+	</head>
 
-<head>
-  <meta charset="UTF-8">
-  <title>LocalStorage</title>
-  <link rel="stylesheet" href="style.css">
-  <link rel="icon" href="https://fav.farm/🔥" />
-</head>
+	<style>
+		@import url("https://fonts.googleapis.com/css2?family=Borel&display=swap");
+		html {
+			background: url("./assets/image/background.jpg") center no-repeat;
+			background-size: cover;
+		}
 
-<body>
-  <!--
+		.container {
+			display: flex;
+			flex-direction: column;
+			align-items: center;
+			justify-content: space-around;
+			min-width: 800px;
+			min-height: 800px;
+		}
+
+		.container,
+		.wrapper {
+			background-color: rgb(17 25 40 / 59%);
+			backdrop-filter: blur(10px) saturate(147%);
+			border: 1px solid rgb(255 255 255 / 12.5%);
+			border-radius: 12px;
+			font-family: "Borel", cursive !important;
+		}
+
+		form input {
+			border: 1px solid rgb(255 255 255 / 12.5%);
+			border-radius: 12px;
+		}
+
+		input[type="text"] {
+			margin-right: 1rem;
+		}
+	</style>
+	<body>
+		<!--
       Fish SVG Cred:
       https://thenounproject.com/search/?q=fish&i=589236
    -->
 
-  <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1" x="0px" y="0px"
-    viewBox="0 0 512 512" enable-background="new 0 0 512 512" xml:space="preserve">
-    <g>
-      <path
-        d="M495.9,425.3H16.1c-5.2,0-10.1,2.9-12.5,7.6c-2.4,4.7-2.1,10.3,0.9,14.6l39,56.4c2.6,3.8,7,6.1,11.6,6.1h401.7   c4.6,0,9-2.3,11.6-6.1l39-56.4c3-4.3,3.3-9.9,0.9-14.6C506,428.2,501.1,425.3,495.9,425.3z M449.4,481.8H62.6L43,453.6H469   L449.4,481.8z" />
-      <path
-        d="M158.3,122c7.8,0,14.1-6.3,14.1-14.1V43.4c0-7.8-6.3-14.1-14.1-14.1c-7.8,0-14.1,6.3-14.1,14.1v64.5   C144.2,115.7,150.5,122,158.3,122z" />
-      <path
-        d="M245.1,94.7c7.8,0,14.1-6.3,14.1-14.1V16.1c0-7.8-6.3-14.1-14.1-14.1C237.3,2,231,8.3,231,16.1v64.5   C231,88.4,237.3,94.7,245.1,94.7z" />
-      <path
-        d="M331.9,122c7.8,0,14.1-6.3,14.1-14.1V43.4c0-7.8-6.3-14.1-14.1-14.1s-14.1,6.3-14.1,14.1v64.5   C317.8,115.7,324.1,122,331.9,122z" />
-      <path
-        d="M9.6,385.2c5.3,2.8,11.8,1.9,16.2-2.2l50.6-47.7c56.7,46.5,126.6,71.9,198.3,71.9c0,0,0,0,0,0   c87.5,0,169.7-36.6,231.4-103.2c5-5.4,5-13.8,0-19.2c-61.8-66.5-144-103.2-231.4-103.2c-72,0-142.2,25.6-199,72.5l-50-47.1   c-4.4-4.1-10.9-5-16.2-2.2c-5.3,2.8-8.3,8.7-7.4,14.6l11.6,75L2.2,370.6C1.3,376.5,4.2,382.4,9.6,385.2z M380.9,230.8   c34.9,14.3,67.2,35.7,95.3,63.6c-10.1,10-20.8,19.2-31.9,27.5c-22.4-3.3-29.6-8.8-30.7-9.7c-4-5.7-11.8-7.7-18.1-4.4   c-6.9,3.6-9.5,12.2-5.9,19.1c1.9,3.5,7.3,10.3,22.4,16c-10.1,5.7-20.5,10.7-31.1,15.1C352.4,320.2,352.4,268.6,380.9,230.8z    M36.3,255.6l29.4,27.7c5.3,5,13.6,5.1,19.1,0.3c53.2-47.6,120.7-73.7,190-73.7c26.9,0,53.2,3.9,78.5,11.3   c-29.3,44.6-29.3,102,0,146.6c-25.3,7.4-51.6,11.3-78.5,11.3c-69,0-136.3-26-189.4-73.2c-2.7-2.4-13.4-6.3-19.1,0.3l-30.1,28.3   l5.7-40C42.2,293,36.3,255.6,36.3,255.6z" />
-      <circle cx="398.8" cy="273.8" r="14.1" />
-    </g>
-  </svg>
+		<div class="container">
+			<svg viewBox="0 0 1024 1024" class="icon" version="1.1" xmlns="http://www.w3.org/2000/svg" fill="#000000">
+				<g id="SVGRepo_bgCarrier" stroke-width="0"></g>
+				<g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g>
+				<g id="SVGRepo_iconCarrier">
+					<path d="M774.8 327.8c-50.6-4.8-97.3 4.3-131 22.7 15.9 20.3 26.1 52.1 26.1 87.9 0 29.2-6.8 55.7-17.9 75.5 28.3 16.9 64.5 28.8 104.6 32.6 96.7 9.2 179.2-32.4 184.2-92.8s-69.3-116.7-166-125.9z" fill="#f8a0f1"></path>
+					<path
+						d="M67.2 494l1 31c2.2 67.7 26.2 133.6 69.6 190.4 41.6 54.5 99.6 99.2 167.9 129.3 15.2 6.7 32.9-0.2 39.5-15.4 6.7-15.2-0.2-32.9-15.4-39.5-59-26-108.9-64.3-144.4-110.8-29-38-47.5-80.7-54.4-125h762.6c-7 44.8-25.8 87.9-55.4 126.3-36.1 46.8-86.8 85.2-146.8 110.9-15.2 6.5-22.2 24.2-15.7 39.4 4.9 11.4 15.9 18.2 27.6 18.2 4 0 8-0.8 11.8-2.4 144.5-62.2 237-185.3 241.3-321.4l1-31H67.2z"
+						fill="#575564"
+					></path>
+					<path d="M591.9 800.1h-159c-35.2 0-64.1 28.8-64.1 64.1s28.8 64.1 64.1 64.1h159c35.2 0 64.1-28.8 64.1-64.1s-28.9-64.1-64.1-64.1z m0 68.1h-159c-2.1 0-4.1-2-4.1-4.1s2-4.1 4.1-4.1h159c2.1 0 4.1 2 4.1 4.1s-2 4.1-4.1 4.1z" fill="#575564"></path>
+					<path
+						d="M498.1 373.5c-9.6-13.5-28.4-16.6-41.9-6.9-13.5 9.6-16.6 28.4-6.9 41.9 10.8 15.1 16.6 33 16.6 51.7 0 16.6 13.4 30 30 30s30-13.4 30-30c0-31.4-9.6-61.4-27.8-86.7zM432.4 321.8c-17.7-7.1-36.3-10.7-55.5-10.7-82.2 0-149 66.8-149 149 0 16.6 13.4 30 30 30s30-13.4 30-30c0-49.1 39.9-89 89-89 11.5 0 22.6 2.1 33.1 6.4 15.4 6.2 32.8-1.3 39-16.7 6.2-15.4-1.2-32.9-16.6-39z"
+						fill="#ff0080"
+					></path>
+					<path
+						d="M549.4 274.7c-46.7-45.6-107.7-70.8-171.8-70.8-64.1 0-125.1 25.1-171.8 70.8-46.1 45.1-74 106-78.6 171.4-1.2 16.5 11.3 30.9 27.8 32 16.5 1.1 30.9-11.3 32-27.8 3.5-50.8 25.1-97.9 60.7-132.7 35.4-34.6 81.5-53.7 129.9-53.7 48.3 0 94.5 19.1 129.9 53.7 35.6 34.8 57.1 81.9 60.7 132.7 1.1 15.8 14.3 27.9 29.9 27.9 0.7 0 1.4 0 2.1-0.1 16.5-1.2 29-15.5 27.8-32-4.6-65.4-32.5-126.3-78.6-171.4zM895.1 385.9c-11.5-19.4-27.7-36.6-48.1-51.2l53.9-58.3c11.2-12.2 10.5-31.2-1.7-42.4s-31.2-10.5-42.4 1.7l-65 70.4c-5-1.8-10.1-3.5-15.3-5l82.4-159.2c7.6-14.7 1.9-32.8-12.9-40.4-14.7-7.6-32.8-1.9-40.4 12.9l-91.2 176.3c-5.5-0.3-11.1-0.5-16.7-0.5-21.9 0-43.5 2.4-64.3 7.2-16.1 3.7-26.2 19.8-22.5 36 3.7 16.1 19.8 26.2 36 22.5 16.3-3.8 33.4-5.7 50.7-5.7 43.6 0 84.2 11.8 114.3 33.3 27.1 19.3 42 44 42 69.5 0 16.6 13.4 30 30 30s30-13.4 30-30c0-23.5-6.3-46.1-18.8-67.1z"
+						fill="#575564"
+					></path>
+				</g>
+			</svg>
+			<div class="wrapper">
+				<h2>LOCAL TAPAS</h2>
+				<p></p>
+				<ul class="plates">
+					<li>Loading Tapas...</li>
+				</ul>
+				<form class="add-items">
+					<input type="text" name="item" placeholder="Item Name" required />
+					<input type="submit" value="+ Add Item" />
+				</form>
+			</div>
+		</div>
 
-  <div class="wrapper">
-    <h2>LOCAL TAPAS</h2>
-    <p></p>
-    <ul class="plates">
-      <li>Loading Tapas...</li>
-    </ul>
-    <form class="add-items">
-      <input type="text" name="item" placeholder="Item Name" required>
-      <input type="submit" value="+ Add Item">
-    </form>
-  </div>
+		<script>
+			const addItems = document.querySelector(".add-items");
+			const itemsList = document.querySelector(".plates");
+			// parse : convert the json to array of objects
+			const items = JSON.parse(localStorage.getItem("items")) || [];
 
-  <script>
-    const addItems = document.querySelector('.add-items');
-    const itemsList = document.querySelector('.plates');
-    // parse : convert the json to array of objects
-    const items = JSON.parse(localStorage.getItem('items')) || [];
+			function addItemsToList(e) {
+				e.preventDefault();
 
-    function addItemsToList(e) {
-      e.preventDefault();
+				const text = e.target[0].value;
+				const item = {
+					text: text,
+					checkState: false,
+				};
+				items.push(item);
+				// stringify : add "items" to local storage as  a JSON string
+				localStorage.setItem("items", JSON.stringify(items));
 
-      const text = e.target[0].value;
-      const item = {
-        text: text,
-        checkState: false
-      };
-      items.push(item)
-      // stringify : add "items" to local storage as  a JSON string
-      localStorage.setItem("items", JSON.stringify(items))
+				fillList(items, itemsList);
+				this.reset(); // empty the inputs in the form
+			}
 
-      fillList(items, itemsList)
-      this.reset(); // empty the inputs in the form
-    }
-
-
-
-
-    function fillList(items, itemsList) {
-      itemsList.innerHTML = items.map((list, i) => {
-        return `
-        <li>
-          <input type="checkbox" data-index=${i} id="item${i}" ${list.checkState ? 'checked' : ''} />
-          <label for="item${i}">${list.text}</label>
+			function fillList(items, itemsList) {
+				itemsList.innerHTML = items
+					.map((list, index) => {
+						return `
+    <li>
+      <input type="checkbox" data-index=${index} id="item${index}" ${list.checkState ? "checked" : ""} />
+      <label for="item${index}">${list.text}</label>
         </li>
       `;
-      }).join('');
-    }
+					})
+					.join("");
+			}
 
-    function toggleDone(e) {
-      if (e.target.matches('input')) {
-        const index = e.target.dataset.index;
-        console.log(
-          e.target + "\n index : "  + e.target.dataset.index
-        );
-        items[index].checkState = !items[index].checkState;
-        localStorage.setItem('items', JSON.stringify(items));
-        fillList(items, itemsList);
-      }
-    }
+			function toggleDone(e) {
+				if (e.target.matches("input")) {
+					const index = e.target.dataset.index;
+					console.log(e.target + "\n index : " + e.target.dataset.index);
+					items[index].checkState = !items[index].checkState;
+					localStorage.setItem("items", JSON.stringify(items));
+					fillList(items, itemsList);
+				}
+			}
 
-    addItems.addEventListener('submit', addItemsToList)
-    itemsList.addEventListener('click', toggleDone);
-    fillList(JSON.parse(localStorage.getItem('items')) || [], itemsList);
-  </script>
-
-
-</body>
-
+			addItems.addEventListener("submit", addItemsToList);
+			itemsList.addEventListener("click", toggleDone);
+			fillList(JSON.parse(localStorage.getItem("items")) || [], itemsList);
+		</script>
+	</body>
 </html>
