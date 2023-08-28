@@ -1,102 +1,148 @@
 <!DOCTYPE html>
 <html lang="en">
+	<head>
+		<meta charset="UTF-8" />
+		<title>JS Reference VS Copy</title>
+		<link rel="icon" href="https://fav.farm/🔥" />
+	</head>
 
-<head>
-  <meta charset="UTF-8">
-  <title>JS Reference VS Copy</title>
-  <link rel="icon" href="https://fav.farm/🔥" />
-</head>
+	<style>
+		@import url("https://fonts.googleapis.com/css2?family=Ruwudu:wght@700&display=swap");
 
-<body>
+		/* Box sizing rules */
+		*,
+		*::before,
+		*::after {
+			box-sizing: border-box;
+			margin: 0;
+			padding: 0;
+		}
 
-  <script>
-    // start with strings, numbers and booleans
-    // let age = 100;
-    // let age2 = age;
-    // console.log(age, age2);
-    // age = 200;
-    // console.log(age, age2);
+		html,
+		body {
+			overflow: auto;
+			min-height: 100vh;
+			min-height: 100svh;
+		}
 
-    // let name = 'Wes';
-    // let name2 = name;
-    // console.log(name, name2);
-    // name = 'wesley';
-    // console.log(name, name2);
+		body {
+			display: flex;
+			flex-direction: column;
+			align-items: center;
+			justify-content: center;
+			font-family: Ruwudu, serif;
+			font-size: 2.25rem;
+			color: rgb(85 51 8);
+			text-align: center;
+			text-shadow: rgb(248 203 175 / 74%) 0 5px 15px;
+			background-color: #b5eebf4d;
+			background-image: url("data:image/svg+xml,<svg id='patternId' width='100%' height='100%' xmlns='http://www.w3.org/2000/svg'><defs><pattern id='a' patternUnits='userSpaceOnUse' width='87' height='50.232' patternTransform='scale(2) rotate(0)'><rect x='0' y='0' width='100%' height='100%' fill='hsla(9, 50%, 70%, 1)'/><path d='M0 54.424l14.5-8.373c4.813 2.767 9.705 5.573 14.5 8.37l14.5-8.373V29.303M0 4.193v16.744l-14.5 8.373L0 37.68l14.5-8.374V12.562l29-16.746m43.5 58.6l-14.5-8.37v-33.49c-4.795-2.797-9.687-5.603-14.5-8.37m43.5 25.111L87 37.67c-4.795-2.797-24.187-13.973-29-16.74l-14.5 8.373-14.5-8.37v-33.489m72.5 8.365L87 4.183l-14.5-8.37M87 4.183v16.745L58 37.673v16.744m0-66.976V4.185L43.5 12.56c-4.795-2.797-24.187-13.973-29-16.74L0 4.192l-14.5-8.37m29 33.484c4.813 2.767 9.705 5.573 14.5 8.37V54.42'  stroke-linejoin='round' stroke-linecap='round' stroke-width='4.5' stroke='hsla(25, 41%, 70%, 1)' fill='none'/></pattern></defs><rect width='800%' height='800%' transform='translate(0,-0.928)' fill='url(%23a)'/></svg>");
+			background-attachment: fixed;
+			background-size: cover;
+		}
 
-    // Let's say we have an array
-    const players = ['Wes', 'Sarah', 'Ryan', 'Poppy'];
+		p {
+			margin: 0;
+		}
 
-    // and we want to make a copy of it.
-    const team = players;
+		.container {
+			padding: 1rem;
+			backdrop-filter: blur(8px);
+			border-radius: 0.5rem;
+			box-shadow: rgb(0 0 0 / 30%) 0 5px 15px;
+		}
+	</style>
+	<body>
+		<div class="container">
+			<p>JavaScript References VS Copying 🐾</p>
+			<p>Have a look at the JavaScript Console 🚀</p>
+		</div>
 
-    console.log(players, team);
-    // You might think we can just do something like this:
-    // team[3] = 'Lux';
+		<script>
+			// start with strings, numbers and booleans
+			// let age = 100;
+			// let age2 = age;
+			// console.log(age, age2);
+			// age = 200;
+			// console.log(age, age2);
 
-    // however what happens when we update that array?
+			// let name = 'Wes';
+			// let name2 = name;
+			// console.log(name, name2);
+			// name = 'wesley';
+			// console.log(name, name2);
 
-    // now here is the problem!
+			// Let's say we have an array
+			const players = ["Issam", "Aymen", "Ryan", "Adam"];
 
-    // oh no - we have edited the original array too!
+			// and we want to make a copy of it.
+			const team = players;
 
-    // Why? It's because that is an array reference, not an array copy. They both point to the same array!
+			console.log(players, team);
+			// You might think we can just do something like this:
+			// team[3] = 'Lux';
 
-    // So, how do we fix this? We take a copy instead!
-    const team2 = players.slice();
+			// however what happens when we update that array?
 
-    // one way
+			// now here is the problem!
 
-    // or create a new array and concat the old one in
-    const team3 = [].concat(players);
+			// oh no - we have edited the original array too!
 
-    // or use the new ES6 Spread
-    const team4 = [...players];
-    team4[3] = 'heeee hawww';
-    console.log(team4);
+			// Why? It's because that is an array reference, not an array copy. They both point to the same array!
 
-    const team5 = Array.from(players);
+			// So, how do we fix this? We take a copy instead!
+			const team2 = [...players];
 
-    // now when we update it, the original one isn't changed
+			// one way
 
-    // The same thing goes for objects, let's say we have a person object
+			// or create a new array and concat the old one in
+			const team3 = [players].flat();
 
-    // with Objects
-    const person = {
-      name: 'Wes Bos',
-      age: 80
-    };
+			// or use the new ES6 Spread
+			const team4 = [...players];
+			team4[3] = "heeee hawww";
+			console.log(team4);
 
-    // and think we make a copy:
-    // const captain = person;
-    // captain.number = 99;
+			const team5 = [...players];
 
-    // how do we take a copy instead?
-    const cap2 = Object.assign({}, person, { number: 99, age: 12 });
-    console.log(cap2);
+			// now when we update it, the original one isn't changed
 
-    // We will hopefully soon see the object ...spread
-    // const cap3 = {...person};
+			// The same thing goes for objects, let's say we have a person object
 
-    // Things to note - this is only 1 level deep - both for Arrays and Objects. lodash has a cloneDeep method, but you should think twice before using it.
+			// with Objects
+			const person = {
+				name: "Issam Seghir",
+				age: 80,
+			};
 
-    const wes = {
-      name: 'Wes',
-      age: 100,
-      social: {
-        twitter: '@wesbos',
-        facebook: 'wesbos.developer'
-      }
-    };
+			// and think we make a copy:
+			// const captain = person;
+			// captain.number = 99;
 
-    console.clear();
-    console.log(wes);
+			// how do we take a copy instead?
+			const cap2 = Object.assign({}, person, { number: 99, age: 12 });
+			console.log(cap2);
 
-    const dev = Object.assign({}, wes);
+			// We will hopefully soon see the object ...spread
+			// const cap3 = {...person};
 
-    const dev2 = JSON.parse(JSON.stringify(wes));
+			// Things to note - this is only 1 level deep - both for Arrays and Objects. lodash has a cloneDeep method, but you should think twice before using it.
 
-  </script>
+			const object = {
+				name: "Issam",
+				age: 100,
+				social: {
+					twitter: "@issam__Dev",
+					linkedin: "@issam-seghir",
+				},
+			};
 
-</body>
+			console.clear();
+			console.log(object);
 
+			const development = Object.assign({}, object);
+
+			const development2 = JSON.parse(JSON.stringify(object));
+		</script>
+	</body>
 </html>
