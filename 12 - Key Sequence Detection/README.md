@@ -1,20 +1,16 @@
 # Key Sequence Detection
 
-![Background Image](assets/image/background.png)
-
+![gif](assets/image/showcase.gif)
 In this coding exercise, I've implemented a JavaScript program that detects specific sequences of keystrokes, allowing for unique interactions and experiences. By comparing entered sequences against a predefined secret code, this project demonstrates a practical application of keyboard input detection.
 
 ## Table of Contents
 
 - [Key Sequence Detection](#key-sequence-detection)
   - [Table of Contents](#table-of-contents)
-  - [How I Made This Happen](#how-i-made-this-happen)
-    - [1. Listening for Key Presses](#1-listening-for-key-presses)
-    - [2. Matching Secret Code](#2-matching-secret-code)
+  - [1. Listening for Key Presses](#1-listening-for-key-presses)
+  - [2. Matching Secret Code](#2-matching-secret-code)
 
-## How I Made This Happen
-
-### 1. Listening for Key Presses
+## 1. Listening for Key Presses
 
 To begin, the program listens for `keyup` events on the window, which occur whenever a key is released after being pressed. This event-driven approach enables the program to react in real-time to the user's keyboard input.
 
@@ -24,7 +20,7 @@ To begin, the program listens for `keyup` events on the window, which occur when
     });
 ```
 
-### 2. Matching Secret Code
+## 2. Matching Secret Code
 
 The core functionality of this program revolves around matching a secret code entered by the user. To achieve this, the program maintains an array named `pressed`, which is used to track the sequence of keys pressed by the user. Additionally, a predefined secret code is established that serves as the target pattern to be matched.
 
