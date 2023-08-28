@@ -1,217 +1,231 @@
+# Custom Video Player
 
-# Hold Shift and Check Checkboxes
-
-![Checkbox Selection](assets/image/showcase.gif)
-
-In this exercise, I created a checkbox selection feature where users can hold the `Shift` key and click checkboxes to select a range of checkboxes at once.
+<div class="video-container">
+  <video controls >
+    <source src="./assets/video/showcase.mp4" type="video/mp4">
+    Your browser does not support the video tag.
+  </video>
+</div>
+In this project, I built a custom video player with additional features beyond the default browser controls. The custom player allows users to control video playback, adjust volume, change playback speed, and scrub through the video timeline. The player also provides a visual representation of volume and playback speed changes.
 
 Let's delve into the code and understand how I **achieved** this and what I **added/fixed** from the original solution.
 
 ## Table of Contents
 
-- [Hold Shift and Check Checkboxes](#hold-shift-and-check-checkboxes)
+- [Custom Video Player](#custom-video-player)
   - [Table of Contents](#table-of-contents)
   - [Features](#features)
   - [How I Made This Happen](#how-i-made-this-happen)
-    - [1. Checkbox Selection Logic](#1-checkbox-selection-logic)
-      - [Part one](#part-one)
-      - [Part Two](#part-two)
-        - [Case One: Individual Checkbox Interaction](#case-one-individual-checkbox-interaction)
-        - [Case Two: Clicking on  List Item Content (p / item)](#case-two-clicking-on--list-item-content-p--item)
-        - [Case Three: Clicking the `.inbox` Container](#case-three-clicking-the-inbox-container)
-      - [Part Three](#part-three)
-    - [2. Handling Checkbox Clicks with Shift Key Interaction](#2-handling-checkbox-clicks-with-shift-key-interaction)
+    - [1. Play/Pause Button](#1-playpause-button)
+    - [2. Skip Buttons](#2-skip-buttons)
+    - [3. Progress Bar](#3-progress-bar)
+    - [4. Volume Control](#4-volume-control)
+    - [5. Playback Speed Control](#5-playback-speed-control)
   - [What I Added/Fixed](#what-i-addedfixed)
   - [What I Learned](#what-i-learned)
 
 ## Features
 
-1. **Shift Key Selection**: Users can hold down the `Shift` key and click checkboxes to select a range of checkboxes between the last clicked checkbox and the currently clicked checkbox.
+1. **Play/Pause Button**: Users can click the play/pause button or the video itself to toggle between playing and pausing the video.
+2. **Skip Buttons**: Skip forward or backward in the video by a specified duration.
+3. **Progress Bar**: Visualize video progress with a dynamic progress bar. Users can also click on the progress bar to seek to a specific point in the video.
+4. **Volume Control**: Adjust the volume using a slider control. The volume level is displayed as a percentage.
+5. **Playback Speed Control**: Change the playback speed of the video using a slider control.
 
 ## How I Made This Happen
 
-### 1. Checkbox Selection Logic
+### 1. Play/Pause Button
 
-#### Part one
-
-- I selected the `.inbox` element, which contains a list of checkboxes.
-- The variable `lastItemSelected` is initialized to **false**. This variable will be used to keep track of the **last** **checkbox** **item** **selected**.
-- I added an event listener  to the `.inbox` element for the `click` event.
-- This event  will respond when any element within the `.inbox` element is clicked (**delegation** **technique**)
+- The play button toggles between displaying a play icon and a pause icon based on the video's current state.
+- Clicking the play button or the video element itself triggers the `handleVideoPlayButton` function. This function plays or pauses the video accordingly and updates the button's icon.
 
 ```js
-    const inbox = document.querySelector(".inbox");
-    let lastItemSelected = false;
+//  declare variables
+const video = document.querySelector("video.player__video");
+const playerControls = document.querySelector(".player__controls");
 
-    inbox.addEventListener("click", (e) => {
-      ...
-    });
-```
+const playButton = document.querySelector("button.player__button.primary");
+const playSvg = playButton.querySelector("svg:first-child");
+const pauseSvg = playButton.querySelector("svg:last-child");
 
-#### Part Two
 
-- Users might click on various elements within the list item, such as labels or the list item container itself. In these cases, the event target will be the clicked element, which may not directly represent the associated checkbox.
-
-- To ensure consistent behavior, the code employs a technique to locate the associated checkbox element. It does so by searching for the **closest ancestor** element with the class `.item`, which typically encapsulates the entire list item. From this ancestor, the code then retrieves the corresponding **checkbox element**.
-
-- The `closest` method seeks the nearest **parent** element with the class `.item`. If found, the code proceeds to search for an input element with the **attribute** `type="checkbox"` within that `.item`.
-
-- The **optional chaining operator** (`?.`) is used to gracefully handle cases where the `closest(".item")` does not find any matching ancestor element. When no `.item` ancestor is found, the entire expression evaluates to `null`, ensuring no unexpected errors occur.
-
-```javascript
-    const checkbox = clickedElement.closest(".item")?.querySelector("input[type=checkbox]");
-```
-
-This construct offers versatility in managing different user interactions:
-
-##### Case One: Individual Checkbox Interaction
-
-- When a checkbox itself is clicked, this line directly selects the checkbox element. This direct selection facilitates toggling the checkbox's checked state.
-
-##### Case Two: Clicking on  List Item Content (p / item)
-
-- This scenario involves clicking on the text content or the checkbox element itself. The line of code ensures that the closest ancestor element with the class `.item` is selected, followed by the checkbox within that `.item`. This is especially useful when users click the paragraph instead of the checkbox to toggle its state.
-
-its look like this :
-
-```javascript
-    // item: <div class="item">
-    const checkbox = item.querySelector("input[type=checkbox]");
-```
-
-##### Case Three: Clicking the `.inbox` Container
-
-- Here, we're exploring the practical utility of the optional chaining operator. Let's start by examining the scenario without using the optional chaining operator to understand the differences.
-
-```javascript
-    const checkbox = clickedElement.closest(".item").querySelector("input[type=checkbox]");
-```
-
-- In this example, the `clickedElement` represents an element with the class "`inbox."` The `closest(".item")` method is used to find the nearest ancestor element with the class `"item."` However, in this case, **no such parent element exists**.
-
-```html
-    <!-- There's no parent with class "item" here -->
-    <!-- 👆 -->
-    <div class="inbox">
-      ...
-      <div class="item">
-        <input type="checkbox" />
-        <p>This is an inbox layout.</p>
-      </div>
-      ...
-    </div>
-```
-
-- If the clicked element lacks an ancestor with the class `"item"` the result of `clickedElement.closest(".item")` will be `null`. Subsequently, attempting to call `.querySelector("input[type=checkbox]")` on `null` will result in a `TypeError`.
-
-- The `.querySelector("input[type=checkbox]")` part tries to find an `<input>` element with the attribute `type="checkbox"` within the element found using `.closest(".item")`. If the previous step yields `null`, attempting to call `.querySelector` on `null` will lead to a `TypeError`.
-
-However, in cases where we don't want a `TypeError` (absolutely in this case) and instead want to exclude the `"inbox"` scenario when it's clicked, we need to handle this situation and prevent **errors**. One way is to explicitly check whether `.closest(".item")` returns a non-null value before attempting to call `.querySelector("input[type=checkbox]")`. For instance:
-
-```js
-const itemElement = clickedElement.closest(".item");
-const checkbox = itemElement ? itemElement.querySelector("input[type=checkbox]") : null;
-```
-
-The above code checks if `itemElement` is truthy before proceeding with `.querySelector`. This approach ensures that we don't encounter errors in cases where the ancestor with class `"item"` is not found.
-
-Alternatively, the optional chaining operator (`?.`) can achieve the same result in a more concise manner:
-
-```js
-const checkbox = clickedElement.closest(".item")?.querySelector("input[type=checkbox]");
-```
-
-By using the optional chaining operator, we streamline the code and achieve the desired behavior without the need for explicit checks and conditional statements. The operator evaluates to `null` if any part of the chain returns `null` or `undefined`.
-
-```js
-  inbox.addEventListener("click", (e) => {
-     const clickedElement = e.target;
-
-     const checkbox = clickedElement.closest(".item")?.querySelector("input[type=checkbox]");
-     if (checkbox) {
-      ...
+    function handleVideoPlayButton() {
+     if (video.paused) {
+        video.play();
+        // display play icon
+        playSvg.style.display = "none";
+        pauseSvg.style.display = "block";
+        // remove hover state from the video
+        playerControls.classList.remove("hover");
+     } else {
+        video.pause();
+        // display pause icon
+        playSvg.style.display = "block";
+        pauseSvg.style.display = "none";
+        // add hover state from the video
+        playerControls.classList.add("hover");
      }
-    });
+    }
+
+video.addEventListener("click", handleVideoPlayButton);
+playButton.addEventListener("click", handleVideoPlayButton);
+
 ```
 
-#### Part Three
+### 2. Skip Buttons
 
-- If the clicked element is not the checkbox itself (as determined by the clickedElement.matches("input[type=checkbox]") condition), the code toggles the checkbox's checked state. This means that clicking on the label or other parts of the list item will toggle the checkbox as well.
+- Skip buttons allow users to jump forward or backward in the video by a specific duration defined in the `data-skip` attribute.
+- Clicking a skip button triggers the `handleVideoSkipButton` function. This function adjusts the video's `currentTime` property by the skip duration.
 
 ```js
-...
-  if (checkbox) {
-    // If the clicked element is not the checkbox itself, toggle its checked state
-    if (!clickedElement.matches("input[type=checkbox]")) {
-      checkbox.checked = !checkbox.checked;
+    const skipButtons = document.querySelectorAll("button.player__button:not(.primary)");
+
+    function handleVideoSkipButton() {
+      // currentTime = currentTime + Number(skip)
+     video.currentTime += +this.dataset.skip;
     }
 
-    // Determine if the shift key is pressed during the click
-    const shiftKey = e.shiftKey;
-
-    // Handle the checkbox click and shift key interaction
-    handleCheckboxClick(checkbox, shiftKey);
-  }
-...
+    skipButtons.forEach((skipButton) => skipButton.addEventListener("click", handleVideoSkipButton));
 ```
 
-### 2. Handling Checkbox Clicks with Shift Key Interaction
+### 3. Progress Bar
 
-- `handleCheckboxClick(checkbox, shiftKey)` effectively manages checkbox clicks with the shift key interaction. This function enables users to select multiple checkboxes in a range by holding down the shift key and clicking checkboxes.
+- The progress bar visually represents the current position in the video timeline.
+- The `handleVideoProgressBar` function updates the progress bar's filled portion based on the video's current time and total duration.
 
-- This function takes two parameters: the `checkbox` element that was clicked and a boolean value indicating whether the shift key was pressed (`shiftKey`).
+```js
+    const progress = document.querySelector(".progress");
+    const progressFilled = document.querySelector(".progress__filled");
 
-- When the user holds down the shift key and clicks on checkboxes, the code aims to achieve a range selection effect. It identifies the checkboxes between the last clicked checkbox and the current clicked checkbox and toggles their checked state.
-
-- If the shift key is pressed (`shiftKey === true`) and a previous checkbox was clicked (`lastItemSelected` is not `null` and `lastItemSelected.checked === true`), the function proceeds to select a range of checkboxes.
-
-- The function starts by obtaining all checkboxes within the `.inbox` container using the `querySelectorAll` method.
-
-- The indices of the last clicked checkbox and the current clicked checkbox are determined using the `indexOf` method on the array of checkboxes.
-
-- Depending on whether the current clicked checkbox's index is greater or smaller than the last clicked checkbox's index, the code loops through the checkboxes between the two indices. For each checkbox in the range, it toggles the checkbox's checked state using the `!` (not) operator.
-
-- The code concludes by storing the current checkbox (`checkbox`) as the `lastItemSelected`. This way, the function remembers the previous checkbox that was clicked, enabling accurate shift key interactions in subsequent selections.
-
-```javascript
-function handleCheckboxClick(checkbox, shiftKey) {
-  // Check if shift key is pressed and a checkbox was previously clicked
-  if (shiftKey && lastItemSelected && lastItemSelected.checked) {
-    // Get all checkboxes within the .inbox container
-    const checkboxes = [...inbox.querySelectorAll("[type=checkbox]")];
-
-    // Identify the index of the last clicked checkbox and the current checkbox
-    const lastItemSelectedIndex = checkboxes.indexOf(lastItemSelected);
-    const thisIndex = checkboxes.indexOf(checkbox);
-
-    // Select checkboxes between the last clicked checkbox and the current checkbox
-    if (thisIndex > lastItemSelectedIndex) {
-      for (let index = lastItemSelectedIndex + 1; index < thisIndex; index++) {
-        checkboxes[index].checked = !checkboxes[index].checked;
-      }
-    } else if (lastItemSelectedIndex > thisIndex) {
-      for (let index = lastItemSelectedIndex - 1; index > thisIndex; index--) {
-        checkboxes[index].checked = !checkboxes[index].checked;
-      }
+    function handleVideoProgressBar() {
+      // We calculate the progress percentage of the video based on its current time and total duration.
+     const progress = `${((video.currentTime * 100) / video.duration).toFixed(2)}%`;
+     progressFilled.style.flexBasis = `${progress}`;
     }
+
+    function scrub(e) {
+     // Calculate the relative position (scrubTime) of the click within the progress bar.
+    // This is achieved by dividing the offsetX (position of the click) by the total width of the progress bar.
+    const scrubTime = (1 / (progress.offsetWidth / e.offsetX)) * 100;
+    // Calculate the new current time of the video based on the scrubTime and video duration.
+    // The scrubTime is converted to a fraction of the video duration (currentTime = duration * scrubTime / 100).
+    video.currentTime = (video.duration * scrubTime) / 100;
   }
 
-  // Store the current checkbox as the last clicked checkbox
-  lastItemSelected = checkbox;
-}
+
+    let mousedown = false;
+    // When the user clicks on the progress bar, we want to update the video's time to that point.
+    progress.addEventListener("click", scrub);
+    // When the user starts dragging (initiates a drag event), we also update the video's time.
+    progress.addEventListener("dragstart", scrub);
+    // While the mouse is moving over the progress bar, we update the video's time only if the mouse button is pressed.
+    progress.addEventListener("mousemove", (e) => mousedown && scrub(e));
+    // When we press the mouse button on the progress bar, we set the 'mousedown' flag to true.
+    progress.addEventListener("mousedown", () => (mousedown = true));
+    // When we release the mouse button anywhere on the page, we set the 'mousedown' flag to false.
+    progress.addEventListener("mouseup", () => (mousedown = false));
+    // As the video plays and its time updates.
+    video.addEventListener("timeupdate", handleVideoProgressBar);
+```
+
+### 4. Volume Control
+
+- Users can adjust the video's volume using a slider control.
+- The `handleVolume` function handles volume changes. It updates the video's `volume` property and displays the current volume level as a percentage.
+
+```js
+    const volume = document.querySelector("[name=volume]");
+    // Creating an SVG icon for the volume control.
+    const volumeIcon = document.createElementNS("<http://www.w3.org/2000/svg>", "svg");
+    volumeIcon.setAttribute("width", "40px");
+    volumeIcon.setAttribute("height", "100%");
+    volumeIcon.setAttribute("viewBox", "-0.5 0 25 25");
+    volumeIcon.setAttribute("fill", "none");
+    volumeIcon.innerHTML = `
+        <path d="M12.5493 .../>
+      `;
+
+    // We're selecting an HTML element where we'll display the current volume value.
+    const display = document.querySelector("span.display");
+
+
+    //* Caching the Timeout ID: Store the timeout ID in a static property handleVolume.timeoutId or (using closure)
+    //* to avoid potential issues with multiple timers running concurrently.
+    //*  This ensures that any previous timeout is cleared before setting a new one.
+    function handleVolume() {
+     video.volume = this.value;
+
+    // Displaying the volume percentage with svg icon .
+     const displayText = `%${(this.value * 100).toFixed(0)}`;
+     display.innerHTML = displayText;
+     display.append(volumeIcon);
+     display.classList.add("show");
+
+     // Clearing any previous timeout and setting a new one to hide the display after 2 seconds.
+     clearTimeout(handleVolume.timeoutId);
+     handleVolume.timeoutId = setTimeout(() => {
+      display.classList.remove("show");
+     }, 2000);
+    }
+    // Initializing the timeout ID to null to keep track of the timeout.
+    handleVolume.timeoutId = null;
+
+
+    volume.addEventListener("change", handleVolume);  // When the user interacts with the volume slider.
+    volume.addEventListener("mousemove", handleVolume);  // When the user moves the mouse over the volume slider.
+```
+
+### 5. Playback Speed Control
+
+- Users can modify the video's playback speed using a slider control.
+- The `handlePlaybackRate` function updates the video's `playbackRate` property and displays the current playback speed as a numerical value.
+
+```js
+    const playbackRate = document.querySelector("[name=playbackRate]");
+
+    // Creating an SVG icon for the volume control.
+    const speedIcon = document.createElementNS("http://www.w3.org/2000/svg", "svg");
+    speedIcon.setAttribute("width", "60px");
+    speedIcon.setAttribute("height", "100%");
+    speedIcon.setAttribute("viewBox", "0 0 24 24");
+    speedIcon.setAttribute("fill", "none");
+    speedIcon.innerHTML = `
+       <path d="M11.3122 .../>
+     `;
+
+
+    //*Caching the Timeout ID: Store the timeout ID in a static property handlePlaybackRate.timeoutId or (using closure)
+    //* to avoid potential issues with multiple timers running concurrently.
+    //*  This ensures that any previous timeout is cleared before setting a new one.
+    function handlePlaybackRate() {
+      video.playbackRate = this.value;
+      // Displaying the playback rate  with svg icon .
+      const displayText = `${video.playbackRate}`;
+      display.innerHTML = displayText;
+      display.append(speedIcon);
+      display.classList.add("show");
+
+       // Clearing any previous timeout and setting a new one to hide the display after 2 seconds.
+      clearTimeout(handlePlaybackRate.timeoutId);
+      handlePlaybackRate.timeoutId = setTimeout(() => {
+       display.classList.remove("show");
+      }, 2000);
+    }
+    // Initializing the timeout ID to null to keep track of the timeout.
+    handlePlaybackRate.timeoutId = null;
+
+    playbackRate.addEventListener("change", handlePlaybackRate);
+    playbackRate.addEventListener("mousemove", handlePlaybackRate);
 ```
 
 ## What I Added/Fixed
 
 - **My own style**
-- **Use another algorithme** to handle the problem.
-- I handled the case where **checkboxes** are selected in **reverse** **order**.
+- **Custom Volume Icon**: Created a custom volume icon using SVG to visualize the volume level more intuitively.
+- **Custom Playback Speed Icon**: Designed a custom playback speed icon using SVG to provide a visual representation of the playback speed.
 
 ## What I Learned
 
-- **Event Delegation**: I  employed the event delegation technique to handle checkbox interactions within the `.inbox` container, optimizing performance and reducing unnecessary event listeners.
 
-- **DOM Traversal**: I learned how to use DOM traversal methods like `closest` to find parent elements based on a specific class.
-- **Event Handling**: I gained a deeper understanding of handling click events and utilizing the `shiftKey` property to detect when the `Shift` key is held down during the click.
-- **Optional Chaining**: I learned the value of the optional chaining operator (?.) for handling complex DOM interactions, ensuring graceful degradation in scenarios where expected elements are not present.
-- **Algorithmic Thinking**: I refined my algorithmic thinking by devising an efficient solution for selecting checkboxes within a specified range using the shift key. This implementation involved careful consideration of indices and array iteration.
+- **Timeout Management**: I gained experience in managing timeouts to control the display duration of volume and playback speed information.
+- **Video Object and Media Events**:  manipulating the video object and utilizing media events such as `timeupdate` to create dynamic progress bars .

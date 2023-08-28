@@ -1,3 +1,5 @@
+@import url("https://fonts.googleapis.com/css2?family=ADLaM+Display&display=swap");
+
 html {
 	box-sizing: border-box;
 }
@@ -15,9 +17,12 @@ body {
 	min-height: 100vh;
 	margin: 0;
 	padding: 0;
-
-	/* background: linear-gradient(135deg, #7c1599 0%, #921099 48%, #7e4ae8 100%); */
+	font-family: "ADLaM Display", cursive;
 	background-image: url("./assets//image//6664016.jpg");
+	/* background-image: url("./assets//image//1385494.jpg"); */
+	/* background-image: url("./assets//image//1385574.jpg"); */
+	/* background-image: url("./assets//image//4064503.jpg"); */
+	/* background-image: url("./assets//image//6664020.jpg"); */
 	background-size: cover;
 }
 
@@ -43,7 +48,7 @@ body {
 	max-width: none;
 }
 
-.player:full-screen {
+.player::full-screen {
 	width: 100%;
 	max-width: none;
 }
@@ -55,18 +60,24 @@ body {
 
 .player__button {
 	cursor: pointer;
+	margin-inline: 0.25rem;
 	max-width: 50px;
 	padding-inline: 1rem;
+	font-family: "ADLaM Display", cursive;
 	line-height: 1;
-	color: white;
+	/* color: rgb(43 4 33 / 74.7%); */
+	color: #d55a898e;
 	text-align: center;
 	background: none;
 	border: 0;
+	display: flex;
+	align-items: center;
 	outline: 0;
 }
-
-.player__button:focus {
-	border-color: #ffc600;
+.player__button .icon-container{
+	  width: 20px;
+  height: 20px;
+  margin-right: 0.5rem;
 }
 
 .player__controls {

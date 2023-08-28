@@ -1,33 +1,109 @@
 <!DOCTYPE html>
 <html lang="en">
+	<head>
+		<meta charset="UTF-8" />
+		<title>Key Detection</title>
+		<script src="./cornify.js"></script>
+		<link rel="icon" href="https://fav.farm/🔥" />
+	</head>
+	<style>
+		@import url("https://fonts.googleapis.com/css2?family=Ruwudu:wght@700&display=swap");
 
-<head>
-  <meta charset="UTF-8" />
-  <title>Key Detection</title>
-  <script type="text/javascript" src="./cornify.js"></script>
-  <link rel="icon" href="https://fav.farm/🔥" />
-</head>
+		/* Box sizing rules */
+		*,
+		*::before,
+		*::after {
+			box-sizing: border-box;
+			margin: 0;
+			padding: 0;
+		}
 
-<body>
-  <script>
+		html,
+		body {
+			overflow: auto;
+			min-height: 100vh;
+			min-height: 100svh;
+		}
 
-    const pressed = [];
-    const secretCode = "wesbos";
+		body {
+			display: flex;
+			flex-direction: column;
+			align-items: center;
+			justify-content: center;
+			font-family: Ruwudu, serif;
+			font-size: 2.25rem;
+			color: rgb(36 28 3 / 69.9%);
+			text-align: center;
+			text-shadow: rgb(218 247 92 / 30%) 0 5px 15px;
+			background-color: #b5eebf4d;
+			background-image: url("data:image/svg+xml,<svg id='patternId' width='100%' height='100%' xmlns='http://www.w3.org/2000/svg'><defs><pattern id='a' patternUnits='userSpaceOnUse' width='87' height='50.232' patternTransform='scale(2) rotate(0)'><rect x='0' y='0' width='100%' height='100%' fill='rgb(233, 255, 181)'/><path d='M0 54.424l14.5-8.373c4.813 2.767 9.705 5.573 14.5 8.37l14.5-8.373V29.303M0 4.193v16.744l-14.5 8.373L0 37.68l14.5-8.374V12.562l29-16.746m43.5 58.6l-14.5-8.37v-33.49c-4.795-2.797-9.687-5.603-14.5-8.37m43.5 25.111L87 37.67c-4.795-2.797-24.187-13.973-29-16.74l-14.5 8.373-14.5-8.37v-33.489m72.5 8.365L87 4.183l-14.5-8.37M87 4.183v16.745L58 37.673v16.744m0-66.976V4.185L43.5 12.56c-4.795-2.797-24.187-13.973-29-16.74L0 4.192l-14.5-8.37m29 33.484c4.813 2.767 9.705 5.573 14.5 8.37V54.42'  stroke-linejoin='round' stroke-linecap='round' stroke-width='4.5' stroke='rgb(185, 224, 92)' fill='none'/></pattern></defs><rect width='800%' height='800%' transform='translate(0,-0.928)' fill='url(%23a)'/></svg>");
+			background-attachment: fixed;
+			background-size: cover;
+		}
 
-    window.addEventListener("keyup", (e) => {
-      console.log(e.key);
-      pressed.push(e.key);
-      pressed.splice(
-        -secretCode.length - 1,
-        pressed.length - secretCode.length
-      );
-      if (pressed.join("").includes(secretCode)) {
-        console.log("DING DING!");
-        cornify_add();
-      }
-      console.log(pressed);
-    });
-  </script>
-</body>
+		p {
+			margin: 0;
+		}
 
+		.container {
+			padding: 1rem;
+			backdrop-filter: blur(8px);
+			border-radius: 0.5rem;
+			box-shadow: rgb(0 0 0 / 30%) 0 5px 15px;
+		}
+
+		.hint {
+			margin: 1.25rem;
+			padding: 1.25rem;
+			backdrop-filter: blur(8px);
+			border-radius: 50%;
+		}
+
+		/* .triangle-banner {
+			position: fixed;
+			top: 0;
+			left: -5%;
+			rotate: 180deg;
+			border-right: 90px solid transparent;
+			border-bottom: 148px solid #ffd900c4;
+			border-left: 119px solid transparent;
+		} */
+	</style>
+	<body>
+		<!-- <div class="triangle-banner"></div> -->
+		<p class="hint">Hint: 🐍</p>
+		<div class="container">
+			<p>Key Detection 🔑</p>
+			<p>Type the <span style="color: rgb(255 0 0 / 56.8%)">secretCode</span> with the keyboard 🙄</p>
+			<p>You are entering : <span style="color: rgb(255 0 0 / 56.8%)" class="user-keys">...</span></p>
+			<p class="message"></p>
+		</div>
+
+		<script>
+			const pressed = [];
+			const secretCode = "python";
+			const userKeys = document.querySelector(".user-keys");
+			const message = document.querySelector(".message");
+
+			window.addEventListener("keyup", (e) => {
+				// print the key in consol
+				console.log(e.key);
+				// add the key pressed to the array
+				pressed.push(e.key);
+				// Ensure the 'pressed' array length matches the length of the secret code.
+				// If the array length exceeds the secret code length, remove the earliest entries.
+				pressed.splice(-secretCode.length - 1, pressed.length - secretCode.length);
+				// Check if the current 'pressed' array contains the complete secret code.
+				if (pressed.join("").includes(secretCode)) {
+					// Display a success message
+					console.log("DING DING!");
+					message.innerHTML = `Congratulations, you've unlocked the secret 🏆! </br> You're now one step closer to world domination...  </br> or maybe just some virtual confetti!`;
+					cornify_add();
+				}
+				// Display the contents of the 'pressed' array
+				console.log(pressed);
+				userKeys.innerHTML = pressed.join("");
+			});
+		</script>
+	</body>
 </html>
