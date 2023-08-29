@@ -9,9 +9,20 @@
 
 	<style>
 		@import url("https://fonts.googleapis.com/css2?family=Borel&display=swap");
+		@import url("https://fonts.googleapis.com/css2?family=Kanit&display=swap");
+
 		html {
-			background: url("./assets/image/background.jpg") center no-repeat;
+			background: url("./assets/image/background.jpg") center no-repeat, rgb(5 0 0 / 90%);
 			background-size: cover;
+
+			/* background-blend-mode: color-dodge; */
+
+			/* background-blend-mode:overlay; */
+
+			/* background-blend-mode:soft-light; */
+
+			/* background-blend-mode: difference; */
+			background-blend-mode: hard-light;
 		}
 
 		.container {
@@ -25,20 +36,64 @@
 
 		.container,
 		.wrapper {
+			/* font-family: Borel, cursive !important; */
+			font-family: Kanit, sans-serif !important;
 			background-color: rgb(17 25 40 / 59%);
 			backdrop-filter: blur(10px) saturate(147%);
 			border: 1px solid rgb(255 255 255 / 12.5%);
 			border-radius: 12px;
-			font-family: "Borel", cursive !important;
+		}
+
+		form {
+			width: max-content !important;
 		}
 
 		form input {
+			font-family: Kanit, sans-serif !important;
+			color: #290723;
+			background: #cea8c1cf;
 			border: 1px solid rgb(255 255 255 / 12.5%);
 			border-radius: 12px;
 		}
 
+		label {
+			display: flex;
+		}
+
+		label::before {
+			content: "" !important;
+			display: block;
+			width: 20px;
+			height: 20px;
+			margin-right: 10px;
+			background-color: #635564b9;
+			border-radius: 5px;
+		}
+
+		input:checked + label::before {
+			content: "🍧" !important;
+			background-color: #7ee1ffb9;
+		}
+
 		input[type="text"] {
 			margin-right: 1rem;
+		}
+
+		input[type="submit"] {
+			cursor: pointer;
+		}
+
+		h1,
+		h2,
+		h3 {
+			font-size: 1.8rem;
+			font-weight: bold;
+			color: #d06791;
+			letter-spacing: 0.14em;
+		}
+
+		ul {
+			color: #f09cbee5;
 		}
 	</style>
 	<body>
@@ -69,7 +124,7 @@
 				</g>
 			</svg>
 			<div class="wrapper">
-				<h2>LOCAL TAPAS</h2>
+				<h2>Local Tapaz</h2>
 				<p></p>
 				<ul class="plates">
 					<li>Loading Tapas...</li>
@@ -84,44 +139,52 @@
 		<script>
 			const addItems = document.querySelector(".add-items");
 			const itemsList = document.querySelector(".plates");
-			// parse : convert the json to array of objects
+			// parse : convert  json to array of objects
 			const items = JSON.parse(localStorage.getItem("items")) || [];
 
 			function addItemsToList(e) {
+				// Prevent the default form submission behavior
 				e.preventDefault();
 
+				// Get the value of the input field
 				const text = e.target[0].value;
 				const item = {
 					text: text,
 					checkState: false,
 				};
 				items.push(item);
+
 				// stringify : add "items" to local storage as  a JSON string
 				localStorage.setItem("items", JSON.stringify(items));
-
+				// Update the list of items displayed on the page
 				fillList(items, itemsList);
-				this.reset(); // empty the inputs in the form
+
+				// Reset the form, clearing the input field
+				this.reset();
 			}
 
 			function fillList(items, itemsList) {
 				itemsList.innerHTML = items
 					.map((list, index) => {
 						return `
-    <li>
-      <input type="checkbox" data-index=${index} id="item${index}" ${list.checkState ? "checked" : ""} />
-      <label for="item${index}">${list.text}</label>
-        </li>
-      `;
+						<li>
+							<input type="checkbox" data-index=${index} id="item${index}" ${list.checkState ? "checked" : ""} />
+							<label for="item${index}">${list.text}</label>
+						</li>
+						`;
 					})
 					.join("");
 			}
 
 			function toggleDone(e) {
 				if (e.target.matches("input")) {
+					// Get the index of the clicked checkbox
 					const index = e.target.dataset.index;
-					console.log(e.target + "\n index : " + e.target.dataset.index);
+					// Toggle the check state
 					items[index].checkState = !items[index].checkState;
+					// Update the 'items' array in local storage
 					localStorage.setItem("items", JSON.stringify(items));
+					// Update the list of items displayed on the page
 					fillList(items, itemsList);
 				}
 			}
