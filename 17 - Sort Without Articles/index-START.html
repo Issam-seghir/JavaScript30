@@ -1,69 +1,89 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <title>Sort Without Articles</title>
-  <link rel="icon" href="https://fav.farm/🔥" />
-</head>
-<body>
+	<head>
+		<meta charset="UTF-8" />
+		<title>Sort Without Articles</title>
+		<link rel="icon" href="https://fav.farm/🔥" />
+	</head>
+	<body>
+		<style>
+			@import url("https://fonts.googleapis.com/css2?family=ADLaM+Display&display=swap");
 
-  <style>
-    body {
-      margin: 0;
-      font-family: sans-serif;
-      background: url("https://source.unsplash.com/nDqA4d5NL0k/2000x2000");
-      background-size: cover;
-      display: flex;
-      align-items: center;
-      min-height: 100vh;
-    }
+			body {
+				display: flex;
+				align-items: center;
+				min-height: 100vh;
+				margin: 0;
+				font-family: "ADLaM Display", cursive;
+				font-weight: lighter;
+				background: url("./assets/image/background.jpg");
+				background-size: cover;
+			}
 
-    #bands {
-      list-style: inside square;
-      font-size: 20px;
-      background: white;
-      width: 500px;
-      margin: auto;
-      padding: 0;
-      box-shadow: 0 0 0 20px rgba(0, 0, 0, 0.05);
-    }
+			#tilawa {
+				width: 500px;
+				margin: auto;
+				padding: 0;
+				font-size: 20px;
+				list-style: inside;
+				accent-color: rgb(255 150 150);
+				background: #ffffff70;
+				background-color: rgb(223 255 223 / 75%);
+				backdrop-filter: blur(16px) saturate(180%);
+				border: 1px solid rgb(255 255 255 / 12.5%);
+				border-radius: 12px;
+				box-shadow: 5px 5px 15px 5px rgb(134 248 119 / 30.1%);
+			}
 
-    #bands li {
-      border-bottom: 1px solid #efefef;
-      padding: 20px;
-    }
+			#tilawa li {
+				padding: 20px;
+				color: rgb(1 37 20 / 90.4%);
+				border-bottom: 1px solid hsl(150deg 84% 83% / 52.1%);
+				transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
+				transition-duration: 150ms;
+				transition-property: all;
+			}
 
-    #bands li:last-child {
-      border-bottom: 0;
-    }
+			#tilawa li:hover {
+				transform: scale(1.05);
+			}
 
-    a {
-      color: #ffc600;
-      text-decoration: none;
-    }
+			#tilawa li:last-child {
+				border-bottom: 0;
+			}
 
-  </style>
+			a {
+				text-decoration: none;
+			}
+		</style>
 
-  <ul id="bands"></ul>
+		<ul id="tilawa"></ul>
 
-<script>
-const bands = ['The Plot in You', 'The Devil Wears Prada', 'Pierce the Veil', 'Norma Jean', 'The Bled', 'Say Anything', 'The Midway State', 'We Came as Romans', 'Counterparts', 'Oh, Sleeper', 'A Skylit Drive', 'Anywhere But Here', 'An Old Dog'];
+		<script>
+			const reciters = [
+				"Imam Abdul Basit Abdul Samad",
+				"Imam Sudais",
+				"Imam Maher Al-Muaiqly",
+				"Imam Saad Al-Ghamdi",
+				"Imam Ahmed Al-Ajmi",
+				"Sheikh Abdur-Rahman Al-Huthaify",
+				"Sheikh Abu Bakr Al-Shatri",
+				"Sheikh Abdullah Basfar",
+				"Sheikh Muhammad Jibreel",
+				"Sheikh Muhammad Ayyub",
+				"Sheikh Hani Ar-Rifai",
+				"reciter Nasser Al-Qatami",
+				"reciter Yasser Al-Dosari",
+			];
 
-  function strip(bandName) {
-    return bandName.replace(/^(a |the |an )/i, '').trim();
-  }
+			function strip(reciterName) {
+				return reciterName.replace(/^(reciter |imam |sheikh )/i, "").trim();
+			}
 
-  const sortedBands = bands.sort((a, b) => strip(a) > strip(b) ? 1 : -1);
+			const strippedReciters = reciters.map(strip);
+			const sortedReciters = strippedReciters.sort((a, b) => (a > b ? 1 : -1));
 
-  document.querySelector('#bands').innerHTML =
-    sortedBands
-      .map(band => `<li>${band}</li>`)
-      .join('');
-
-  console.log(sortedBands);
-
-
-</script>
-
-</body>
+			document.querySelector("#tilawa").innerHTML = sortedReciters.map((reciter) => `<li>${reciter}</li>`).join("");
+		</script>
+	</body>
 </html>
