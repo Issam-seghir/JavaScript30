@@ -1,75 +1,74 @@
 <!DOCTYPE html>
 <html lang="en">
+	<head>
+		<meta charset="UTF-8" />
+		<title>Mouse Shadow</title>
+		<link rel="icon" href="https://fav.farm/🔥" />
+	</head>
 
-<head>
-  <meta charset="UTF-8">
-  <title>Mouse Shadow</title>
-  <link rel="icon" href="https://fav.farm/🔥" />
-</head>
+	<body>
+		<div class="hero">
+			<h1 contenteditable>🔥WOAH!</h1>
+		</div>
 
-<body>
+		<style>
+			html {
+				font-family: sans-serif;
+				color: black;
+				background: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' xmlns:xlink='http://www.w3.org/1999/xlink' xmlns:svgjs='http://svgjs.dev/svgjs' viewBox='0 0 700 700' width='700' height='700' opacity='0.96'%3E%3Cdefs%3E%3CradialGradient id='ffflux-gradient'%3E%3Cstop offset='0%25' stop-color='hsl(315, 30%25, 39%25)'%3E%3C/stop%3E%3Cstop offset='100%25' stop-color='hsl(243, 100%25, 6%25)'%3E%3C/stop%3E%3C/radialGradient%3E%3Cfilter id='ffflux-filter' x='-20%25' y='-20%25' width='140%25' height='140%25' filterUnits='objectBoundingBox' primitiveUnits='userSpaceOnUse' color-interpolation-filters='sRGB'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.004 0.003' numOctaves='1' seed='2' stitchTiles='stitch' x='0%25' y='0%25' width='100%25' height='100%25' result='turbulence'%3E%3C/feTurbulence%3E%3CfeGaussianBlur stdDeviation='2 0' x='0%25' y='0%25' width='100%25' height='100%25' in='turbulence' edgeMode='duplicate' result='blur'%3E%3C/feGaussianBlur%3E%3CfeBlend mode='color-burn' x='0%25' y='0%25' width='100%25' height='100%25' in='SourceGraphic' in2='blur' result='blend'%3E%3C/feBlend%3E%3C/filter%3E%3C/defs%3E%3Crect width='700' height='700' fill='url(%23ffflux-gradient)' filter='url(%23ffflux-filter)'%3E%3C/rect%3E%3C/svg%3E");
+				background-repeat: no-repeat;
+				background-size: 100%;
+			}
 
-  <div class="hero">
-    <h1 contenteditable>🔥WOAH!</h1>
+			body {
+				margin: 0;
+			}
 
-  </div>
+			.hero {
+				display: flex;
+				align-items: center;
+				justify-content: center;
+				min-height: 100vh;
+				color: rgb(233 177 177 / 74%);
+			}
 
-  <style>
-    html {
-      color: black;
-      font-family: sans-serif;
-    }
+			h1 {
+				position: relative;
+				font-size: 100px;
+				text-shadow: 10px 10px 0 rgb(0 0 0);
+			}
+		</style>
 
-    body {
-      margin: 0;
-    }
+		<script>
+			const hero = document.querySelector(".hero");
+			const text = document.querySelector(".hero h1");
+			const walk = 500; // 500px
 
-    .hero {
-      min-height: 100vh;
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      color: black;
-    }
+			function shadowAnimation(e) {
+				// Calculate mouse position within the hero element
+				let [x, y] = [e.offsetX, e.offsetY];
 
-    h1 {
-      position: relative;
-      text-shadow: 10px 10px 0 rgb(0, 0, 0);
-      font-size: 100px;
-    }
-  </style>
+				// the offsetX/offsetY of h1 is trigger when mousemove enter h1 area
+				// the same as : if (!e.target.matches(".hero"))
+				if (this !== e.target) {
+					x += e.target.offsetLeft;
+					y += e.target.offsetTop;
+				}
 
-  <script>
+				// Calculate shadow offsets based on mouse position
+				const xWalk = Math.round((x / this.offsetWidth) * walk - walk / 2);
+				const yWalk = Math.round((y / this.offsetHeight) * walk - walk / 2);
 
-    const hero = document.querySelector(".hero");
-    const text = document.querySelector(".hero h1");
-    const walk = 500; // 500px
-
-    function shadowAnimation(e) {
-      let [x, y] = [e.offsetX, e.offsetY];
-
-      // fix event delegation problem : the offsetX/offsetY of h1 is trigger when mousemove enter h1 area
-      // the same as : if (!e.target.matches(".hero"))
-      if (this !== e.target) {
-        x += e.target.offsetLeft;
-        y += e.target.offsetTop;
-      };
-
-      const xWalk = Math.round((x / this.offsetWidth * walk) - (walk / 2));
-      const yWalk = Math.round((y / this.offsetHeight * walk) - (walk / 2));
-
-
-      console.log(`event: ${e.target.matches(".hero")} , offsetX : ${x} , offsetY : ${y}`);
-      text.style.textShadow = `
+				// Apply calculated shadow values to text
+				text.style.textShadow = `
         ${xWalk}px ${yWalk}px 0 rgb(255, 127, 217),
         ${xWalk * -1}px ${yWalk}px 0 rgb(255, 246, 167),
         ${yWalk}px ${xWalk * -1}px 0 rgb(131, 255, 162),
         ${yWalk * -1}px ${xWalk}px 0 rgb(136, 231, 255)
-        `
+        `;
+			}
 
-    }
-    hero.addEventListener("mousemove", shadowAnimation);
-  </script>
-</body>
-
+			hero.addEventListener("mousemove", shadowAnimation);
+		</script>
+	</body>
 </html>
