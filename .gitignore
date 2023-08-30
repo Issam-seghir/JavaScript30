@@ -4,3 +4,9 @@ node_modules/
 haters/
 .idea/
 %Documents%Vs Code Projects%Web Dev%Js Challanges%JavaScript30/chat_history/history.sqlite
+
+# Ignore SSL certificate files
+localhost.crt
+localhost.pem
+localhost.key
+localhost-key.pem

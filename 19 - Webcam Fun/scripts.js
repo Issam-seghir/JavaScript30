@@ -1,27 +1,20 @@
 const video = document.querySelector(".player");
 const canvas = document.querySelector(".photo");
-const ctx = canvas.getContext("2d");
+const context = canvas.getContext("2d");
 const strip = document.querySelector(".strip");
 const snap = document.querySelector(".snap");
 
+// Access the user's camera and display video stream on the page
 function getVideo() {
 	navigator.mediaDevices
 		.getUserMedia({ video: true, audio: false })
 		.then((localMediaStream) => {
 			console.log(localMediaStream);
-
-			//  DEPRECIATION :
-			//       The following has been depreceated by major browsers as of Chrome and Firefox.
-			//       video.src = window.URL.createObjectURL(localMediaStream);
-			//       Please refer to these:
-			//       Deprecated  - https://developer.mozilla.org/en-US/docs/Web/API/URL/createObjectURL
-			//       Newer Syntax - https://developer.mozilla.org/en-US/docs/Web/API/HTMLMediaElement/srcObject
-
 			video.srcObject = localMediaStream;
 			video.play();
 		})
-		.catch((err) => {
-			console.error(`OH NO!!!`, err);
+		.catch((error) => {
+			console.error(`OH NO!!!`, error);
 		});
 }
 
@@ -32,9 +25,9 @@ function paintToCanvas() {
 	canvas.height = height;
 
 	return setInterval(() => {
-		ctx.drawImage(video, 0, 0, width, height);
+		context.drawImage(video, 0, 0, width, height);
 		// take the pixels out
-		let pixels = ctx.getImageData(0, 0, width, height);
+		let pixels = context.getImageData(0, 0, width, height);
 		// mess with them
 		// pixels = redEffect(pixels);
 
@@ -43,10 +36,11 @@ function paintToCanvas() {
 
 		// pixels = greenScreen(pixels);
 		// put them back
-		ctx.putImageData(pixels, 0, 0);
+		context.putImageData(pixels, 0, 0);
 	}, 16);
 }
 
+// Capture a photo from the current canvas and display it
 function takePhoto() {
 	// played the sound
 	snap.currentTime = 0;
@@ -61,27 +55,31 @@ function takePhoto() {
 	strip.insertBefore(link, strip.firstChild);
 }
 
+// Apply a red color effect to pixels
 function redEffect(pixels) {
-	for (let i = 0; i < pixels.data.length; i += 4) {
-		pixels.data[i + 0] = pixels.data[i + 0] + 200; // RED
-		pixels.data[i + 1] = pixels.data[i + 1] - 50; // GREEN
-		pixels.data[i + 2] = pixels.data[i + 2] * 0.5; // Blue
+	for (let index = 0; index < pixels.data.length; index += 4) {
+		pixels.data[index + 0] = pixels.data[index + 0] + 200; // RED
+		pixels.data[index + 1] = pixels.data[index + 1] - 50; // GREEN
+		pixels.data[index + 2] = pixels.data[index + 2] * 0.5; // Blue
 	}
 	return pixels;
 }
 
+// Apply an RGB split effect to pixels
 function rgbSplit(pixels) {
-	for (let i = 0; i < pixels.data.length; i += 4) {
-		pixels.data[i - 150] = pixels.data[i + 0]; // RED
-		pixels.data[i + 500] = pixels.data[i + 1]; // GREEN
-		pixels.data[i - 550] = pixels.data[i + 2]; // Blue
+	for (let index = 0; index < pixels.data.length; index += 4) {
+		pixels.data[index - 150] = pixels.data[index + 0]; // RED
+		pixels.data[index + 500] = pixels.data[index + 1]; // GREEN
+		pixels.data[index - 550] = pixels.data[index + 2]; // Blue
 	}
 	return pixels;
 }
 
+// Apply a green screen effect to pixels
 function greenScreen(pixels) {
 	const levels = {};
 
+	// Extract RGB level values from input elements
 	document.querySelectorAll(".rgb input").forEach((input) => {
 		levels[input.name] = input.value;
 	});
@@ -92,15 +90,9 @@ function greenScreen(pixels) {
 		blue = pixels.data[i + 2];
 		alpha = pixels.data[i + 3];
 
-		if (
-			red >= levels.rmin &&
-			green >= levels.gmin &&
-			blue >= levels.bmin &&
-			red <= levels.rmax &&
-			green <= levels.gmax &&
-			blue <= levels.bmax
-		) {
-			// take it out!
+		// Check if pixel values fall within the specified range
+		if (red >= levels.rmin && green >= levels.gmin && blue >= levels.bmin && red <= levels.rmax && green <= levels.gmax && blue <= levels.bmax) {
+			// Make pixel transparent
 			pixels.data[i + 3] = 0;
 		}
 	}
@@ -108,6 +100,7 @@ function greenScreen(pixels) {
 	return pixels;
 }
 
+// Start capturing video from the user's camera
 getVideo();
 
 video.addEventListener("canplay", paintToCanvas);

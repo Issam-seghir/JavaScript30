@@ -9,6 +9,7 @@
 		"maintained node versions"
 	],
 	"scripts": {
+		"start": "http-server -S -C localhost.pem -K localhost-key.pem",
 		"lint:js": "npx eslint \"**/*.{html,js,ts,jsx,tsx}\"",
 		"lint:js:fix": "npm run lint:js -- --fix",
 		"lint:style": "npx stylelint \"**/*.{html,css,less,postcss,scss,astro}\"",
@@ -28,16 +29,12 @@
 		"eslint-plugin-simple-import-sort": "^10.0.0",
 		"eslint-plugin-sonarjs": "^0.20.0",
 		"eslint-plugin-unicorn": "^48.0.1",
+		"http-server": "^14.1.1",
 		"postcss-html": "^1.5.0",
 		"stylelint": "^15.10.3",
 		"stylelint-config-clean-order": "^5.2.0",
 		"stylelint-config-html": "^1.1.0",
 		"stylelint-config-standard": "^34.0.0",
 		"stylelint-config-standard-scss": "^10.0.0"
-	},
-	"dependencies": {
-		"fs": "^0.0.1-security",
-		"path": "^0.12.7",
-		"showdown": "^2.1.0"
 	}
 }
