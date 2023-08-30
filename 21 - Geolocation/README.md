@@ -13,7 +13,7 @@ Let's explore how I **achieved** this and what I **added/fixed** to enhance the 
 - [Real-Time Speed and Heading Tracker](#real-time-speed-and-heading-tracker)
   - [Table of Contents](#table-of-contents)
   - [Features](#features)
-  - [How It Works](#how-it-works)
+  - [How I Made This Happen](#how-i-made-this-happen)
     - [Geolocation API Usage](#geolocation-api-usage)
   - [What I Added/Fixed](#what-i-addedfixed)
   - [What I Learned](#what-i-learned)
@@ -23,7 +23,7 @@ Let's explore how I **achieved** this and what I **added/fixed** to enhance the 
 - **Real-Time Speed Display**: Displays the current speed of the device as it moves.
 - **Dynamic Heading Indicator**: Rotates an arrow icon to indicate the current heading (direction) of the device.
 
-## How It Works
+## How I Made This Happen
 
 ### Geolocation API Usage
 

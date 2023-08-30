@@ -12,7 +12,7 @@ Let's explore how I **achieved** this and what I **added/fixed** to enhance the 
 - [Speech Recognition Fun: Replacing Words with Emojis](#speech-recognition-fun-replacing-words-with-emojis)
   - [Table of Contents](#table-of-contents)
   - [Features](#features)
-  - [How It Works](#how-it-works)
+  - [How I Made This Happen](#how-i-made-this-happen)
     - [1. Speech Recognition Setup](#1-speech-recognition-setup)
     - [2. Handling Speech Recognition Events](#2-handling-speech-recognition-events)
   - [What I Added/Fixed](#what-i-addedfixed)
@@ -23,7 +23,7 @@ Let's explore how I **achieved** this and what I **added/fixed** to enhance the 
 - **Real-Time Speech-to-Text Conversion**: Converts spoken words into text in real time using the browser's Speech Recognition API.
 - **Word Replacement with Emojis**: Replaces specific words with  emojis.
 
-## How It Works
+## How I Made This Happen
 
 ### 1. Speech Recognition Setup
 

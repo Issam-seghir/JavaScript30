@@ -1,121 +1,72 @@
-# Interactive To-Do List (Local storage)
+
+# Interactive Link Highlighter
 
 ![gif]("./../assets/image/showcase.gif)
-In this project, I developed an interactive to-do list application that allows users to add items, mark them as done, and store their status in local storage.
+
+This project demonstrates how to create an interactive link highlighter using JavaScript. As users hover over links on a web page, a dynamic highlight effect is applied to each link, providing a visually engaging interaction.
+
+Let's explore how I **achieved** this and what I **added/fixed** to enhance the functionality.
 
 ## Table of Contents
 
-- [Interactive To-Do List (Local storage)](#interactive-to-do-list-local-storage)
+- [Interactive Link Highlighter](#interactive-link-highlighter)
   - [Table of Contents](#table-of-contents)
   - [Features](#features)
-  - [How I Made This Happens](#how-i-made-this-happens)
-    - [1. Adding Items](#1-adding-items)
-    - [2. Filling the List](#2-filling-the-list)
-    - [3. Toggling Item Status](#3-toggling-item-status)
-    - [4. Initializing the Local Storage](#4-initializing-the-local-storage)
+  - [How I Made This Happen](#how-i-made-this-happen)
+    - [Highlight Effect Creation](#highlight-effect-creation)
   - [What I Added/Fixed](#what-i-addedfixed)
   - [What I Learned](#what-i-learned)
 
 ## Features
 
-  1. **Add Items**: Users can input new tasks and add them to the to-do list.
-  2. **Check and Uncheck**: Items can be marked as done or undone with a simple click.
-  3. **Persistent Data**: The application stores the to-do list's status in local storage, preserving the data between sessions.
+- **Interactive Highlight Effect**: Enhances user experience by dynamically highlighting links when hovered over.
 
-## How I Made This Happens
+## How I Made This Happen
 
-### 1. Adding Items
+### Highlight Effect Creation
 
-To allow users to add items, I implemented the `addItemsToList` function. When the user submits the form, this function extracts the input text, creates a new item object, and appends it to the list of items. The list of items is then saved to local storage as a JSON string.
+The code leverages the `mouseenter` event to apply the highlight effect to links as users hover over them. Here's how it works:
 
 ```js
-   const addItems = document.querySelector(".add-items");
-   const itemsList = document.querySelector(".plates");
-
-   // parse : convert  json to array of objects
-   const items = JSON.parse(localStorage.getItem("items")) || [];
-
-
-    function addItemsToList(e) {
-        // Prevent the default form submission behavior
-       e.preventDefault();
-
-       // Get the value of the input field
-       const text = e.target[0].value;
-       const item = {
-        text: text,
-        checkState: false,
-       };
-       items.push(item);
-
-      // stringify : add "items" to local storage as  a JSON string
-      localStorage.setItem("items", JSON.stringify(items));
-      // Update the list of items displayed on the page
-      fillList(items, itemsList);
-
-      // Reset the form, clearing the input field
-      this.reset();
-    }
-
-   addItems.addEventListener("submit", addItemsToList);
-
+    triggers.forEach((a) => a.addEventListener("mouseenter", highlightLink));
 ```
 
-### 2. Filling the List
+- **Link Selection**: The code selects all `<a>` elements on the page using `document.querySelectorAll("a")`.
 
-The `fillList` function takes the list of items and updates the HTML to display them as a list of tasks. This function uses the `map` method to generate the HTML structure for each item and then joins the resulting array into a single string. The resulting HTML is injected into the `itemsList` element.
+- **Highlight Element Creation**: A `<span>` element with the class `.highlight` is created. This element represents the highlight effect and is appended to the `<body>`.
 
 ```js
-    function addItemsToList(e) {
-      ...
-      // Update the list of items displayed on the page
-      fillList(items, itemsList);
-      ...
-    }
+    // select all links on the page
+    const triggers = document.querySelectorAll("a");
 
-    function fillList(items, itemsList) {
-        itemsList.innerHTML = items
-         .map((list, index) => {
-          return `
-          <li>
-           <input type="checkbox" data-index=${index} id="item${index}" ${list.checkState ? "checked" : ""} />
-           <label for="item${index}">${list.text}</label>
-          </li>
-          `;
-         })
-         .join("");
+    // create a span represent the highlight effect
+    const highlight = document.createElement("span");
+    highlight.classList.add("highlight");
+    document.body.append(highlight);
+```
+
+- **Highlight Effect Calculation**: The `highlightLink()` function is triggered when a link is hovered over (`mouseenter` event). This function calculates the dimensions and position of the hovered link using the `getBoundingClientRect()` method. The dimensions and position are extracted from the resulting bounding rectangle.
+- **Highlight Style**: The calculated dimensions and position are used to update the style of the `.highlight` element. This updates the width, height, and position of the highlight effect to match the hovered link.
+
+```js
+    function highlightLink() {
+         // Get the bounding rectangle of the hovered link
+        const linkCoords = this.getBoundingClientRect();
+        console.log(linkCoords);
+
+        // Extract dimensions and position from the bounding rectangle
+        const coords = {
+         width: linkCoords.width,
+         height: linkCoords.height,
+         top: linkCoords.top + window.scrollY,
+         left: linkCoords.left + window.scrollX,
+        };
+
+        // Apply highlight styles to the created span element
+        highlight.style.width = `${coords.width}px`;
+        highlight.style.height = `${coords.height}px`;
+        highlight.style.transform = `translate(${coords.left}px, ${coords.top}px)`;
        }
-```
-
-### 3. Toggling Item Status
-
-The `toggleDone` function handles the event when a user clicks on a checkbox. It determines the index of the clicked item, toggles its status, and updates the local storage and HTML representation of the list.
-
-```js
-    function toggleDone(e) {
-        if (e.target.matches("input")) {
-          // Get the index of the clicked checkbox
-          const index = e.target.dataset.index;
-          // Toggle the check state
-          items[index].checkState = !items[index].checkState;
-          // Update the 'items' array in local storage
-          localStorage.setItem("items", JSON.stringify(items));
-          // Update the list of items displayed on the page
-          fillList(items, itemsList);
-    }
-
-    itemsList.addEventListener("click", toggleDone);
-}
-```
-
-### 4. Initializing the Local Storage
-
-- checks for any previously stored data in the browser's local storage (every time page load). The items array is created to store the items for the to-do list.
-- if there is no stored data or if the data retrieval fails, an empty array is assigned as the default value for the items array.
-
-```js
-    // parse : convert JSON to an array of objects
-    const items = JSON.parse(localStorage.getItem("items")) || [];
 ```
 
 ## What I Added/Fixed
@@ -124,4 +75,5 @@ The `toggleDone` function handles the event when a user clicks on a checkbox. It
 
 ## What I Learned
 
-- **Local Storage Usage**: I gained insights into how to utilize local storage to store and retrieve data .
+- **Bounding Rectangle**: Explored the `getBoundingClientRect()` method to determine the dimensions and position of elements on the page.
+- **Dynamic Styling**: Demonstrated how to dynamically update element styles to achieve visual effects.
