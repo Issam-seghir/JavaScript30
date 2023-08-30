@@ -1,8 +1,7 @@
 
 # Interactive Link Highlighter
 
-![gif]("./../assets/image/showcase.gif)
-
+![gif](./assets/image/showcase.gif)
 This project demonstrates how to create an interactive link highlighter using JavaScript. As users hover over links on a web page, a dynamic highlight effect is applied to each link, providing a visually engaging interaction.
 
 Let's explore how I **achieved** this and what I **added/fixed** to enhance the functionality.
