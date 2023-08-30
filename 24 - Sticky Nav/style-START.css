@@ -1,28 +1,32 @@
+@import url("https://fonts.googleapis.com/css2?family=Skranji&display=swap");
+
 html {
-	box-sizing: border-box;
-	font-family: "helvetica neue";
 	font-size: 20px;
 	font-weight: 200;
-	background: #eee;
 }
 
-body {
-	margin: 0;
-}
-
+/* Box sizing rules */
 *,
 *::before,
 *::after {
-	box-sizing: inherit;
+	box-sizing: border-box;
+	margin: 0;
+	padding: 0;
 }
 
-@import url("https://fonts.googleapis.com/css2?family=Skranji&display=swap");
+html,
+body {
+	overflow: auto;
+	min-height: 100vh;
+	min-height: 100svh;
+}
 
 body {
+	font-family: "helvetica neue";
 	font-family: Skranji, cursive;
 	font-size: 1rem;
 	letter-spacing: 0.15rem;
-	background: url("./ccchaos.svg"), rgb(10 2 10);
+	background: url("./assets/image/ccchaos.svg"), rgb(10 2 10);
 }
 
 .site-wrap {
@@ -56,7 +60,7 @@ header {
 h1 {
 	font-size: 6vw;
 	color: #e4b6e1cc;
-	text-shadow: 3px 15px 0 rgb(45, 5, 78, 0.685);
+	text-shadow: 3px 15px 0 rgb(45 5 78 / 68.5%);
 }
 
 nav {
@@ -110,16 +114,32 @@ li.logo {
 	transition: all 0.5s;
 }
 
+nav a {
+	display: inline-block;
+	padding: 20px;
+	color: #f1caefe8;
+	text-decoration: none;
+	text-transform: uppercase;
+	transition: all 0.2s;
+}
+
 li.logo a {
 	color: black;
 	color: rgb(40 8 43);
 }
 
-nav a {
-	display: inline-block;
-	padding: 20px;
-  color: #f1caefe8;
-	text-decoration: none;
-	text-transform: uppercase;
-	transition: all 0.2s;
+img {
+	max-width: 100%;
+	height: auto;
+}
+
+.slide-in {
+	transform: translateY(-30%);
+	opacity: 0;
+	transition: opacity 0.5s ease-in-out, transform 0.5s ease-in-out;
+}
+
+.slide-in.active {
+	transform: translateX(0);
+	opacity: 1;
 }

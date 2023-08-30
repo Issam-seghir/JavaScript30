@@ -65,7 +65,7 @@
 				pariatur fugit quibusdam dolores sunt esse magni, ut, dignissimos.
 			</p>
 
-			<img src="http://unsplash.it/400/400" class="align-left slide-in" />
+			<img src="./assets/image/pexels-gyubin-hong-129044.jpg" class="slide-in" />
 
 			<p>
 				Lorem ipsum dolor sit amet, consectetur adipisicing elit. Voluptates, deserunt facilis et iste corrupti omnis tenetur est. Iste ut est dicta dolor itaque adipisci, dolorum minima, veritatis earum provident error molestias. Ratione magni illo sint vel velit ut excepturi consectetur
@@ -73,7 +73,7 @@
 				perferendis et optio recusandae sed ratione. Culpa, dolorum reprehenderit harum ab voluptas fuga, nisi eligendi natus maiores illum quas quos et aperiam aut doloremque optio maxime fugiat doloribus. Eum dolorum expedita quam, nesciunt
 			</p>
 
-			<img src="http://unsplash.it/400/400" class="align-right slide-in" />
+			<img src="./assets/image/pexels-ravi-kant-1927595.jpg" class="slide-in" />
 
 			<p>
 				at provident praesentium atque quas rerum optio dignissimos repudiandae ullam illum quibusdam. Vel ad error quibusdam, illo ex totam placeat. Quos excepturi fuga, molestiae ea quisquam minus, ratione dicta consectetur officia omnis, doloribus voluptatibus? Veniam ipsum veritatis
@@ -98,7 +98,7 @@
 				magnam, amet, facere ducimus accusantium eos veritatis neque.
 			</p>
 
-			<img src="http://unsplash.it/400/400" class="align-right slide-in" />
+			<img src="./assets/image/pexels-valeria-boltneva-14111.jpg" class="slide-in" />
 
 			<p>
 				Lorem ipsum dolor sit amet, consectetur adipisicing elit. Distinctio maiores adipisci quibusdam repudiandae dolor vero placeat esse sit! Quibusdam saepe aperiam explicabo placeat optio, consequuntur nihil voluptatibus expedita quia vero perferendis, deserunt et incidunt eveniet
@@ -126,19 +126,50 @@
 
 		<script>
 			const nav = document.querySelector("nav");
+
+			// Store the initial top offset of the navigation element
 			let originalTopOffset = nav.offsetTop;
 
 			function stickyNav() {
+				// Check if the vertical scroll position has passed the original top offset
 				if (window.scrollY >= originalTopOffset) {
 					nav.classList.add("sticky");
+					// Adjust the body's padding to accommodate the sticky navigation
 					document.body.style.paddingTop = `${nav.offsetHeight}px`;
 				} else {
 					nav.classList.remove("sticky");
+					// Reset the body's padding
 					document.body.style.paddingTop = 0;
 				}
 			}
 
 			window.addEventListener("scroll", stickyNav);
+
+			// ----------------------------------------------------------------
+			// optional : add slid-in on scroll animation
+			const slideInImages = document.querySelectorAll(".slide-in");
+
+			const options = {
+				root: null, // Use the viewport as the root
+				rootMargin: "0px", // No margin
+				threshold: 0.5, // Trigger when at least 50% of the element is visible
+			};
+
+			function handleSlide(entries, observer) {
+				entries.forEach((entry) => {
+					if (entry.isIntersecting) {
+						entry.target.classList.add("active");
+						observer.unobserve(entry.target); // Unobserve once animation is triggered
+					}
+				});
+			}
+
+			const observer = new IntersectionObserver(handleSlide, options);
+
+			// Observe each slide-in image
+			slideInImages.forEach((image) => {
+				observer.observe(image);
+			});
 		</script>
 	</body>
 </html>

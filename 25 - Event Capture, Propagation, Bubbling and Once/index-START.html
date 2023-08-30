@@ -1,73 +1,159 @@
 <!DOCTYPE html>
 <html lang="en">
+	<head>
+		<meta charset="UTF-8" />
+		<title>Understanding JavaScript's Capture</title>
+		<link rel="icon" href="https://fav.farm/🔥" />
+	</head>
 
-<head>
-  <meta charset="UTF-8">
-  <title>Understanding JavaScript's Capture</title>
-  <link rel="icon" href="https://fav.farm/🔥" />
-</head>
+	<style>
+		/* Box sizing rules */
+		*,
+		*::before,
+		*::after {
+			box-sizing: border-box;
+			margin: 0;
+			padding: 0;
+		}
 
-<body class="bod">
+		html,
+		body {
+			overflow: auto;
+			min-height: 100vh;
+			min-height: 100svh;
+		}
 
-  <div class="one">
-    <div class="two">
-      <div class="three">
-      </div>
-    </div>
-  </div>
+		#family1,
+		#family2,
+		#family3 {
+			position: relative;
+		}
 
-  <style>
-    html {
-      box-sizing: border-box;
-    }
+		#grandparent1,
+		#grandparent2,
+		#grandparent3 {
+			width: 200px;
+			height: 200px;
+			background: red;
+		}
 
-    *,
-    *:before,
-    *:after {
-      box-sizing: inherit;
-    }
+		#parent1,
+		#parent2,
+		#parent3 {
+			position: absolute;
+			top: 25px;
+			left: 25px;
+			width: 150px;
+			height: 150px;
+			background: green;
+		}
 
-    div {
-      width: 100%;
-      padding: 100px;
-    }
+		#child1,
+		#child2,
+		#child3 {
+			position: absolute;
+			top: 25px;
+			left: 25px;
+			width: 100px;
+			height: 100px;
+			background: yellow;
+		}
+	</style>
+	<body class="bod">
+		<h3>Demonstration of events bubbling</h3>
+		<p>Clicking on any of these rectangles will trigger a "click" event. It will keep bubbling up until the parent is reached and there is nowhere to bubble further.</p>
+		<p>For example, if #child div is clicked, then the event will propagate all the way to the top to #family container. Give it a go and you will see.</p>
+		<p>It's worth noting that event target always stays the same as event bubbles up. However, 'this' changes upon the context in which event is processed.</p>
+		<div id="family1">
+			<div id="grandparent1">
+				Grandparent 1
+				<div id="parent1">
+					Parent 1
+					<div id="child1">Child 1</div>
+				</div>
+			</div>
+		</div>
+		<h3>Demonstration of capturing events</h3>
+		<p>Event capturing is kind of the reverse of bubbling in that it starts at the top, and goes down the elements hierarchy.</p>
+		<p>Click on the example to understand better what is meant by that.</p>
+		<div id="family2">
+			<div id="grandparent2">
+				Grandparent 2
+				<div id="parent2">
+					Parent 2
+					<div id="child2">Child 2</div>
+				</div>
+			</div>
+		</div>
+		<h3>Demonstration of stopping bubbling/capturing</h3>
+		<p>This example shows how propagation can be stopped using "stopPropagation" JavaScript function. No events will capture or bubble.</p>
+		<div id="family3">
+			<div id="grandparent3">
+				Grandparent 3
+				<div id="parent3">
+					Parent 3
+					<div id="child3">Child 3</div>
+				</div>
+			</div>
+		</div>
 
-    .one {
-      background: thistle;
-    }
+		<script>
+			let family1 = document.querySelector("#family1");
+			let family1Containers = family1.querySelectorAll("div");
+			let highlight = (element, event) => {
+				event = event || window.event;
+				var target = event.target || event.srcElement;
+				element.style.backgroundColor = "gray";
+				alert("target = #" + target.id + ", this = #" + element.id);
+				element.style.backgroundColor = "";
+			};
 
-    .two {
-      background: mistyrose;
-    }
+			for (let container of family1Containers) {
+				// Events bubbling up
+				// Target always stays the same as event bubbles up
+				// This changes upon the context in which event is processed
+				container.addEventListener("click", function (event) {
+					event = event || window.event; // cross-browser event
+					highlight(this, event);
+				});
+			}
 
-    .three {
-      background: coral;
-    }
-  </style>
+			let family2 = document.querySelector("#family2");
+			let family2Containers = family2.querySelectorAll("div");
 
-  <button></button>
-  <script>
-    const divs = document.querySelectorAll('div');
-    const button = document.querySelector('button');
+			for (let container of family2Containers) {
+				// Events bubbling up
+				// Target always stays the same as event bubbles up
+				// This changes upon the context in which event is processed
+				container.addEventListener(
+					"click",
+					function (event) {
+						event = event || window.event; // cross-browser event
+						highlight(this, event);
+					},
+					true
+				);
+			}
 
-    function logText(e) {
-      console.log(this.classList.value);
-      // e.stopPropagation(); // stop bubbling!
-      // console.log(this);
-    }
+			let family3 = document.querySelector("#family3");
+			let family3Containers = family3.querySelectorAll("div");
 
-    divs.forEach(div => div.addEventListener('click', logText, {
-      capture: false,
-      once: true
-    }));
+			for (let container of family3Containers) {
+				// Events bubbling up
+				// Target always stays the same as event bubbles up
+				// This changes upon the context in which event is processed
+				container.addEventListener(
+					"click",
+					function (event) {
+						event = event || window.event; // cross-browser event
+						highlight(this, event);
 
-    button.addEventListener('click', () => {
-      console.log('Click!!!');
-    }, {
-      once: true
-    });
-
-  </script>
-</body>
-
+						if (event.stopPropagation) event.stopPropagation(); // W3C standard variant
+						else event.cancelBubble = true; // IE specific
+					},
+					false
+				);
+			}
+		</script>
+	</body>
 </html>
