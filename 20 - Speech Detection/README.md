@@ -5,6 +5,8 @@
 
 In this project, I created a fun web application that utilizes the browser's Speech Recognition API to convert spoken words into text and replace specific words with emoji representations. Users can speak into their device's microphone, and the application will transcribe the speech, replacing certain words with corresponding emojis.
 
+Let's explore how I **achieved** this and what I **added/fixed** to enhance the functionality.
+
 ## Table of Contents
 
 - [Speech Recognition Fun: Replacing Words with Emojis](#speech-recognition-fun-replacing-words-with-emojis)
@@ -13,6 +15,7 @@ In this project, I created a fun web application that utilizes the browser's Spe
   - [How It Works](#how-it-works)
     - [1. Speech Recognition Setup](#1-speech-recognition-setup)
     - [2. Handling Speech Recognition Events](#2-handling-speech-recognition-events)
+  - [What I Added/Fixed](#what-i-addedfixed)
   - [What I Learned](#what-i-learned)
 
 ## Features
@@ -79,6 +82,10 @@ The `recognition` instance also listens for the `end` event, which is triggered 
     // Start the speech recognition process
     recognition.start();
 ```
+
+## What I Added/Fixed
+
+- **My Own Style**.
 
 ## What I Learned
 
