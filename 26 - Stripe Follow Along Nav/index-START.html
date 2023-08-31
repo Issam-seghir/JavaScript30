@@ -93,11 +93,13 @@
 				background-repeat: no-repeat;
 				background-size: cover;
 			}
-img{
-  width: 100%;
-  height: auto;
-  border-radius: 0.25rem;
-}
+
+			img {
+				width: 100%;
+				height: auto;
+				border-radius: 0.25rem;
+			}
+
 			h2 {
 				margin-top: 0;
 				padding-top: 0.8em;
@@ -243,6 +245,7 @@ img{
 
 			function handleEnter() {
 				this.classList.add("trigger-enter");
+				// Add "trigger-enter-active" class after a delay, if "trigger-enter" class still present
 				setTimeout(() => this.classList.contains("trigger-enter") && this.classList.add("trigger-enter-active"), 150);
 				background.classList.add("open");
 
@@ -250,13 +253,14 @@ img{
 				const dropdownCoords = dropdown.getBoundingClientRect();
 				const navCoords = nav.getBoundingClientRect();
 
+				// Calculate the adjusted coordinates relative to the navigation element
 				const coords = {
 					height: dropdownCoords.height,
 					width: dropdownCoords.width,
 					top: dropdownCoords.top - navCoords.top,
 					left: dropdownCoords.left - navCoords.left,
 				};
-
+				// Set the background element's width, height, and position based on dropdown coordinates
 				background.style.setProperty("width", `${coords.width}px`);
 				background.style.setProperty("height", `${coords.height}px`);
 				background.style.setProperty("transform", `translate(${coords.left}px, ${coords.top}px)`);
