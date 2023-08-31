@@ -1,73 +1,91 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <title>Click and Drag</title>
-  <link rel="stylesheet" href="style.css">
-  <link rel="icon" href="https://fav.farm/🔥" />
-</head>
-<body>
-  <div class="items">
-    <div class="item item1">01</div>
-    <div class="item item2">02</div>
-    <div class="item item3">03</div>
-    <div class="item item4">04</div>
-    <div class="item item5">05</div>
-    <div class="item item6">06</div>
-    <div class="item item7">07</div>
-    <div class="item item8">08</div>
-    <div class="item item9">09</div>
-    <div class="item item10">10</div>
-    <div class="item item11">11</div>
-    <div class="item item12">12</div>
-    <div class="item item13">13</div>
-    <div class="item item14">14</div>
-    <div class="item item15">15</div>
-    <div class="item item16">16</div>
-    <div class="item item17">17</div>
-    <div class="item item18">18</div>
-    <div class="item item19">19</div>
-    <div class="item item20">20</div>
-    <div class="item item21">21</div>
-    <div class="item item22">22</div>
-    <div class="item item23">23</div>
-    <div class="item item24">24</div>
-    <div class="item item25">25</div>
-  </div>
+	<head>
+		<meta charset="UTF-8" />
+		<title>Click and Drag</title>
+		<link rel="stylesheet" href="style.css" />
+		<link rel="icon" href="https://fav.farm/🔥" />
+	</head>
 
-<script>
+	<style>
+		html {
+			background: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' version='1.1' xmlns:xlink='http://www.w3.org/1999/xlink' xmlns:svgjs='http://svgjs.dev/svgjs' viewBox='0 0 2400 800' opacity='0.75'%3E%3Cdefs%3E%3ClinearGradient x1='50%25' y1='0%25' x2='50%25' y2='100%25' id='sssurf-grad'%3E%3Cstop stop-color='hsl(184, 74%25, 44%25)' stop-opacity='1' offset='0%25'%3E%3C/stop%3E%3Cstop stop-color='hsl(332, 87%25, 70%25)' stop-opacity='1' offset='100%25'%3E%3C/stop%3E%3C/linearGradient%3E%3C/defs%3E%3Cg fill='url(%23sssurf-grad)' transform='matrix(1,0,0,1,0,-104.8638916015625)'%3E%3Cpath d='M 0 337.24280990540973 Q 600 450 600 308.67561585587293 Q 1200 450 1200 303.72777695650353 Q 1800 450 1800 348.2477932847807 Q 2400 450 2400 310.2277350422167 L 2400 800 L 0 800 L 0 307.93393386742054 Z' transform='matrix(1,0,0,1,0,34)' opacity='0.05'%3E%3C/path%3E%3Cpath d='M 0 337.24280990540973 Q 600 450 600 308.67561585587293 Q 1200 450 1200 303.72777695650353 Q 1800 450 1800 348.2477932847807 Q 2400 450 2400 310.2277350422167 L 2400 800 L 0 800 L 0 307.93393386742054 Z' transform='matrix(1,0,0,1,0,68)' opacity='0.19'%3E%3C/path%3E%3Cpath d='M 0 337.24280990540973 Q 600 450 600 308.67561585587293 Q 1200 450 1200 303.72777695650353 Q 1800 450 1800 348.2477932847807 Q 2400 450 2400 310.2277350422167 L 2400 800 L 0 800 L 0 307.93393386742054 Z' transform='matrix(1,0,0,1,0,102)' opacity='0.32'%3E%3C/path%3E%3Cpath d='M 0 337.24280990540973 Q 600 450 600 308.67561585587293 Q 1200 450 1200 303.72777695650353 Q 1800 450 1800 348.2477932847807 Q 2400 450 2400 310.2277350422167 L 2400 800 L 0 800 L 0 307.93393386742054 Z' transform='matrix(1,0,0,1,0,136)' opacity='0.46'%3E%3C/path%3E%3Cpath d='M 0 337.24280990540973 Q 600 450 600 308.67561585587293 Q 1200 450 1200 303.72777695650353 Q 1800 450 1800 348.2477932847807 Q 2400 450 2400 310.2277350422167 L 2400 800 L 0 800 L 0 307.93393386742054 Z' transform='matrix(1,0,0,1,0,170)' opacity='0.59'%3E%3C/path%3E%3Cpath d='M 0 337.24280990540973 Q 600 450 600 308.67561585587293 Q 1200 450 1200 303.72777695650353 Q 1800 450 1800 348.2477932847807 Q 2400 450 2400 310.2277350422167 L 2400 800 L 0 800 L 0 307.93393386742054 Z' transform='matrix(1,0,0,1,0,204)' opacity='0.73'%3E%3C/path%3E%3Cpath d='M 0 337.24280990540973 Q 600 450 600 308.67561585587293 Q 1200 450 1200 303.72777695650353 Q 1800 450 1800 348.2477932847807 Q 2400 450 2400 310.2277350422167 L 2400 800 L 0 800 L 0 307.93393386742054 Z' transform='matrix(1,0,0,1,0,238)' opacity='0.86'%3E%3C/path%3E%3Cpath d='M 0 337.24280990540973 Q 600 450 600 308.67561585587293 Q 1200 450 1200 303.72777695650353 Q 1800 450 1800 348.2477932847807 Q 2400 450 2400 310.2277350422167 L 2400 800 L 0 800 L 0 307.93393386742054 Z' transform='matrix(1,0,0,1,0,272)' opacity='1.00'%3E%3C/path%3E%3C/g%3E%3C/svg%3E") !important;
+			background-color: rgb(185 237 253) !important;
+			background-repeat: no-repeat !important;
+			background-size: cover !important;
+		}
 
-    const slider = document.querySelector('.items');
-    let isDown = false;
-    let startX;
-    let scrollLeft;
+		.items {
+			perspective: none !important;
+		}
 
-    slider.addEventListener('mousedown', (e) => {
-      isDown = true;
-      slider.classList.add('active');
-      startX = e.pageX - slider.offsetLeft;
-      scrollLeft = slider.scrollLeft;
-    });
+		.item {
+			width: 20.5rem;
+			background-color: rgba(171, 242, 255, 0.514) !important;
+			backdrop-filter: blur(16px) saturate(180%) !important;
+			border: 1px solid rgb(255 255 255 / 12.5%) !important;
+			border-radius: 12px !important;
+		}
+	</style>
+	<body>
+		<div class="items">
+			<div class="item item1">01</div>
+			<div class="item item2">02</div>
+			<div class="item item3">03</div>
+			<div class="item item4">04</div>
+			<div class="item item5">05</div>
+			<div class="item item6">06</div>
+			<div class="item item7">07</div>
+			<div class="item item8">08</div>
+			<div class="item item9">09</div>
+			<div class="item item10">10</div>
+			<div class="item item11">11</div>
+			<div class="item item12">12</div>
+			<div class="item item13">13</div>
+			<div class="item item14">14</div>
+			<div class="item item15">15</div>
+			<div class="item item16">16</div>
+			<div class="item item17">17</div>
+			<div class="item item18">18</div>
+			<div class="item item19">19</div>
+			<div class="item item20">20</div>
+			<div class="item item21">21</div>
+			<div class="item item22">22</div>
+			<div class="item item23">23</div>
+			<div class="item item24">24</div>
+			<div class="item item25">25</div>
+		</div>
 
-    slider.addEventListener('mouseleave', () => {
-      isDown = false;
-      slider.classList.remove('active');
-    });
+		<script>
+			const slider = document.querySelector(".items");
+			let isDown = false;
+			let startX;
+			let scrollLeft;
 
-    slider.addEventListener('mouseup', () => {
-      isDown = false;
-      slider.classList.remove('active');
-    });
+			slider.addEventListener("mousedown", (e) => {
+				isDown = true;
+				slider.classList.add("active");
+				startX = e.pageX - slider.offsetLeft;
+				scrollLeft = slider.scrollLeft;
+			});
 
-    slider.addEventListener('mousemove', (e) => {
-      if (!isDown) return;  // stop the fn from running
-      e.preventDefault();
-      const x = e.pageX - slider.offsetLeft;
-      const walk = (x - startX) * 3;
-      slider.scrollLeft = scrollLeft - walk;
-    });
+			slider.addEventListener("mouseleave", () => {
+				isDown = false;
+				slider.classList.remove("active");
+			});
 
-</script>
+			slider.addEventListener("mouseup", () => {
+				isDown = false;
+				slider.classList.remove("active");
+			});
 
-  </body>
+			slider.addEventListener("mousemove", (e) => {
+				if (!isDown) return; // stop the fn from running
+				e.preventDefault();
+				const x = e.pageX - slider.offsetLeft;
+				const walk = (x - startX) * 3;
+				slider.scrollLeft = scrollLeft - walk;
+			});
+		</script>
+	</body>
 </html>
