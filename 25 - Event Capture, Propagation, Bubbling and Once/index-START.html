@@ -7,6 +7,8 @@
 	</head>
 
 	<style>
+		@import url("https://fonts.googleapis.com/css2?family=Averia+Sans+Libre&display=swap");
+
 		/* Box sizing rules */
 		*,
 		*::before,
@@ -21,12 +23,73 @@
 			overflow: auto;
 			min-height: 100vh;
 			min-height: 100svh;
+			font-family: "Averia Sans Libre", cursive;
+		}
+
+		body {
+			background-color: rgb(254 243 199);
+
+			/* background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' version='1.1' xmlns:xlink='http://www.w3.org/1999/xlink' xmlns:svgjs='http://svgjs.dev/svgjs' viewBox='0 0 600 600' opacity='1'%3E%3Cpath d='M536.7999259701272 350.4112080945497C544.3915499121844 308.1337244723166 519.3915549984478 214.15468305487684 479.4700919857525 169.78295797247938C439.5486289730572 125.41123289008192 359.96748400438855 97.26986338833224 297.27114789395563 84.18085760016493C234.57481178352268 71.0918518119976 133.65856981981824 66.24892260769259 103.29207532315485 91.24892324347547C72.92558082649144 116.24892387925836 106.17165677457086 185.22798182705296 115.07218091397516 234.1808614148622C123.97270505337946 283.1337410026714 147.1402465572857 336.01331991095594 156.69522015958063 384.96620077033094C166.25019376187555 433.91908162970594 141.1193025977317 494.2594034884299 172.4020225277447 527.8981465711122C203.68474245775772 561.5368896537944 300.8051521053814 604.2070404106304 344.39153973965875 586.7986592664247C387.9779273739361 569.390278122219 401.85228396166394 462.84576823452363 433.92034833340875 423.4478597058778C465.98841270515356 384.049951177232 529.2083020280699 392.6886917167828 536.7999259701272 350.4112080945497C544.3915499121844 308.1337244723166 519.3915549984478 214.15468305487684 479.4700919857525 169.78295797247938 ' fill='url(&quot;%23SvgjsRadialGradient1002&quot;)' stroke-width='11' stroke='hsl(30, 100%25, 40%25)' stroke-opacity='0.24' transform='matrix(0.7825259385816867,-0.9539280489011788,0.5072970153726816,0.6594990944933073,-88.7299717580658,379.9251870842644)'%3E%3C/path%3E%3Cdefs%3E%3CradialGradient id='SvgjsRadialGradient1002' r='0.4'%3E%3Cstop stop-color='hsl(30, 100%25, 50%25)' offset='0'%3E%3C/stop%3E%3Cstop stop-color='hsl(30, 100%25,70%25)' offset='1'%3E%3C/stop%3E%3C/radialGradient%3E%3C/defs%3E%3C/svg%3E");
+			background-repeat: no-repeat;
+			background-position: left;
+			background-size: 70%; */
+		}
+
+		.flex {
+			position: relative;
+			z-index: 2;
+			display: flex;
+			flex-direction: column;
+			width: 67%;
+			margin: 0 auto;
+		}
+
+		.flex > * {
+			flex-basis: 100%;
+			margin: 1.25rem;
+		}
+
+		.item > * {
+			margin-block: 0.56rem;
+		}
+
+		body img:nth-child(1) {
+			position: fixed;
+			top: 36%;
+			right: 69px;
+			width: 483px;
+			height: 500px;
+		}
+
+		body img:nth-child(2) {
+			position: fixed;
+			top: 65%;
+			left: 50px;
+			width: 500px;
+			height: 500px;
+		}
+
+		body img:nth-child(3) {
+			position: fixed;
+			top: -18%;
+			right: 1179px;
+			width: 866px;
+			height: 519px;
+		}
+
+		body img:nth-child(4) {
+			position: fixed;
+			top: -18%;
+			right: 500px;
+			width: 866px;
+			height: 519px;
 		}
 
 		#family1,
 		#family2,
 		#family3 {
 			position: relative;
+			margin-inline: 26%;
 		}
 
 		#grandparent1,
@@ -34,7 +97,9 @@
 		#grandparent3 {
 			width: 200px;
 			height: 200px;
-			background: red;
+			text-align: center;
+			background: rgb(226 117 90 / 65.1%);
+			border-radius: 1.25rem;
 		}
 
 		#parent1,
@@ -45,7 +110,9 @@
 			left: 25px;
 			width: 150px;
 			height: 150px;
-			background: green;
+			text-align: center;
+			background: rgb(247 198 158 / 82.2%);
+			border-radius: 1.25rem;
 		}
 
 		#child1,
@@ -56,104 +123,247 @@
 			left: 25px;
 			width: 100px;
 			height: 100px;
-			background: yellow;
+			line-height: 6;
+			text-align: center;
+			background: rgb(243 215 173 / 98.6%);
+			border-radius: 1.25rem;
+		}
+
+		.custom-target {
+			color: red;
+		}
+
+		.custom-element {
+			color: rgb(12 14 148);
 		}
 	</style>
 	<body class="bod">
-		<h3>Demonstration of events bubbling</h3>
-		<p>Clicking on any of these rectangles will trigger a "click" event. It will keep bubbling up until the parent is reached and there is nowhere to bubble further.</p>
-		<p>For example, if #child div is clicked, then the event will propagate all the way to the top to #family container. Give it a go and you will see.</p>
-		<p>It's worth noting that event target always stays the same as event bubbles up. However, 'this' changes upon the context in which event is processed.</p>
-		<div id="family1">
-			<div id="grandparent1">
-				Grandparent 1
-				<div id="parent1">
-					Parent 1
-					<div id="child1">Child 1</div>
+		<img
+			src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' version='1.1' xmlns:xlink='http://www.w3.org/1999/xlink' xmlns:svgjs='http://svgjs.dev/svgjs' viewBox='0 0 600 600' opacity='1'%3E%3Cpath d='M536.7999259701272 350.4112080945497C544.3915499121844 308.1337244723166 519.3915549984478 214.15468305487684 479.4700919857525 169.78295797247938C439.5486289730572 125.41123289008192 359.96748400438855 97.26986338833224 297.27114789395563 84.18085760016493C234.57481178352268 71.0918518119976 133.65856981981824 66.24892260769259 103.29207532315485 91.24892324347547C72.92558082649144 116.24892387925836 106.17165677457086 185.22798182705296 115.07218091397516 234.1808614148622C123.97270505337946 283.1337410026714 147.1402465572857 336.01331991095594 156.69522015958063 384.96620077033094C166.25019376187555 433.91908162970594 141.1193025977317 494.2594034884299 172.4020225277447 527.8981465711122C203.68474245775772 561.5368896537944 300.8051521053814 604.2070404106304 344.39153973965875 586.7986592664247C387.9779273739361 569.390278122219 401.85228396166394 462.84576823452363 433.92034833340875 423.4478597058778C465.98841270515356 384.049951177232 529.2083020280699 392.6886917167828 536.7999259701272 350.4112080945497C544.3915499121844 308.1337244723166 519.3915549984478 214.15468305487684 479.4700919857525 169.78295797247938 ' fill='url(&quot;%23SvgjsRadialGradient1002&quot;)' stroke-width='11' stroke='hsl(30, 100%25, 40%25)' stroke-opacity='0.24' transform='matrix(0.7825259385816867,-0.9539280489011788,0.5072970153726816,0.6594990944933073,-88.7299717580658,379.9251870842644)'%3E%3C/path%3E%3Cdefs%3E%3CradialGradient id='SvgjsRadialGradient1002' r='0.4'%3E%3Cstop stop-color='hsl(30, 100%25, 50%25)' offset='0'%3E%3C/stop%3E%3Cstop stop-color='hsl(30, 100%25,70%25)' offset='1'%3E%3C/stop%3E%3C/radialGradient%3E%3C/defs%3E%3C/svg%3E"
+			alt=""
+			srcset=""
+		/>
+		<img
+			src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' version='1.1' xmlns:xlink='http://www.w3.org/1999/xlink' xmlns:svgjs='http://svgjs.dev/svgjs' viewBox='0 0 600 600' opacity='1'%3E%3Cpath d='M536.7999259701272 350.4112080945497C544.3915499121844 308.1337244723166 519.3915549984478 214.15468305487684 479.4700919857525 169.78295797247938C439.5486289730572 125.41123289008192 359.96748400438855 97.26986338833224 297.27114789395563 84.18085760016493C234.57481178352268 71.0918518119976 133.65856981981824 66.24892260769259 103.29207532315485 91.24892324347547C72.92558082649144 116.24892387925836 106.17165677457086 185.22798182705296 115.07218091397516 234.1808614148622C123.97270505337946 283.1337410026714 147.1402465572857 336.01331991095594 156.69522015958063 384.96620077033094C166.25019376187555 433.91908162970594 141.1193025977317 494.2594034884299 172.4020225277447 527.8981465711122C203.68474245775772 561.5368896537944 300.8051521053814 604.2070404106304 344.39153973965875 586.7986592664247C387.9779273739361 569.390278122219 401.85228396166394 462.84576823452363 433.92034833340875 423.4478597058778C465.98841270515356 384.049951177232 529.2083020280699 392.6886917167828 536.7999259701272 350.4112080945497C544.3915499121844 308.1337244723166 519.3915549984478 214.15468305487684 479.4700919857525 169.78295797247938 ' fill='url(&quot;%23SvgjsRadialGradient1002&quot;)' stroke-width='11' stroke='hsl(30, 100%25, 40%25)' stroke-opacity='0.24' transform='matrix(0.7825259385816867,-0.9539280489011788,0.5072970153726816,0.6594990944933073,-88.7299717580658,379.9251870842644)'%3E%3C/path%3E%3Cdefs%3E%3CradialGradient id='SvgjsRadialGradient1002' r='0.4'%3E%3Cstop stop-color='hsl(30, 100%25, 50%25)' offset='0'%3E%3C/stop%3E%3Cstop stop-color='hsl(30, 100%25,70%25)' offset='1'%3E%3C/stop%3E%3C/radialGradient%3E%3C/defs%3E%3C/svg%3E"
+			alt=""
+			srcset=""
+		/>
+		<img
+			src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' version='1.1' xmlns:xlink='http://www.w3.org/1999/xlink' xmlns:svgjs='http://svgjs.dev/svgjs' viewBox='0 0 600 600' opacity='1'%3E%3Cpath d='M536.7999259701272 350.4112080945497C544.3915499121844 308.1337244723166 519.3915549984478 214.15468305487684 479.4700919857525 169.78295797247938C439.5486289730572 125.41123289008192 359.96748400438855 97.26986338833224 297.27114789395563 84.18085760016493C234.57481178352268 71.0918518119976 133.65856981981824 66.24892260769259 103.29207532315485 91.24892324347547C72.92558082649144 116.24892387925836 106.17165677457086 185.22798182705296 115.07218091397516 234.1808614148622C123.97270505337946 283.1337410026714 147.1402465572857 336.01331991095594 156.69522015958063 384.96620077033094C166.25019376187555 433.91908162970594 141.1193025977317 494.2594034884299 172.4020225277447 527.8981465711122C203.68474245775772 561.5368896537944 300.8051521053814 604.2070404106304 344.39153973965875 586.7986592664247C387.9779273739361 569.390278122219 401.85228396166394 462.84576823452363 433.92034833340875 423.4478597058778C465.98841270515356 384.049951177232 529.2083020280699 392.6886917167828 536.7999259701272 350.4112080945497C544.3915499121844 308.1337244723166 519.3915549984478 214.15468305487684 479.4700919857525 169.78295797247938 ' fill='url(&quot;%23SvgjsRadialGradient1002&quot;)' stroke-width='11' stroke='hsl(30, 100%25, 40%25)' stroke-opacity='0.24' transform='matrix(0.7825259385816867,-0.9539280489011788,0.5072970153726816,0.6594990944933073,-88.7299717580658,379.9251870842644)'%3E%3C/path%3E%3Cdefs%3E%3CradialGradient id='SvgjsRadialGradient1002' r='0.4'%3E%3Cstop stop-color='hsl(30, 100%25, 50%25)' offset='0'%3E%3C/stop%3E%3Cstop stop-color='hsl(30, 100%25,70%25)' offset='1'%3E%3C/stop%3E%3C/radialGradient%3E%3C/defs%3E%3C/svg%3E"
+			alt=""
+			srcset=""
+		/>
+		<img
+			src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' version='1.1' xmlns:xlink='http://www.w3.org/1999/xlink' xmlns:svgjs='http://svgjs.dev/svgjs' viewBox='0 0 600 600' opacity='1'%3E%3Cpath d='M536.7999259701272 350.4112080945497C544.3915499121844 308.1337244723166 519.3915549984478 214.15468305487684 479.4700919857525 169.78295797247938C439.5486289730572 125.41123289008192 359.96748400438855 97.26986338833224 297.27114789395563 84.18085760016493C234.57481178352268 71.0918518119976 133.65856981981824 66.24892260769259 103.29207532315485 91.24892324347547C72.92558082649144 116.24892387925836 106.17165677457086 185.22798182705296 115.07218091397516 234.1808614148622C123.97270505337946 283.1337410026714 147.1402465572857 336.01331991095594 156.69522015958063 384.96620077033094C166.25019376187555 433.91908162970594 141.1193025977317 494.2594034884299 172.4020225277447 527.8981465711122C203.68474245775772 561.5368896537944 300.8051521053814 604.2070404106304 344.39153973965875 586.7986592664247C387.9779273739361 569.390278122219 401.85228396166394 462.84576823452363 433.92034833340875 423.4478597058778C465.98841270515356 384.049951177232 529.2083020280699 392.6886917167828 536.7999259701272 350.4112080945497C544.3915499121844 308.1337244723166 519.3915549984478 214.15468305487684 479.4700919857525 169.78295797247938 ' fill='url(&quot;%23SvgjsRadialGradient1002&quot;)' stroke-width='11' stroke='hsl(30, 100%25, 40%25)' stroke-opacity='0.24' transform='matrix(0.7825259385816867,-0.9539280489011788,0.5072970153726816,0.6594990944933073,-88.7299717580658,379.9251870842644)'%3E%3C/path%3E%3Cdefs%3E%3CradialGradient id='SvgjsRadialGradient1002' r='0.4'%3E%3Cstop stop-color='hsl(30, 100%25, 50%25)' offset='0'%3E%3C/stop%3E%3Cstop stop-color='hsl(30, 100%25,70%25)' offset='1'%3E%3C/stop%3E%3C/radialGradient%3E%3C/defs%3E%3C/svg%3E"
+			alt=""
+			srcset=""
+		/>
+		<div class="flex">
+			<div class="item">
+				<h3>Demonstration of events bubbling</h3>
+				<p>Clicking on any of these rectangles will trigger a "click" event. It will keep bubbling up until the parent is reached and there is nowhere to bubble further.</p>
+				<p>For example, if #child div is clicked, then the event will propagate all the way to the top to #family container. Give it a go and you will see.</p>
+				<p>It's worth noting that event target always stays the same as event bubbles up. However, 'this' changes upon the context in which event is processed.</p>
+				<div id="family1">
+					<div id="grandparent1">
+						Grandparent 1
+						<div id="parent1">
+							Parent 1
+							<div id="child1">Child 1</div>
+						</div>
+					</div>
 				</div>
 			</div>
-		</div>
-		<h3>Demonstration of capturing events</h3>
-		<p>Event capturing is kind of the reverse of bubbling in that it starts at the top, and goes down the elements hierarchy.</p>
-		<p>Click on the example to understand better what is meant by that.</p>
-		<div id="family2">
-			<div id="grandparent2">
-				Grandparent 2
-				<div id="parent2">
-					Parent 2
-					<div id="child2">Child 2</div>
+			<div class="item">
+				<h3>Demonstration of capturing events</h3>
+				<p>Event capturing is kind of the reverse of bubbling in that it starts at the top, and goes down the elements hierarchy.</p>
+				<p>Click on the example to understand better what is meant by that.</p>
+				<div id="family2">
+					<div id="grandparent2">
+						Grandparent 2
+						<div id="parent2">
+							Parent 2
+							<div id="child2">Child 2</div>
+						</div>
+					</div>
 				</div>
 			</div>
-		</div>
-		<h3>Demonstration of stopping bubbling/capturing</h3>
-		<p>This example shows how propagation can be stopped using "stopPropagation" JavaScript function. No events will capture or bubble.</p>
-		<div id="family3">
-			<div id="grandparent3">
-				Grandparent 3
-				<div id="parent3">
-					Parent 3
-					<div id="child3">Child 3</div>
+			<div class="item">
+				<h3>Demonstration of stopping bubbling/capturing</h3>
+				<p>This example shows how propagation can be stopped using "stopPropagation" JavaScript function. No events will capture or bubble.</p>
+				<div id="family3">
+					<div id="grandparent3">
+						Grandparent 3
+						<div id="parent3">
+							Parent 3
+							<div id="child3">Child 3</div>
+						</div>
+					</div>
 				</div>
 			</div>
 		</div>
 
+		<!-- popup library (SweetAlert2) -->
+		<script src="//cdn.jsdelivr.net/npm/sweetalert2@10"></script>
 		<script>
+			// Select family1 and its containers
 			let family1 = document.querySelector("#family1");
 			let family1Containers = family1.querySelectorAll("div");
-			let highlight = (element, event) => {
-				event = event || window.event;
-				var target = event.target || event.srcElement;
-				element.style.backgroundColor = "gray";
-				alert("target = #" + target.id + ", this = #" + element.id);
-				element.style.backgroundColor = "";
-			};
 
-			for (let container of family1Containers) {
-				// Events bubbling up
-				// Target always stays the same as event bubbles up
-				// This changes upon the context in which event is processed
-				container.addEventListener("click", function (event) {
-					event = event || window.event; // cross-browser event
-					highlight(this, event);
+			// Add click event listeners to each container in family1
+			family1Containers.forEach((container) => {
+				container.addEventListener("click", async (event) => {
+					let targetId = event.target.id;
+					await showAlerts(targetId, event.target); // Call showAlerts function on click
 				});
+			});
+
+			// Function to display Swal alerts step by step
+			async function showAlerts(targetId, element) {
+				// Check if element is null or one of the non-target containers
+				if (!element || element.id === "family1") {
+					return; // Do nothing in these cases
+				}
+
+				element.style.backgroundColor = "#B3789B"; // Highlight clicked element
+				await new Promise((resolve) => setTimeout(resolve, 1000)); // Delay for visualization
+
+				// Display Swal alert
+				await Swal.fire({
+					title: "Bubbling",
+					html: `target (clicked) = <span class="custom-target">${targetId}</span>,<br> this (bubble up) = <span class="custom-element">${element.id}</span>`,
+					icon: "info",
+					showConfirmButton: false,
+					didOpen: () => {
+						element.style.backgroundColor = ""; // Remove highlight
+						setTimeout(() => {
+							Swal.close(); // Close Swal alert after a delay
+						}, 1500);
+					},
+				});
+
+				// Continue with parent element in DOM traversal
+				await showAlerts(targetId, element.parentNode);
 			}
 
+			// real world test of bubbling
+			function logText(e) {
+				console.log("%cBubbling", "color: red; font-size: 20px;");
+				console.log("target (clicked) =", e.target);
+				console.log("this (bubble up) =", e.currentTarget);
+				console.log("---------------------");
+				// e.stopPropagation(); // stop bubbling!
+			}
+
+			family1Containers.forEach((container) => container.addEventListener("click", logText));
+
+			// ---------------------------------------------------------------
+
+			// Select family2 and grandparent2
 			let family2 = document.querySelector("#family2");
+			let grandparent2 = document.querySelector("#grandparent2");
+
+			// Add click event listener to family2 with capturing
+			family2.addEventListener(
+				"click",
+				async (event) => {
+					let targetId = event.target.id;
+					let current = event.target;
+
+					let elements = [];
+					while (current !== grandparent2) {
+						elements.push(current);
+						current = current.parentElement;
+					}
+					elements.push(grandparent2);
+
+					elements.reverse();
+
+					for (const element of elements) {
+						let message = `target (clicked) = <span class="custom-target">${targetId}</span>,<br> this (Capture down) = <span class="custom-element">${element.id}</span>`;
+
+						element.style.backgroundColor = "#B3789B"; // Highlight clicked element
+						await new Promise((resolve) => setTimeout(resolve, 1000)); // Delay for visualization
+
+						element.style.backgroundColor = ""; // Remove highlight
+
+						// Display Swal alert
+						await Swal.fire({
+							title: "Capturing",
+							html: message,
+							icon: "info",
+							showConfirmButton: false,
+							didOpen: () => {
+								setTimeout(() => {
+									Swal.close(); // Close Swal alert after a delay
+								}, 1000);
+							},
+						});
+					}
+				},
+				true // Use capturing for the click event
+			);
+
+			// real world test of Capturing
+			function logTextTwo(e) {
+				console.log("%cCapturing", "color: blue; font-size: 20px;");
+				console.log("target (clicked) =", e.target);
+				console.log("this (Capture down) =", e.currentTarget);
+				console.log("---------------------");
+				// e.stopPropagation(); // stop Capturing!
+			}
 			let family2Containers = family2.querySelectorAll("div");
+			family2Containers.forEach((container) => {
+				container.addEventListener("click", logTextTwo, { capture: true });
+			});
 
-			for (let container of family2Containers) {
-				// Events bubbling up
-				// Target always stays the same as event bubbles up
-				// This changes upon the context in which event is processed
-				container.addEventListener(
-					"click",
-					function (event) {
-						event = event || window.event; // cross-browser event
-						highlight(this, event);
-					},
-					true
-				);
-			}
+			// ---------------------------------------------------------------
 
+			// Select family3, grandparent3, and parent3
 			let family3 = document.querySelector("#family3");
-			let family3Containers = family3.querySelectorAll("div");
 
-			for (let container of family3Containers) {
-				// Events bubbling up
-				// Target always stays the same as event bubbles up
-				// This changes upon the context in which event is processed
-				container.addEventListener(
-					"click",
-					function (event) {
-						event = event || window.event; // cross-browser event
-						highlight(this, event);
+			// Add click event listener to family3
+			family3.addEventListener("click", async (event) => {
+				let targetId = event.target.id;
+				if (event.target.id === "family3") {
+					return; // Do nothing if family3 itself is clicked
+				}
 
-						if (event.stopPropagation) event.stopPropagation(); // W3C standard variant
-						else event.cancelBubble = true; // IE specific
+				event.target.style.backgroundColor = "#B3789B"; // Highlight clicked element
+
+				await new Promise((resolve) => setTimeout(resolve, 1000)); // Delay for visualization
+
+				// Display Swal alert
+				await Swal.fire({
+					title: "stopPropagation",
+					html: `target (clicked) = <span class="custom-target">${targetId}</span>, <br> this = <span class="custom-target">${targetId}</span>`,
+					icon: "info",
+					showConfirmButton: false,
+					didOpen: () => {
+						event.target.style.backgroundColor = ""; // Remove highlight
+						setTimeout(() => {
+							Swal.close(); // Close Swal alert after a delay
+						}, 1000);
 					},
-					false
-				);
-			}
+				});
+
+				// consol debug :
+				console.log("%cstopPropagation", "color: green; font-size: 20px;");
+				console.log("target (clicked) =", targetId);
+				console.log("this =", targetId);
+			});
+
+			// real world test of Capturing
+			// function logTextThree(e) {
+			// 	console.log("%cstopPropagation", "color: green; font-size: 20px;");
+			// 	console.log("target (clicked) =", e.target);
+			// 	console.log("this =", e.currentTarget);
+			// 	// e.stopPropagation(); // stop Capturing & Bubbling!
+			// }
+			// let family3Containers = family3.querySelectorAll("div");
+			// family3Containers.forEach((container) => {
+			// 	container.addEventListener("click", logTextThree);
+			// });
 		</script>
 	</body>
 </html>

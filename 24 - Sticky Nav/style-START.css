@@ -22,8 +22,7 @@ body {
 }
 
 body {
-	font-family: "helvetica neue";
-	font-family: Skranji, cursive;
+	font-family: "helvetica neue",cursive,serif;
 	font-size: 1rem;
 	letter-spacing: 0.15rem;
 	background: url("./assets/image/ccchaos.svg"), rgb(10 2 10);
@@ -61,6 +60,8 @@ h1 {
 	font-size: 6vw;
 	color: #e4b6e1cc;
 	text-shadow: 3px 15px 0 rgb(45 5 78 / 68.5%);
+	font-family: Skranji, cursive;
+
 }
 
 nav {

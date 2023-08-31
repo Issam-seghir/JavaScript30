@@ -1,7 +1,12 @@
 
 ### Sticky Navigation Effect
 
-![gif](./assets/image/showcase.png)
+<div class="video-container">
+  <video controls >
+    <source src="./assets/video/showcase.mp4" type="video/mp4">
+    Your browser does not support the video tag.
+  </video>
+</div>
 
 This project demonstrates how to implement a sticky navigation effect using JavaScript and CSS. The navigation bar sticks to the top of the page when the user scrolls down, providing easy access to navigation options even as the content scrolls.
 
