@@ -1,53 +1,77 @@
 <!DOCTYPE html>
 <html lang="en">
+	<head>
+		<meta charset="UTF-8" />
+		<title>Video Speed Scrubber</title>
+		<link rel="stylesheet" href="style.css" />
+		<link rel="icon" href="https://fav.farm/🔥" />
+	</head>
 
-<head>
-  <meta charset="UTF-8">
-  <title>Video Speed Scrubber</title>
-  <link rel="stylesheet" href="style.css">
-  <link rel="icon" href="https://fav.farm/🔥" />
-</head>
+	<style>
+		body {
+			background-color: rgb(6 1 31 / 94.5%) !important;
+			background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' version='1.1' xmlns:xlink='http://www.w3.org/1999/xlink' xmlns:svgjs='http://svgjs.dev/svgjs' viewBox='0 0 800 800'%3E%3Ccircle r='12.5' cx='556' cy='64' fill='hsl(230, 75%25, 70%25)' opacity='0.51'%3E%3C/circle%3E%3Ccircle r='8' cx='64' cy='223' fill='hsl(72, 75%25, 70%25)' opacity='0.91'%3E%3C/circle%3E%3Ccircle r='14' cx='605' cy='347' fill='hsl(267, 75%25, 70%25)' opacity='0.98'%3E%3C/circle%3E%3Ccircle r='7' cx='456' cy='672' fill='hsl(54, 75%25, 70%25)' opacity='0.94'%3E%3C/circle%3E%3Ccircle r='7' cx='170' cy='104' fill='hsl(46, 75%25, 70%25)' opacity='0.77'%3E%3C/circle%3E%3Ccircle r='7.5' cx='21' cy='466' fill='hsl(71, 75%25, 70%25)' opacity='0.81'%3E%3C/circle%3E%3Ccircle r='7.5' cx='64' cy='272' fill='hsl(72, 75%25, 70%25)' opacity='0.14'%3E%3C/circle%3E%3Ccircle r='7' cx='328' cy='267' fill='hsl(59, 75%25, 70%25)' opacity='0.60'%3E%3C/circle%3E%3Ccircle r='14.5' cx='642' cy='317' fill='hsl(278, 75%25, 70%25)' opacity='0.61'%3E%3C/circle%3E%3Ccircle r='7.5' cx='61' cy='777' fill='hsl(69, 75%25, 70%25)' opacity='0.67'%3E%3C/circle%3E%3Ccircle r='6' cx='369' cy='273' fill='hsl(34, 75%25, 70%25)' opacity='0.67'%3E%3C/circle%3E%3Ccircle r='9' cx='265' cy='738' fill='hsl(113, 75%25, 70%25)' opacity='0.68'%3E%3C/circle%3E%3Ccircle r='14' cx='733' cy='358' fill='hsl(205, 75%25, 70%25)' opacity='0.48'%3E%3C/circle%3E%3Ccircle r='10' cx='192' cy='245' fill='hsl(133, 75%25, 70%25)' opacity='0.40'%3E%3C/circle%3E%3Ccircle r='10.5' cx='750' cy='409' fill='hsl(170, 75%25, 70%25)' opacity='0.36'%3E%3C/circle%3E%3Ccircle r='15' cx='642' cy='578' fill='hsl(278, 75%25, 70%25)' opacity='0.95'%3E%3C/circle%3E%3Ccircle r='15.5' cx='686' cy='608' fill='hsl(259, 75%25, 70%25)' opacity='0.74'%3E%3C/circle%3E%3Ccircle r='7.5' cx='343' cy='181' fill='hsl(51, 75%25, 70%25)' opacity='0.47'%3E%3C/circle%3E%3Ccircle r='6.5' cx='120' cy='67' fill='hsl(22, 75%25, 70%25)' opacity='0.38'%3E%3C/circle%3E%3Ccircle r='9.5' cx='779' cy='662' fill='hsl(135, 75%25, 70%25)' opacity='0.42'%3E%3C/circle%3E%3Ccircle r='8' cx='97' cy='692' fill='hsl(82, 75%25, 70%25)' opacity='0.24'%3E%3C/circle%3E%3Ccircle r='14.5' cx='721' cy='189' fill='hsl(221, 75%25, 70%25)' opacity='0.17'%3E%3C/circle%3E%3Ccircle r='7' cx='334' cy='600' fill='hsl(59, 75%25, 70%25)' opacity='0.76'%3E%3C/circle%3E%3Ccircle r='10' cx='214' cy='727' fill='hsl(135, 75%25, 70%25)' opacity='0.68'%3E%3C/circle%3E%3Ccircle r='9' cx='308' cy='80' fill='hsl(94, 75%25, 70%25)' opacity='0.82'%3E%3C/circle%3E%3Ccircle r='8' cx='61' cy='453' fill='hsl(69, 75%25, 70%25)' opacity='0.22'%3E%3C/circle%3E%3Ccircle r='14' cx='610' cy='154' fill='hsl(246, 75%25, 70%25)' opacity='0.40'%3E%3C/circle%3E%3Ccircle r='9' cx='535' cy='376' fill='hsl(167, 75%25, 70%25)' opacity='0.82'%3E%3C/circle%3E%3Ccircle r='9.5' cx='777' cy='242' fill='hsl(135, 75%25, 70%25)' opacity='0.98'%3E%3C/circle%3E%3Ccircle r='9' cx='138' cy='677' fill='hsl(112, 75%25, 70%25)' opacity='0.18'%3E%3C/circle%3E%3Ccircle r='8.5' cx='299' cy='436' fill='hsl(93, 75%25, 70%25)' opacity='0.74'%3E%3C/circle%3E%3Ccircle r='9' cx='259' cy='76' fill='hsl(87, 75%25, 70%25)' opacity='0.34'%3E%3C/circle%3E%3Ccircle r='15.5' cx='678' cy='227' fill='hsl(259, 75%25, 70%25)' opacity='0.95'%3E%3C/circle%3E%3Ccircle r='14.5' cx='591' cy='608' fill='hsl(257, 75%25, 70%25)' opacity='0.67'%3E%3C/circle%3E%3Ccircle r='9.5' cx='221' cy='126' fill='hsl(87, 75%25, 70%25)' opacity='0.28'%3E%3C/circle%3E%3Ccircle r='6.5' cx='393' cy='313' fill='hsl(26, 75%25, 70%25)' opacity='0.83'%3E%3C/circle%3E%3Ccircle r='5.5' cx='392' cy='780' fill='hsl(26, 75%25, 70%25)' opacity='0.37'%3E%3C/circle%3E%3Ccircle r='10' cx='777' cy='605' fill='hsl(135, 75%25, 70%25)' opacity='0.19'%3E%3C/circle%3E%3Ccircle r='6.5' cx='348' cy='440' fill='hsl(49, 75%25, 70%25)' opacity='0.39'%3E%3C/circle%3E%3Ccircle r='6' cx='360' cy='362' fill='hsl(40, 75%25, 70%25)' opacity='0.37'%3E%3C/circle%3E%3Ccircle r='10.5' cx='212' cy='301' fill='hsl(135, 75%25, 70%25)' opacity='0.11'%3E%3C/circle%3E%3Ccircle r='10' cx='259' cy='305' fill='hsl(122, 75%25, 70%25)' opacity='0.29'%3E%3C/circle%3E%3Ccircle r='6.5' cx='167' cy='60' fill='hsl(41, 75%25, 70%25)' opacity='0.47'%3E%3C/circle%3E%3Ccircle r='7' cx='778' cy='31' fill='hsl(49, 75%25, 70%25)' opacity='0.62'%3E%3C/circle%3E%3Ccircle r='16' cx='637' cy='527' fill='hsl(277, 75%25, 70%25)' opacity='0.80'%3E%3C/circle%3E%3Ccircle r='7.5' cx='473' cy='323' fill='hsl(68, 75%25, 70%25)' opacity='0.97'%3E%3C/circle%3E%3Ccircle r='10' cx='238' cy='260' fill='hsl(128, 75%25, 70%25)' opacity='0.48'%3E%3C/circle%3E%3Ccircle r='8' cx='315' cy='221' fill='hsl(70, 75%25, 70%25)' opacity='0.54'%3E%3C/circle%3E%3Ccircle r='13' cx='695' cy='457' fill='hsl(248, 75%25, 70%25)' opacity='0.99'%3E%3C/circle%3E%3Ccircle r='8' cx='21' cy='413' fill='hsl(71, 75%25, 70%25)' opacity='0.97'%3E%3C/circle%3E%3Ccircle r='9' cx='323' cy='24' fill='hsl(94, 75%25, 70%25)' opacity='0.83'%3E%3C/circle%3E%3Ccircle r='9.5' cx='155' cy='592' fill='hsl(119, 75%25, 70%25)' opacity='0.62'%3E%3C/circle%3E%3Ccircle r='7' cx='457' cy='241' fill='hsl(54, 75%25, 70%25)' opacity='0.97'%3E%3C/circle%3E%3Ccircle r='7.5' cx='377' cy='146' fill='hsl(57, 75%25, 70%25)' opacity='0.63'%3E%3C/circle%3E%3Ccircle r='6' cx='366' cy='404' fill='hsl(34, 75%25, 70%25)' opacity='0.67'%3E%3C/circle%3E%3Ccircle r='6.5' cx='350' cy='316' fill='hsl(40, 75%25, 70%25)' opacity='0.79'%3E%3C/circle%3E%3C/svg%3E") !important;
+		}
 
-<body>
+		video {
+			border-radius: 1.25rem !important;
+			box-shadow: 0 0 15px 3px rgb(250 43 233 / 10%) !important;
+		}
 
-  <div class="wrapper">
-    <!-- <video class="flex" width="765" height="430" src="http://clips.vorwaerts-gmbh.de/VfE_html5.mp4" loop -->
-    <video class="flex" width="765" height="430" src="../11 - Custom Video Player/652333414.mp4" loop controls></video>
-    <div class="speed">
-      <div class="speed-bar">1⚡</div>
-    </div>
-  </div>
+		.wrapper {
+			align-items: center;
+		}
 
-  <script>
-    const video = document.querySelector("video")
-    const speedBar = document.querySelector(".speed")
-    const speedText = document.querySelector(".speed-bar")
+		.speed {
+			height: 430px !important;
+		}
+	</style>
+	<body>
+		<div class="wrapper">
+			<video class="flex" width="765" height="430" src="./assets/video/وسيق الذين كفروا إلى جهنم زمرا - ترتيل باكي وخشوع لا يوصف للشيخ حسن صالح - اواخر.mp4" loop controls></video>
+			<div class="speed">
+				<div class="speed-bar">1⚡</div>
+			</div>
+		</div>
 
-    function increaseSpeed(e) {
-      e.preventDefault();
-      const speed = ((e.offsetY / speedBar.offsetHeight) * 4).toFixed(2);
-      const parentage = (e.offsetY * 100 / speedBar.offsetHeight).toFixed(2);
-      video.playbackRate = speed;
-      speedText.textContent = `${speed}⚡`;
-      speedText.style.height = `${parentage}%`
+		<script>
+			const video = document.querySelector("video");
+			const speedBar = document.querySelector(".speed");
+			const speedText = document.querySelector(".speed-bar");
 
-    }
+			function increaseSpeed(e) {
+				e.preventDefault();
+				// Calculate the new playback speed based on the vertical position of the mouse
+				const speed = ((e.offsetY / speedBar.offsetHeight) * 4).toFixed(2);
+				// Calculate the percentage of the mouse position relative to the speed bar height
+				const parentage = ((e.offsetY * 100) / speedBar.offsetHeight).toFixed(2);
 
-    function transitioned(e) {
-      speedText.classList.add("transition");
+				// Set the video's playback speed to the calculated value
+				video.playbackRate = speed;
 
-      clearTimeout(speedText.timeoutId);
-      transitioned.timeoutId = setTimeout(() => {
-        speedText.classList.remove("transition");
-      }, 150);
-      console.log(speedText.style);
-    }
-    transitioned.timeoutId = null;
+				// Update the displayed speed text and adjust its height
+				speedText.textContent = `${speed}⚡`;
+				speedText.style.height = `${parentage}%`;
+			}
 
-    speedBar.addEventListener("mousemove", increaseSpeed)
-    speedBar.addEventListener("mousedown", increaseSpeed)
-    speedBar.addEventListener("mouseenter", transitioned)
-  </script>
-</body>
+			// Function to handle the transition effect when the speed bar is hovered over
+			function transitioned(e) {
+				speedText.classList.add("transition");
 
+				// Clear any previous timeout and set a new one to remove the class after a delay
+				clearTimeout(speedText.timeoutId);
+
+				transitioned.timeoutId = setTimeout(() => {
+					speedText.classList.remove("transition");
+				}, 150);
+				console.log(speedText.style);
+			}
+			// Initialize a timeout ID for the transitioned function
+			transitioned.timeoutId = null;
+
+			speedBar.addEventListener("mousemove", increaseSpeed);
+			speedBar.addEventListener("mousedown", increaseSpeed);
+			speedBar.addEventListener("mouseenter", transitioned);
+		</script>
+	</body>
 </html>

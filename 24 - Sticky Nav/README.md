@@ -1,5 +1,5 @@
 
-### Sticky Navigation Effect
+# Sticky Navigation Effect
 
 <div class="video-container">
   <video controls >
@@ -14,13 +14,14 @@ Let's explore how I **achieved** this and what I **added/fixed** to enhance the 
 
 ## Table of Contents
 
-- [Table of Contents](#table-of-contents)
-- [Features](#features)
-- [How It Works](#how-it-works)
-  - [1. Detecting Scroll Position](#1-detecting-scroll-position)
-  - [2. Adding and Removing the Sticky Class](#2-adding-and-removing-the-sticky-class)
-- [What I Added/Fixed](#what-i-addedfixed)
-- [What I Learned](#what-i-learned)
+- [Sticky Navigation Effect](#sticky-navigation-effect)
+  - [Table of Contents](#table-of-contents)
+  - [Features](#features)
+  - [How It Works](#how-it-works)
+    - [1. Detecting Scroll Position](#1-detecting-scroll-position)
+    - [2. Adding and Removing the Sticky Class](#2-adding-and-removing-the-sticky-class)
+  - [What I Added/Fixed](#what-i-addedfixed)
+  - [What I Learned](#what-i-learned)
 
 ## Features
 

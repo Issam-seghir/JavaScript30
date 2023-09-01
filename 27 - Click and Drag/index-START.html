@@ -8,6 +8,41 @@
 	</head>
 
 	<style>
+		:root {
+			--spacing: 0.2rem;
+			--blur: 0.2rem;
+			--base: rgb(0 255 242);
+			--hover: rgb(235 194 250 / 85.6%);
+
+			scroll-behavior: smooth;
+			scrollbar-color: var(--base) #216cad23;
+			scrollbar-width: 5px;
+			scrollbar-gutter: auto;
+			overflow-y: scroll;
+		}
+
+		/* For Chrome and other browsers */
+		::-webkit-scrollbar-track {
+			background-color: #216cad23;
+			border-radius: 10px;
+			box-shadow: inset 0 0 2px rgb(2 5 46 / 30%);
+		}
+
+		::-webkit-scrollbar {
+			width: 5px;
+			background-color: #2d343513;
+		}
+
+		::-webkit-scrollbar-thumb {
+			background-color: var(--base);
+			border-radius: 10px;
+			box-shadow: inset 0 0 6px rgb(0 0 0 / 30%);
+		}
+
+		.items.active::-webkit-scrollbar-thumb {
+			background-color: var(--hover);
+		}
+
 		html {
 			background: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' version='1.1' xmlns:xlink='http://www.w3.org/1999/xlink' xmlns:svgjs='http://svgjs.dev/svgjs' viewBox='0 0 2400 800' opacity='0.75'%3E%3Cdefs%3E%3ClinearGradient x1='50%25' y1='0%25' x2='50%25' y2='100%25' id='sssurf-grad'%3E%3Cstop stop-color='hsl(184, 74%25, 44%25)' stop-opacity='1' offset='0%25'%3E%3C/stop%3E%3Cstop stop-color='hsl(332, 87%25, 70%25)' stop-opacity='1' offset='100%25'%3E%3C/stop%3E%3C/linearGradient%3E%3C/defs%3E%3Cg fill='url(%23sssurf-grad)' transform='matrix(1,0,0,1,0,-104.8638916015625)'%3E%3Cpath d='M 0 337.24280990540973 Q 600 450 600 308.67561585587293 Q 1200 450 1200 303.72777695650353 Q 1800 450 1800 348.2477932847807 Q 2400 450 2400 310.2277350422167 L 2400 800 L 0 800 L 0 307.93393386742054 Z' transform='matrix(1,0,0,1,0,34)' opacity='0.05'%3E%3C/path%3E%3Cpath d='M 0 337.24280990540973 Q 600 450 600 308.67561585587293 Q 1200 450 1200 303.72777695650353 Q 1800 450 1800 348.2477932847807 Q 2400 450 2400 310.2277350422167 L 2400 800 L 0 800 L 0 307.93393386742054 Z' transform='matrix(1,0,0,1,0,68)' opacity='0.19'%3E%3C/path%3E%3Cpath d='M 0 337.24280990540973 Q 600 450 600 308.67561585587293 Q 1200 450 1200 303.72777695650353 Q 1800 450 1800 348.2477932847807 Q 2400 450 2400 310.2277350422167 L 2400 800 L 0 800 L 0 307.93393386742054 Z' transform='matrix(1,0,0,1,0,102)' opacity='0.32'%3E%3C/path%3E%3Cpath d='M 0 337.24280990540973 Q 600 450 600 308.67561585587293 Q 1200 450 1200 303.72777695650353 Q 1800 450 1800 348.2477932847807 Q 2400 450 2400 310.2277350422167 L 2400 800 L 0 800 L 0 307.93393386742054 Z' transform='matrix(1,0,0,1,0,136)' opacity='0.46'%3E%3C/path%3E%3Cpath d='M 0 337.24280990540973 Q 600 450 600 308.67561585587293 Q 1200 450 1200 303.72777695650353 Q 1800 450 1800 348.2477932847807 Q 2400 450 2400 310.2277350422167 L 2400 800 L 0 800 L 0 307.93393386742054 Z' transform='matrix(1,0,0,1,0,170)' opacity='0.59'%3E%3C/path%3E%3Cpath d='M 0 337.24280990540973 Q 600 450 600 308.67561585587293 Q 1200 450 1200 303.72777695650353 Q 1800 450 1800 348.2477932847807 Q 2400 450 2400 310.2277350422167 L 2400 800 L 0 800 L 0 307.93393386742054 Z' transform='matrix(1,0,0,1,0,204)' opacity='0.73'%3E%3C/path%3E%3Cpath d='M 0 337.24280990540973 Q 600 450 600 308.67561585587293 Q 1200 450 1200 303.72777695650353 Q 1800 450 1800 348.2477932847807 Q 2400 450 2400 310.2277350422167 L 2400 800 L 0 800 L 0 307.93393386742054 Z' transform='matrix(1,0,0,1,0,238)' opacity='0.86'%3E%3C/path%3E%3Cpath d='M 0 337.24280990540973 Q 600 450 600 308.67561585587293 Q 1200 450 1200 303.72777695650353 Q 1800 450 1800 348.2477932847807 Q 2400 450 2400 310.2277350422167 L 2400 800 L 0 800 L 0 307.93393386742054 Z' transform='matrix(1,0,0,1,0,272)' opacity='1.00'%3E%3C/path%3E%3C/g%3E%3C/svg%3E") !important;
 			background-color: rgb(185 237 253) !important;
@@ -16,15 +51,39 @@
 		}
 
 		.items {
-			perspective: none !important;
+			overscroll-behavior-x: contain;
+			perspective: 700px !important;
+			border: 1px solid #b1fff1 !important;
+			border-radius: 1rem !important;
 		}
 
 		.item {
 			width: 20.5rem;
-			background-color: rgba(171, 242, 255, 0.514) !important;
-			backdrop-filter: blur(16px) saturate(180%) !important;
-			border: 1px solid rgb(255 255 255 / 12.5%) !important;
+			margin: 0.4rem;
+			color: rgb(9 82 104 / 72.6%);
+			background-color: rgb(171 242 255 / 51.4%) !important;
+
+			/*! Warning : backdrop-filter  cause many bug and cpu problem when using perspective,
+			use it only with   perspective: none */
+
+			/* backdrop-filter: blur(7px) saturate(120%) ; */
+			border: 3px solid rgb(106 218 252 / 82.9%);
 			border-radius: 12px !important;
+			box-shadow: 0 0 15px 10px rgb(83 230 217 / 15%) !important;
+		}
+
+		.items.active {
+			cursor: grabbing;
+			scrollbar-color: var(--hover) #216cad23;
+			transform: scale(1);
+			background: rgb(226 34 216 / 30%);
+		}
+
+		.items.active .item {
+			color: rgb(104 9 80 / 72.6%);
+			background-color: rgb(255 171 255 / 51.4%) !important;
+			border-color: rgb(248 203 228 / 70.5%);
+			box-shadow: 0 0 15px 10px rgb(201 83 230 / 47.9%) !important;
 		}
 	</style>
 	<body>
@@ -55,17 +114,21 @@
 			<div class="item item24">24</div>
 			<div class="item item25">25</div>
 		</div>
-
 		<script>
 			const slider = document.querySelector(".items");
-			let isDown = false;
-			let startX;
-			let scrollLeft;
+
+			// Initialize boolean variables to track the state of mouse events.
+			let isDown = false; // Indicates if the mouse button is currently pressed.
+			let startX; // Stores the initial horizontal mouse position on mouse click.
+			let scrollLeft; // Stores the initial horizontal scroll position of the slider.
 
 			slider.addEventListener("mousedown", (e) => {
 				isDown = true;
 				slider.classList.add("active");
+
+				// Store the initial horizontal mouse position relative to the 'slider' element.
 				startX = e.pageX - slider.offsetLeft;
+				// Store the initial horizontal scroll position of the 'slider'.
 				scrollLeft = slider.scrollLeft;
 			});
 
@@ -80,10 +143,16 @@
 			});
 
 			slider.addEventListener("mousemove", (e) => {
-				if (!isDown) return; // stop the fn from running
+				// Check if the mouse button is not pressed; if true, exit the function.
+				if (!isDown) return;
+
+				// Prevent the default behavior of mousemove (e.g., text selection).
 				e.preventDefault();
+				// Calculate the new horizontal mouse position relative to the 'slider' element.
 				const x = e.pageX - slider.offsetLeft;
+				// Calculate the distance to scroll by subtracting the initial position from the new position.
 				const walk = (x - startX) * 3;
+				// Set the new horizontal scroll position of the 'slider' based on the calculated value.
 				slider.scrollLeft = scrollLeft - walk;
 			});
 		</script>
