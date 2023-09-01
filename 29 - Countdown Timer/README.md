@@ -1,102 +1,140 @@
-# Custom Video Speed Controller
+# Countdown Timer
 
-<div class="video-container">
-  <video controls >
-    <source src="./assets/video/showcase.mp4" type="video/mp4">
-    Your browser does not support the video tag.
-  </video>
-</div>
+![Alt text](assets/images/showcase.gif)
 
-This code example demonstrates a video playback speed controller that allows users to adjust the playback speed of a video by interacting with a speed bar. The code combines event handling and CSS transitions to create a smooth and interactive user experience.
+This JavaScript code creates a countdown timer that allows users to set a custom time interval or choose predefined times to countdown from. It provides real-time updates on the remaining time and the expected end time.
 
 Let's explore how I **achieved** this and what I **added/fixed** to enhance the functionality.
 
-- [Custom Video Speed Controller](#custom-video-speed-controller)
+## Table of Contents
+
+- [Countdown Timer](#countdown-timer)
+  - [Table of Contents](#table-of-contents)
   - [Features](#features)
   - [How It Works](#how-it-works)
-    - [1. Event Listeners Setup](#1-event-listeners-setup)
-    - [2. Handling Speed Adjustment](#2-handling-speed-adjustment)
-    - [3. Handling Transition Effect](#3-handling-transition-effect)
+    - [1. Timer Function](#1-timer-function)
+    - [2. Display Functions](#2-display-functions)
+    - [3. Button Click Event](#3-button-click-event)
+    - [4. Custom Form Submission Event](#4-custom-form-submission-event)
   - [What I Added/Fixed](#what-i-addedfixed)
   - [What I Learned](#what-i-learned)
 
 ## Features
 
-- **Interactive Speed Control**: Users can click and drag on the vertical bar to adjust the playback speed of the video.
-
-- **Visual Feedback**: The vertical bar displays the selected playback speed as a numerical value (e.g., "1.50x") and visually highlights the selected speed when hovered over.
+1. Allows users to set a **custom countdown timer**.
+2. Provides **predefined** **time intervals** for quick selection.
+3. **Real-time updates** on remaining time and end time.
+4. User-friendly interface with clear time displays.
 
 ## How It Works
 
-### 1. Event Listeners Setup
+### 1. Timer Function
 
-- The code starts by selecting the video element and various speed-related elements such as `speedBar` (the container for adjusting speed) and `speedText` (the displayed speed percentage).
-- Two event handler functions, `increaseSpeed` and `transitioned`, are defined to handle user interactions and **transition** effects.
-- Event listeners are set up for `mousemove`, `mousedown`, and `mouseenter` events on the `speedBar` element.
+- The `timer` function takes a `seconds` parameter, representing the countdown duration in seconds.
+- Any existing countdown timer is cleared using `clearInterval(countdown)`.
+- The target end time is calculated by adding the `seconds` to the current time.
+- The initial time left and end time are displayed using the `displayTimeLeft` and `displayEndTime` functions.
+- The countdown timer is started using `setInterval`. It updates the remaining time every second and stops when the countdown reaches zero.
 
 ```js
-    const video = document.querySelector("video");
-    const speedBar = document.querySelector(".speed");
-    const speedText = document.querySelector(".speed-bar");
 
-    function increaseSpeed(e) {...}
-    function transitioned(e) {...}
+    // Initialize variables
+    let countdown; // Stores the interval ID for the countdown timer
+    const timerDisplay = document.querySelector(".display__time-left"); // Display element for remaining time
+    const endTime = document.querySelector(".display__end-time"); // Display element for end time
+    const buttons = document.querySelectorAll("[data-time]"); // Select all buttons with 'data-time' attribute
 
-    speedBar.addEventListener("mousemove", increaseSpeed);
-    speedBar.addEventListener("mousedown", increaseSpeed);
-    speedBar.addEventListener("mouseenter", transitioned);
+    // Function to start a countdown timer
+    function timer(seconds) {
+      // Clear any existing timers
+      clearInterval(countdown);
+
+      // Calculate the target end time
+      const now = Date.now();
+      const then = now + seconds * 1000;
+
+      // Display initial time
+      displayTimeLeft(seconds);
+      displayEndTime(then);
+
+      // Start the countdown timer
+      countdown = setInterval(() => {
+       const secondsLeft = Math.round((then - Date.now()) / 1000);
+
+       // Check if we should stop the timer
+       if (secondsLeft < 0) {
+        clearInterval(countdown);
+        return;
+       }
+
+       // Display the remaining time
+       displayTimeLeft(secondsLeft);
+      }, 1000);
+    }
+
+
+
 ```
 
-### 2. Handling Speed Adjustment
+### 2. Display Functions
 
-- The `increaseSpeed` function calculates the new **playback** **speed** based on the vertical position of the mouse within the `speedBar`. It also calculates the percentage of the mouse position relative to the height of the `speedBar`.
-- The video's `playbackRate` property is updated with the calculated speed, and the displayed speed text is updated accordingly.
-- The `speedText` element's height is adjusted to reflect the percentage.
-- This function prevents the default behavior of the `mousedown` event to prevent text selection.
+- The `displayTimeLeft` function takes the remaining `seconds` and converts it into a readable format (e.g., "mm:ss").
+- It updates the browser tab title and the displayed time.
+- The `displayEndTime` function takes a `timestamp` and formats it as "Be Back At hh:mm AM/PM."
+- It updates the displayed end time.
 
 ```js
-    function increaseSpeed(e) {
+    // Function to display the remaining time
+    function displayTimeLeft(seconds) {
+      const minutes = Math.floor(seconds / 60);
+      const remainderSeconds = seconds % 60;
+      const display = `${minutes}:${remainderSeconds < 10 ? "0" : ""}${remainderSeconds}`;
+      document.title = display; // Update the browser tab title
+      timerDisplay.textContent = display; // Update the displayed time
+    }
+
+    // Function to display the end time
+    function displayEndTime(timestamp) {
+      const end = new Date(timestamp);
+      const hour = end.getHours();
+      const adjustedHour = hour > 12 ? hour - 12 : hour;
+      const minutes = end.getMinutes();
+      endTime.textContent = `Be Back At ${adjustedHour}:${minutes < 10 ? "0" : ""}${minutes}`;
+    }
+```
+
+### 3. Button Click Event
+
+- Event listeners are added to all buttons with a `data-time` attribute. These buttons allow users to select predefined countdown times.
+- When a button is clicked, the `startTimer` function is triggered.
+- The `startTimer` function extracts the `data-time` attribute value (in seconds) from the clicked button and starts the countdown timer accordingly.
+
+```js
+    // Function to start a timer based on button click
+    function startTimer() {
+      const seconds = Number.parseInt(this.dataset.time);
+      timer(seconds);
+    }
+
+    // Event listeners for button clicks
+    buttons.forEach((button) => button.addEventListener("click", startTimer));
+```
+
+### 4. Custom Form Submission Event
+
+- An event listener is added to a custom form named `customForm`.
+- When the form is submitted, the event handler prevents the default form submission behavior.
+- The form **input** value (representing minutes) is converted to seconds and used to start the **countdown** **timer**.
+- The form is then `reset` to allow users to set another timer.
+
+```js
+    // Event listener for custom form submission
+    document.customForm.addEventListener("submit", function (e) {
       e.preventDefault();
-      // Calculate the new playback speed based on the vertical position of the mouse
-      const speed = ((e.offsetY / speedBar.offsetHeight) *4).toFixed(2);
-      // Calculate the percentage of the mouse position relative to the speed bar height
-      const parentage = ((e.offsetY* 100) / speedBar.offsetHeight).toFixed(2);
-
-      // Set the video's playback speed to the calculated value
-      video.playbackRate = speed;
-
-      // Update the displayed speed text and adjust its height
-      speedText.textContent = `${speed}⚡`;
-      speedText.style.height = `${parentage}%`;
-    }
-
-    speedBar.addEventListener("mousemove", increaseSpeed);
-    speedBar.addEventListener("mousedown", increaseSpeed);
-```
-
-### 3. Handling Transition Effect
-
-- The `transitioned` function adds a CSS class, `transition`, to the `speedText` element to create a transition effect.
-- A timeout is set to remove the `transition` class after a delay, creating a smooth visual effect when the speed text appears and disappears.
-- The timeout is cleared and reset each time the `transitioned` function is called, ensuring that it only removes the class after the specified delay.
-
-```js
-    // Function to handle the transition effect when the speed bar is hovered over
-    function transitioned(e) {
-      speedText.classList.add("transition");
-
-      // Clear any previous timeout and set a new one to remove the class after a delay
-      clearTimeout(speedText.timeoutId);
-
-      transitioned.timeoutId = setTimeout(() => {
-       speedText.classList.remove("transition");
-      }, 150);
-      console.log(speedText.style);
-    }
-    // Initialize a timeout ID for the transitioned function
-    transitioned.timeoutId = null;
-
-    speedBar.addEventListener("mouseenter", transitioned);
+      const mins = this.minutes.value;
+      timer(mins * 60); // Convert minutes to seconds and start the timer
+      this.reset(); // Reset the form
+    });
 ```
 
 ## What I Added/Fixed
@@ -105,6 +143,6 @@ Let's explore how I **achieved** this and what I **added/fixed** to enhance the 
 
 ## What I Learned
 
-- **Create Custom Video Speed Controller**
-- **CSS Transitions**: Utilized CSS transitions to create smooth visual effects when displaying and hiding the speed text.
-- **Timeout Usage**: Cleared and reset timeouts to control the duration of the transition effect.
+- **Interval Timers**: Utilized `setInterval` and `clearInterval` to create and manage countdown timers.
+- **Date Manipulation**: Calculated target end times using the JavaScript `Date` object.
+- **Event Handling**: Implemented event listeners for button clicks and form submissions.
