@@ -9,6 +9,17 @@
 	<style>
 		@import url("https://fonts.googleapis.com/css2?family=Roboto+Slab&family=Sedgwick+Ave+Display&display=swap");
 		@import url("https://fonts.googleapis.com/css2?family=Nanum+Brush+Script&family=Roboto+Slab&family=Sedgwick+Ave+Display&display=swap");
+		@import url("https://fonts.googleapis.com/css2?family=Righteous&display=swap");
+		@import url("https://fonts.googleapis.com/css2?family=Lato:wght@300&display=swap");
+
+		@font-face {
+			font-family: Againts; /* Choose a name for your font */
+
+			/* Add more source URLs and formats as needed */
+			font-weight: normal;
+			font-style: normal;
+			src: url("./assets/font/againts.woff2") format("woff2"), /* WOFF2 format for modern browsers */ url("path/to/font.woff") format("woff"); /* WOFF format for wider browser support */
+		}
 
 		/* Box sizing rules */
 		*,
@@ -28,31 +39,52 @@
 
 		body {
 			font-family: "Roboto Slab", serif;
+
+			/* solid background */
+			background: rgb(168 235 248);
+
+			/* gradient background */
+			background: linear-gradient(45deg, rgb(0 212 255 / 100%) 0%, rgb(11 3 45 / 100%) 100%);
+			background-position: center;
+			background-size: cover;
 		}
 
 		h1 span {
 			font-family: "Sedgwick Ave Display", cursive;
 			font-family: "Nanum Brush Script", sans-serif;
+			font-family: Againts, cursive, sans-serif;
 			font-size: 3.75rem;
+			font-weight: 100;
 			line-height: 1;
+			letter-spacing: 2px;
 			-webkit-font-smoothing: antialiased;
 			-moz-osx-font-smoothing: grayscale;
 		}
 
 		.grid-container {
 			display: grid;
-			grid-template-columns: repeat(auto-fit, minmax(500px, 1fr));
-			gap: 20px;
-			padding: 20px;
+			grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
+			gap: 40px;
+			margin: 0 auto;
+			padding: 8rem 9rem;
+			background: rgb(2 17 20 / 57.5%);
 		}
 
 		.card {
 			cursor: pointer;
 			position: relative;
-			padding: 10px;
-			background-color: #111720;
-			border: 1px solid #ddd;
-			border-radius: 5px;
+			display: flex;
+			flex-direction: column;
+			row-gap: 1rem;
+			align-items: center;
+			justify-content: center;
+			padding: 1rem;
+			text-align: center;
+			background-color: rgb(17 25 40 / 25%);
+			filter: drop-shadow(0 30px 10px rgb(0 0 0 / 12.5%));
+			backdrop-filter: blur(16px) saturate(180%);
+			border: 1px solid rgb(255 255 255 / 12.5%);
+			border-radius: 12px;
 			transition: transform 0.2s, box-shadow 0.2s;
 		}
 
@@ -63,20 +95,34 @@
 
 		.card a {
 			display: block;
-			min-width: 100%;
-			min-height: 100%;
-			color: #333;
 			text-decoration: none;
 		}
 
+		.card-img,
 		.card-gif {
 			cursor: pointer;
 			display: block;
 			width: 100%;
 			height: auto;
 			min-height: 300px;
-			border-radius: 5px;
-			transition: opacity 0.2s;
+			object-fit: cover;
+			border-radius: 11px;
+			transition: all 0.3s ease-in-out;
+		}
+
+		.card-video {
+			cursor: pointer;
+			display: block;
+			width: 100%;
+			height: auto;
+			min-height: 300px;
+			object-fit: cover;
+			border-radius: 11px;
+			transition: all 0.3s ease-in-out;
+		}
+
+		.card-gif {
+			display: none;
 		}
 
 		.card:hover .card-gif {
@@ -84,8 +130,125 @@
 		}
 
 		.card-title {
-			margin-top: 10px;
-			font-size: 1.25rem;
+			position: absolute;
+			top: 73%;
+			left: 50%;
+			transform: translate(-50%, -100%);
+			opacity: 0; /* Start with 0 opacity */
+			transition: all 0.3s ease-in-out;
+		}
+
+		.card:hover .card-title {
+			transform: translate(-50%, -50%);
+			opacity: 1; /* Display the title with full opacity on hover */
+		}
+
+		.image-container {
+			position: relative;
+			overflow: hidden;
+			width: 100%;
+			height: 0;
+			padding-bottom: 75%; /* Adjust this to maintain the desired aspect ratio */
+		}
+
+		.loader {
+			animation: spin 1s linear infinite;
+		}
+
+		@keyframes spin {
+			0% {
+				transform: rotate(0deg);
+			}
+
+			100% {
+				transform: rotate(360deg);
+			}
+		}
+
+		.circle {
+			transform-origin: center;
+			stroke-dasharray: 88;
+			stroke-dashoffset: 0;
+			animation: dash 1.5s ease-in-out infinite;
+		}
+
+		@keyframes dash {
+			0% {
+				stroke-dasharray: 1, 150;
+				stroke-dashoffset: 0;
+			}
+
+			50% {
+				stroke-dasharray: 90, 150;
+				stroke-dashoffset: -35;
+			}
+
+			100% {
+				stroke-dasharray: 90, 150;
+				stroke-dashoffset: -124;
+			}
+		}
+
+		.loading-overlay {
+			position: absolute;
+			top: 0;
+			left: 0;
+			display: flex;
+			align-items: center;
+			justify-content: center;
+			width: 100%;
+			height: 100%;
+			opacity: 0;
+			background: rgb(255 255 255 / 90%); /* Add a semi-transparent white background */
+			transition: opacity 0.2s;
+		}
+
+		/* .card:hover .loading-overlay {
+			opacity: 1; // Show loading overlay on hover
+		}
+		*/
+
+		.btn {
+			cursor: pointer;
+			padding: 12px 24px;
+			font-size: 12px;
+			font-size: 0.8rem;
+			letter-spacing: 2px;
+			border: none;
+			border-radius: 24px;
+		}
+
+		.btn + .btn {
+			margin-left: 10px;
+		}
+
+		.outline {
+			color: rgb(0 212 255 / 90%);
+			background: transparent;
+			border: 1px solid rgb(0 212 255 / 60%);
+			transition: all 0.3s ease;
+		}
+
+		.outline:hover {
+			transform: scale(1.125);
+			color: rgb(255 255 255 / 90%);
+			border-color: rgb(255 255 255 / 90%);
+			transition: all 0.3s ease;
+		}
+
+		.fill {
+			font-weight: bold;
+			color: rgb(255 255 255 / 95%);
+			background: rgb(0 212 255 / 90%);
+			filter: drop-shadow(0);
+			transition: all 0.3s ease;
+		}
+
+		.fill:hover {
+			transform: scale(1.125);
+			filter: drop-shadow(0 10px 5px rgb(0 0 0 / 12.5%));
+			border-color: rgb(255 255 255 / 90%);
+			transition: all 0.3s ease;
 		}
 
 		/* Style for the intro section */
@@ -131,6 +294,15 @@
 			font-size: 1.5rem;
 		}
 
+		footer {
+			padding: 5rem;
+			font-size: 2.25rem;
+			line-height: 2.5rem;
+			text-align: center;
+			background-color: rgb(15 13 2);
+			box-shadow: 0 25px 50px -12px rgb(0 0 0 / 25%);
+		}
+
 		/* Media queries for responsiveness */
 		@media (width <= 768px) {
 			.grid-container {
@@ -147,7 +319,8 @@
 	<body>
 		<section class="intro">
 			<h1>Welcome to <span>JavaScript 30</span></h1>
-			<p>Explore a collection of JavaScript 30-day coding challenges.</p>
+			<p>Thi sis a 30-day vanilla JS coding challenge by WesBos</p>
+			<p>I solved it with my solution and added a special touch, along with some fixes and improvements</p>
 			<div class="useful-links">
 				<a href="https://github.com/yourusername/js30-exercises" target="_blank" rel="noopener">
 					<i class="fab fa-github"></i>
@@ -164,148 +337,444 @@
 			<!-- Card 1 -->
 			<div class="card">
 				<a href="./01 - JavaScript Drum Kit/index-START.html">
-					<img class="card-gif freezeframe" src="./01 - JavaScript Drum Kit/assets/images/showcase.gif" alt="Exercise 1" />
+					<div class="image-container">
+						<img class="card-gif" loading="lazy" src="./01 - JavaScript Drum Kit/assets/images/showcase.gif" alt="Exercise 1" />
+						<img class="card-img" loading="lazy" src="./01 - JavaScript Drum Kit/assets/images/showcase.png" alt="Exercise 1" />
+						<div class="loading-overlay">
+							<!-- Add a loading spinner or text here -->
+							<svg class="loader" width="30" height="30" viewBox="0 0 30 30">
+								<circle class="circle" cx="15" cy="15" r="12" fill="transparent" stroke="#3498db" stroke-width="4"></circle>
+							</svg>
+						</div>
+					</div>
 					<h2 class="card-title">Exercise 1</h2>
 				</a>
+				<div class="button-wrapper">
+					<button class="btn outline">DETAILS</button>
+					<button class="btn fill">BUY NOW</button>
+				</div>
 			</div>
-			<!-- Add more cards for other exercises -->
-			<!-- Card 2 -->
 			<div class="card">
 				<a href="./02 - JS and CSS Clock/index-START.html">
-					<img class="card-gif freezeframe" src="./02 - JS and CSS Clock/assets/images/showcase.gif" alt="Exercise 2" />
+					<div class="image-container">
+						<img class="card-gif" loading="lazy" src="./02 - JS and CSS Clock/assets/images/showcase.gif" alt="Exercise 2" />
+
+						<img class="card-img" loading="lazy" src="./02 - JS and CSS Clock/assets/images/showcase.png" alt="Exercise 2" />
+						<div class="loading-overlay">
+							<!-- Add a loading spinner or text here -->
+							<svg class="loader" width="30" height="30" viewBox="0 0 30 30">
+								<circle class="circle" cx="15" cy="15" r="12" fill="transparent" stroke="#3498db" stroke-width="4"></circle>
+							</svg>
+						</div>
+					</div>
 					<h2 class="card-title">Exercise 2</h2>
 				</a>
+				<div class="button-wrapper">
+					<button class="btn outline">DETAILS</button>
+					<button class="btn fill">BUY NOW</button>
+				</div>
+			</div>
+			<div class="card">
+				<a href="./03 - CSS Variables/index-START.html">
+					<div class="image-container">
+						<img class="card-gif" loading="lazy" src="./03 - CSS Variables/assets/images/showcase.gif" alt="Exercise 3" />
+
+						<img class="card-img" loading="lazy" src="./03 - CSS Variables/assets/images/showcase.png" alt="Exercise 3" />
+						<div class="loading-overlay">
+							<!-- Add a loading spinner or text here -->
+							<svg class="loader" width="30" height="30" viewBox="0 0 30 30">
+								<circle class="circle" cx="15" cy="15" r="12" fill="transparent" stroke="#3498db" stroke-width="4"></circle>
+							</svg>
+						</div>
+					</div>
+					<h2 class="card-title">Exercise 3</h2>
+				</a>
+				<div class="button-wrapper">
+					<button class="btn outline">DETAILS</button>
+					<button class="btn fill">BUY NOW</button>
+				</div>
 			</div>
 
 			<div class="card">
-				<a href="./03 - CSS Variables/index-START.html">
-					<img class="card-gif freezeframe" src="./03 - CSS Variables/assets/images/showcase.gif" alt="Exercise 3" />
-					<h2 class="card-title">Exercise 3</h2>
-				</a>
-			</div>
-			<div class="card">
 				<a href="./04 - Array Cardio Day 1/index-START.html">
-					<img class="card-gif" src="./04 - Array Cardio Day 1/assets/image/background.png" alt="Exercise 4" />
+					<div class="image-container">
+						<img class="card-img" loading="lazy" src="./04 - Array Cardio Day 1/assets/image/background.png" alt="Exercise 4" />
+						<div class="loading-overlay">
+							<!-- Add a loading spinner or text here -->
+							<svg class="loader" width="30" height="30" viewBox="0 0 30 30">
+								<circle class="circle" cx="15" cy="15" r="12" fill="transparent" stroke="#3498db" stroke-width="4"></circle>
+							</svg>
+						</div>
+					</div>
 					<h2 class="card-title">Exercise 4</h2>
 				</a>
+				<div class="button-wrapper">
+					<button class="btn outline">DETAILS</button>
+					<button class="btn fill">BUY NOW</button>
+				</div>
 			</div>
 			<div class="card">
 				<a href="./05 - Flex Panel Gallery/index-START.html">
-					<img class="card-gif freezeframe" src="./05 - Flex Panel Gallery/assets/images/showcase.gif" alt="Exercise 5" />
+					<div class="image-container">
+						<video class="card-video" src="./05 - Flex Panel Gallery/assets/video/showcase.mp4" alt="Exercise 5" muted></video>
+						<div class="loading-overlay">
+							<!-- Add a loading spinner or text here -->
+							<svg class="loader" width="30" height="30" viewBox="0 0 30 30">
+								<circle class="circle" cx="15" cy="15" r="12" fill="transparent" stroke="#3498db" stroke-width="4"></circle>
+							</svg>
+						</div>
+					</div>
 					<h2 class="card-title">Exercise 5</h2>
 				</a>
+				<div class="button-wrapper">
+					<button class="btn outline">DETAILS</button>
+					<button class="btn fill">BUY NOW</button>
+				</div>
 			</div>
 			<div class="card">
 				<a href="./06 - Type Ahead/index-START.html">
-					<img class="card-gif freezeframe" src="./06 - Type Ahead/assets/images/showcase.gif" alt="Exercise 6" />
+					<div class="image-container">
+						<img class="card-gif" loading="lazy" src="./06 - Type Ahead/assets/images/showcase.gif" alt="Exercise 6" />
+
+						<img class="card-img" loading="lazy" src="./06 - Type Ahead/assets/images/showcase.png" alt="Exercise 6" />
+						<div class="loading-overlay">
+							<!-- Add a loading spinner or text here -->
+							<svg class="loader" width="30" height="30" viewBox="0 0 30 30">
+								<circle class="circle" cx="15" cy="15" r="12" fill="transparent" stroke="#3498db" stroke-width="4"></circle>
+							</svg>
+						</div>
+					</div>
 					<h2 class="card-title">Exercise 6</h2>
 				</a>
+				<div class="button-wrapper">
+					<button class="btn outline">DETAILS</button>
+					<button class="btn fill">BUY NOW</button>
+				</div>
 			</div>
 			<div class="card">
 				<a href="./07 - Array Cardio Day 2/index-START.html">
-					<img class="card-gif" src="./07 - Array Cardio Day 2/assets/image/background.png" alt="Exercise 7" />
+					<div class="image-container">
+						<img class="card-img" loading="lazy" src="./07 - Array Cardio Day 2/assets/image/background.png" alt="Exercise 7" />
+						<div class="loading-overlay">
+							<!-- Add a loading spinner or text here -->
+							<svg class="loader" width="30" height="30" viewBox="0 0 30 30">
+								<circle class="circle" cx="15" cy="15" r="12" fill="transparent" stroke="#3498db" stroke-width="4"></circle>
+							</svg>
+						</div>
+					</div>
 					<h2 class="card-title">Exercise 7</h2>
 				</a>
+				<div class="button-wrapper">
+					<button class="btn outline">DETAILS</button>
+					<button class="btn fill">BUY NOW</button>
+				</div>
 			</div>
 			<div class="card">
 				<a href="./08 - Fun with HTML5 Canvas/index-START.html">
-					<img class="card-gif freezeframe" src="./08 - Fun with HTML5 Canvas/assets/image/showcase.gif" alt="Exercise 8" />
+					<div class="image-container">
+						<img class="card-gif" loading="lazy" src="./08 - Fun with HTML5 Canvas/assets/image/showcase.gif" alt="Exercise 8" />
+						<img class="card-img" loading="lazy" src="./08 - Fun with HTML5 Canvas/assets/image/showcase.png" alt="Exercise 8" />
+						<div class="loading-overlay">
+							<!-- Add a loading spinner or text here -->
+							<svg class="loader" width="30" height="30" viewBox="0 0 30 30">
+								<circle class="circle" cx="15" cy="15" r="12" fill="transparent" stroke="#3498db" stroke-width="4"></circle>
+							</svg>
+						</div>
+					</div>
 					<h2 class="card-title">Exercise 8</h2>
 				</a>
+				<div class="button-wrapper">
+					<button class="btn outline">DETAILS</button>
+					<button class="btn fill">BUY NOW</button>
+				</div>
 			</div>
+
 			<div class="card">
 				<a href="./09 - Dev Tools Domination/index-START.html">
-					<img class="card-gif" src="./09 - Dev Tools Domination/assets/image/background.png" alt="Exercise 9" />
+					<div class="image-container">
+						<img class="card-img" loading="lazy" src="./09 - Dev Tools Domination/assets/image/background.png" alt="Exercise 9" />
+						<div class="loading-overlay">
+							<!-- Add a loading spinner or text here -->
+							<svg class="loader" width="30" height="30" viewBox="0 0 30 30">
+								<circle class="circle" cx="15" cy="15" r="12" fill="transparent" stroke="#3498db" stroke-width="4"></circle>
+							</svg>
+						</div>
+					</div>
 					<h2 class="card-title">Exercise 9</h2>
 				</a>
+				<div class="button-wrapper">
+					<button class="btn outline">DETAILS</button>
+					<button class="btn fill">BUY NOW</button>
+				</div>
 			</div>
+
 			<div class="card">
 				<a href="./10 - Hold Shift and Check Checkboxes/index-START.html">
-					<img class="card-gif freezeframe" src="./10 - Hold Shift and Check Checkboxes/assets/image/showcase.gif" alt="Exercise 10" />
+					<div class="image-container">
+						<img class="card-gif" loading="lazy" src="./10 - Hold Shift and Check Checkboxes/assets/image/showcase.gif" alt="Exercise 10" />
+						<img class="card-img" loading="lazy" src="./10 - Hold Shift and Check Checkboxes/assets/image/showcase.png" alt="Exercise 10" />
+						<div class="loading-overlay">
+							<!-- Add a loading spinner or text here -->
+							<svg class="loader" width="30" height="30" viewBox="0 0 30 30">
+								<circle class="circle" cx="15" cy="15" r="12" fill="transparent" stroke="#3498db" stroke-width="4"></circle>
+							</svg>
+						</div>
+					</div>
 					<h2 class="card-title">Exercise 10</h2>
 				</a>
+				<div class="button-wrapper">
+					<button class="btn outline">DETAILS</button>
+					<button class="btn fill">BUY NOW</button>
+				</div>
 			</div>
+
 			<div class="card">
 				<a href="./11 - Custom Video Player/index.html">
-					<video class="card-gif" src="./11 - Custom Video Player/assets/video/showcase.mp4" alt="Exercise 11" muted ></video>
+					<div class="image-container">
+						<video class="card-video" src="./11 - Custom Video Player/assets/video/showcase.mp4" alt="Exercise 11" muted></video>
+						<div class="loading-overlay">
+							<!-- Add a loading spinner or text here -->
+							<svg class="loader" width="30" height="30" viewBox="0 0 30 30">
+								<circle class="circle" cx="15" cy="15" r="12" fill="transparent" stroke="#3498db" stroke-width="4"></circle>
+							</svg>
+						</div>
+					</div>
 					<h2 class="card-title">Exercise 11</h2>
 				</a>
+				<div class="button-wrapper">
+					<button class="btn outline">DETAILS</button>
+					<button class="btn fill">BUY NOW</button>
+				</div>
 			</div>
+
 			<div class="card">
 				<a href="./12 - Key Sequence Detection/index-START.html">
-					<img class="card-gif freezeframe" src="./12 - Key Sequence Detection/assets/image/showcase.gif" alt="Exercise 12" />
+					<div class="image-container">
+						<img class="card-gif" loading="lazy" src="./12 - Key Sequence Detection/assets/image/showcase.gif" alt="Exercise 12" />
+						<img class="card-img" loading="lazy" src="./12 - Key Sequence Detection/assets/image/showcase.png" alt="Exercise 12" />
+						<div class="loading-overlay">
+							<!-- Add a loading spinner or text here -->
+							<svg class="loader" width="30" height="30" viewBox="0 0 30 30">
+								<circle class="circle" cx="15" cy="15" r="12" fill="transparent" stroke="#3498db" stroke-width="4"></circle>
+							</svg>
+						</div>
+					</div>
 					<h2 class="card-title">Exercise 12</h2>
 				</a>
+				<div class="button-wrapper">
+					<button class="btn outline">DETAILS</button>
+					<button class="btn fill">BUY NOW</button>
+				</div>
 			</div>
+
 			<div class="card">
 				<a href="./13 - Slide in on Scroll/index-START.html">
-					<video class="card-gif" src="./13 - Slide in on Scroll/assets/video/showcase.mp4" alt="Exercise 13" muted ></video>
+					<div class="image-container">
+						<video class="card-video" src="/13 - Slide in on Scroll/assets/video/showcase.mp4" alt="Exercise 13" muted></video>
+						<div class="loading-overlay">
+							<!-- Add a loading spinner or text here -->
+							<svg class="loader" width="30" height="30" viewBox="0 0 30 30">
+								<circle class="circle" cx="15" cy="15" r="12" fill="transparent" stroke="#3498db" stroke-width="4"></circle>
+							</svg>
+						</div>
+					</div>
 					<h2 class="card-title">Exercise 13</h2>
 				</a>
+				<div class="button-wrapper">
+					<button class="btn outline">DETAILS</button>
+					<button class="btn fill">BUY NOW</button>
+				</div>
 			</div>
+
 			<div class="card">
 				<a href="./14 - JavaScript References VS Copying/index-START.html">
-					<img class="card-gif" src="./14 - JavaScript References VS Copying/assets/image/background.png" alt="Exercise 14" />
+					<div class="image-container">
+						<img class="card-img" loading="lazy" src="./14 - JavaScript References VS Copying/assets/image/background.png" alt="Exercise 14" />
+						<div class="loading-overlay">
+							<!-- Add a loading spinner or text here -->
+							<svg class="loader" width="30" height="30" viewBox="0 0 30 30">
+								<circle class="circle" cx="15" cy="15" r="12" fill="transparent" stroke="#3498db" stroke-width="4"></circle>
+							</svg>
+						</div>
+					</div>
 					<h2 class="card-title">Exercise 14</h2>
 				</a>
+				<div class="button-wrapper">
+					<button class="btn outline">DETAILS</button>
+					<button class="btn fill">BUY NOW</button>
+				</div>
 			</div>
 			<div class="card">
 				<a href="./15 - LocalStorage/index-START.html">
-					<img class="card-gif freezeframe" src="./15 - LocalStorage/assets/image/showcase.gif" alt="Exercise 15" />
+					<div class="image-container">
+						<img class="card-gif" loading="lazy" src="./15 - LocalStorage/assets/image/showcase.gif" alt="Exercise 15" />
+						<img class="card-img" loading="lazy" src="./15 - LocalStorage/assets/image/showcase.png" alt="Exercise 15" />
+						<div class="loading-overlay">
+							<!-- Add a loading spinner or text here -->
+							<svg class="loader" width="30" height="30" viewBox="0 0 30 30">
+								<circle class="circle" cx="15" cy="15" r="12" fill="transparent" stroke="#3498db" stroke-width="4"></circle>
+							</svg>
+						</div>
+					</div>
 					<h2 class="card-title">Exercise 15</h2>
 				</a>
+				<div class="button-wrapper">
+					<button class="btn outline">DETAILS</button>
+					<button class="btn fill">BUY NOW</button>
+				</div>
 			</div>
+
 			<div class="card">
 				<a href="./16 - Mouse Move Shadow/index-START.html">
-					<video class="card-gif" src="./16 - Mouse Move Shadow/assets/video/showcase.mp4" alt="Exercise 16" muted ></video>
+					<div class="image-container">
+						<video class="card-video" src="./16 - Mouse Move Shadow/assets/video/showcase.mp4" alt="Exercise 16" muted></video>
+						<div class="loading-overlay">
+							<!-- Add a loading spinner or text here -->
+							<svg class="loader" width="30" height="30" viewBox="0 0 30 30">
+								<circle class="circle" cx="15" cy="15" r="12" fill="transparent" stroke="#3498db" stroke-width="4"></circle>
+							</svg>
+						</div>
+					</div>
 					<h2 class="card-title">Exercise 16</h2>
 				</a>
+				<div class="button-wrapper">
+					<button class="btn outline">DETAILS</button>
+					<button class="btn fill">BUY NOW</button>
+				</div>
 			</div>
+
 			<div class="card">
 				<a href="./17 - Sort Without Articles/index-START.html">
-					<img class="card-gif" src="./17 - Sort Without Articles/assets/image/showcase.jpg" alt="Exercise 17" />
+					<div class="image-container">
+						<img class="card-img" loading="lazy" src="./17 - Sort Without Articles/assets/image/showcase.jpg" alt="Exercise 17" />
+						<div class="loading-overlay">
+							<!-- Add a loading spinner or text here -->
+							<svg class="loader" width="30" height="30" viewBox="0 0 30 30">
+								<circle class="circle" cx="15" cy="15" r="12" fill="transparent" stroke="#3498db" stroke-width="4"></circle>
+							</svg>
+						</div>
+					</div>
 					<h2 class="card-title">Exercise 17</h2>
 				</a>
+				<div class="button-wrapper">
+					<button class="btn outline">DETAILS</button>
+					<button class="btn fill">BUY NOW</button>
+				</div>
 			</div>
 			<div class="card">
 				<a href="./18 - Adding Up Times with Reduce/index-START.html">
-					<img class="card-gif" src="./18 - Adding Up Times with Reduce/assets/image/background.png" alt="Exercise 18" />
+					<div class="image-container">
+						<img class="card-img" loading="lazy" src="./18 - Adding Up Times with Reduce/assets/image/background.png" alt="Exercise 18" />
+						<div class="loading-overlay">
+							<!-- Add a loading spinner or text here -->
+							<svg class="loader" width="30" height="30" viewBox="0 0 30 30">
+								<circle class="circle" cx="15" cy="15" r="12" fill="transparent" stroke="#3498db" stroke-width="4"></circle>
+							</svg>
+						</div>
+					</div>
 					<h2 class="card-title">Exercise 18</h2>
 				</a>
+				<div class="button-wrapper">
+					<button class="btn outline">DETAILS</button>
+					<button class="btn fill">BUY NOW</button>
+				</div>
 			</div>
 			<div class="card">
 				<a href="./19 - Webcam Fun/index.html">
-					<img class="card-gif" src="./19 - Webcam Fun/assets/images/showcase.png" alt="Exercise 19" />
+					<div class="image-container">
+						<img class="card-img" loading="lazy" src="./19 - Webcam Fun/assets/images/showcase.png" alt="Exercise 19" />
+						<div class="loading-overlay">
+							<!-- Add a loading spinner or text here -->
+							<svg class="loader" width="30" height="30" viewBox="0 0 30 30">
+								<circle class="circle" cx="15" cy="15" r="12" fill="transparent" stroke="#3498db" stroke-width="4"></circle>
+							</svg>
+						</div>
+					</div>
 					<h2 class="card-title">Exercise 19</h2>
 				</a>
+				<div class="button-wrapper">
+					<button class="btn outline">DETAILS</button>
+					<button class="btn fill">BUY NOW</button>
+				</div>
 			</div>
 			<div class="card">
 				<a href="./20 - Speech Detection/index-START.html">
-					<img class="card-gif freezeframe" src="./20 - Speech Detection/assets/images/showcase.gif" alt="Exercise 20" />
+					<div class="image-container">
+						<img class="card-gif" loading="lazy" src="./20 - Speech Detection/assets/images/showcase.gif" alt="Exercise 20" />
+						<img class="card-img" loading="lazy" src="./20 - Speech Detection/assets/images/showcase.png" alt="Exercise 20" />
+						<div class="loading-overlay">
+							<!-- Add a loading spinner or text here -->
+							<svg class="loader" width="30" height="30" viewBox="0 0 30 30">
+								<circle class="circle" cx="15" cy="15" r="12" fill="transparent" stroke="#3498db" stroke-width="4"></circle>
+							</svg>
+						</div>
+					</div>
 					<h2 class="card-title">Exercise 20</h2>
 				</a>
+				<div class="button-wrapper">
+					<button class="btn outline">DETAILS</button>
+					<button class="btn fill">BUY NOW</button>
+				</div>
 			</div>
 			<div class="card">
 				<a href="./21 - Geolocation/index-START.html">
-					<img class="card-gif" src="./21 - Geolocation/assets/images/showcase.png" alt="Exercise 21" />
+					<div class="image-container">
+						<img class="card-img" loading="lazy" src="./21 - Geolocation/assets/images/showcase.png" alt="Exercise 21" />
+						<div class="loading-overlay">
+							<!-- Add a loading spinner or text here -->
+							<svg class="loader" width="30" height="30" viewBox="0 0 30 30">
+								<circle class="circle" cx="15" cy="15" r="12" fill="transparent" stroke="#3498db" stroke-width="4"></circle>
+							</svg>
+						</div>
+					</div>
 					<h2 class="card-title">Exercise 21</h2>
 				</a>
+				<div class="button-wrapper">
+					<button class="btn outline">DETAILS</button>
+					<button class="btn fill">BUY NOW</button>
+				</div>
 			</div>
 			<div class="card">
 				<a href="./22 - Follow Along Link Highlighter/index-START.html">
-					<img class="card-gif freezeframe" src="./22 - Follow Along Link Highlighter/assets/image/showcase.gif" alt="Exercise 22" />
+					<div class="image-container">
+						<img class="card-gif" loading="lazy" src="./22 - Follow Along Link Highlighter/assets/image/showcase.gif" alt="Exercise 22" />
+						<img class="card-img" loading="lazy" src="./22 - Follow Along Link Highlighter/assets/image/showcase.png" alt="Exercise 22" />
+						<div class="loading-overlay">
+							<!-- Add a loading spinner or text here -->
+							<svg class="loader" width="30" height="30" viewBox="0 0 30 30">
+								<circle class="circle" cx="15" cy="15" r="12" fill="transparent" stroke="#3498db" stroke-width="4"></circle>
+							</svg>
+						</div>
+					</div>
 					<h2 class="card-title">Exercise 22</h2>
 				</a>
+				<div class="button-wrapper">
+					<button class="btn outline">DETAILS</button>
+					<button class="btn fill">BUY NOW</button>
+				</div>
 			</div>
 			<div class="card">
 				<a href="./23 - Speech Synthesis/index-START.html">
-					<img class="card-gif" src="./23 - Speech Synthesis/assets/image/showcase.png" alt="Exercise 23" />
+					<div class="image-container">
+						<img class="card-img" loading="lazy" src="./23 - Speech Synthesis/assets/image/showcase.png" alt="Exercise 23" />
+						<div class="loading-overlay">
+							<!-- Add a loading spinner or text here -->
+							<svg class="loader" width="30" height="30" viewBox="0 0 30 30">
+								<circle class="circle" cx="15" cy="15" r="12" fill="transparent" stroke="#3498db" stroke-width="4"></circle>
+							</svg>
+						</div>
+					</div>
 					<h2 class="card-title">Exercise 23</h2>
 				</a>
+				<div class="button-wrapper">
+					<button class="btn outline">DETAILS</button>
+					<button class="btn fill">BUY NOW</button>
+				</div>
 			</div>
+
 			<div class="card">
 				<a href="./24 - Sticky Nav/index-START.html">
-					<video class="card-gif" src="./24 - Sticky Nav/assets/video/showcase.mp4" alt="Exercise 24" muted ></video>
+					<video class="card-gif" src="./24 - Sticky Nav/assets/video/showcase.mp4" alt="Exercise 24" muted></video>
 					<h2 class="card-title">Exercise 24</h2>
 				</a>
 			</div>
@@ -329,7 +798,7 @@
 			</div>
 			<div class="card">
 				<a href="./28 - Video Speed Controller/index-START.html">
-					<video class="card-gif" src="./28 - Video Speed Controller/assets/video/showcase.mp4" alt="Exercise 28" muted ></video>
+					<video class="card-gif" src="./28 - Video Speed Controller/assets/video/showcase.mp4" alt="Exercise 28" muted></video>
 					<h2 class="card-title">Exercise 28</h2>
 				</a>
 			</div>
@@ -341,26 +810,73 @@
 			</div>
 			<div class="card">
 				<a href="./30 - Whack A Mole/index-START.html">
-					<video class="card-gif" src="./30 - Whack A Mole/assets/video/showcase.mp4" alt="Exercise 30" muted ></video>
+					<video class="card-gif" src="./30 - Whack A Mole/assets/video/showcase.mp4" alt="Exercise 30" muted></video>
 					<h2 class="card-title">Exercise 30</h2>
 				</a>
 			</div>
 		</div>
+		<footer>Made With 🍧 By <a href="https://github.com/issam-seghir">IsDev</a></footer>
 		<!-- freezeframe.js : animated .gifs and enables them to animate on mouse hover / mouse click / touch event, -->
 		<script src="https://unpkg.com/freezeframe/dist/freezeframe.min.js"></script>
 		<script>
 			new Freezeframe();
-			const videos = document.querySelectorAll(".card video");
-			console.log(videos);
-			function playVideo() {
-				this.play();
-			}
-			function stopVideo() {
-				this.currentTime = 0;
-				this.pause();
-			}
-			videos.forEach((video) => video.addEventListener("mouseenter", playVideo));
-			videos.forEach((video) => video.addEventListener("mouseleave", stopVideo));
+			// const videos = document.querySelectorAll(".card video");
+			// console.log(videos);
+			// function playVideo() {
+			// 	console.log(this);
+			// }
+			// function stopVideo() {
+
+			// }
+			// videos.forEach((video) => video.addEventListener("mouseenter", playVideo));
+			// videos.forEach((video) => video.addEventListener("mouseleave", stopVideo));
+
+			// Select all card elements
+			const cards = document.querySelectorAll(".card");
+
+			// Loop through each card
+			cards.forEach((card) => {
+				const cardGif = card.querySelector(".card-gif");
+				const cardImg = card.querySelector(".card-img");
+				const cardVideo = card.querySelector(".card-video");
+				const loadingOverlay = card.querySelector(".loading-overlay");
+
+				if (cardGif && cardImg) {
+					// Handle hovering over the card
+					card.addEventListener("mouseenter", () => {
+						cardImg.style.opacity = "0"; // Hide the Img
+						cardGif.style.opacity = "1"; // Show the GIF
+						setTimeout(() => {
+							cardGif.style.display = "block";
+							cardImg.style.display = "none";
+						}, 300);
+						loadingOverlay.style.display = "none"; // Hide the loader
+					});
+
+					// Handle mouseout (if you want to hide the GIF when not hovering)
+					card.addEventListener("mouseleave", () => {
+						cardGif.style.opacity = "0"; // Hide the GIF
+						cardImg.style.opacity = "1"; // Show the Img
+
+						setTimeout(() => {
+							cardGif.style.display = "none";
+							cardImg.style.display = "block";
+						}, 300);
+					});
+				} else if (cardVideo) {
+					card.addEventListener("mouseenter", () => {
+						cardVideo.style.opacity = "0";
+						setTimeout(() => {
+							cardVideo.style.opacity = "1";
+						}, 300);
+						cardVideo.play();
+					});
+					card.addEventListener("mouseleave", () => {
+						cardVideo.currentTime = 0;
+						cardVideo.pause();
+					});
+				}
+			});
 		</script>
 	</body>
 </html>

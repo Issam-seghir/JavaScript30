@@ -8,10 +8,7 @@
 	</head>
 
 	<body>
-		<div class="status-badge">
-			<div class="triangle"></div>
-			<span class="status-text">Online</span>
-		</div>
+
 
 		<form class="search-form">
 			<input type="text" class="search" placeholder="City or State" />
@@ -45,35 +42,9 @@
 			// An array to store cities data and URL to fetch data from
 			const citiesData = [];
 			// Use the local JSON file path for offline access
-			let url = navigator.onLine ? "https://gist.githubusercontent.com/Miserlou/c5cd8364bf9b2420bb29/raw/2bf258763cdddd704f8ffd3ea9a3e81d25e2c6f6/cities.json" : "data/cities.json";
-
-			// User has come online, re-fetch data from GitHub
-			window.addEventListener("online", () => {
-				if (navigator.onLine) {
-					url = "https://gist.githubusercontent.com/Miserlou/c5cd8364bf9b2420bb29/raw/2bf258763cdddd704f8ffd3ea9a3e81d25e2c6f6/cities.json";
-				}
-			});
-			// Function to update the status badge based on online/offline state
-			function updateStatusBadge() {
-				const statusBadge = document.querySelector(".status-badge");
-				const statusText = document.querySelector(".status-text");
-
-				if (navigator.onLine) {
-					statusBadge.style.backgroundColor = "#007acc"; // Online state
-					statusText.textContent = "Online";
-				} else {
-					statusBadge.style.backgroundColor = "red"; // Offline state
-					statusText.textContent = "Offline";
-				}
-			}
-
-			// Initial update of the status badge
-			updateStatusBadge();
-
-			// Event listener to update the badge when the online/offline status changes
-			window.addEventListener("online", updateStatusBadge);
-			window.addEventListener("offline", updateStatusBadge);
-
+			let url ="https://gist.githubusercontent.com/Miserlou/c5cd8364bf9b2420bb29/raw/2bf258763cdddd704f8ffd3ea9a3e81d25e2c6f6/cities.json"
+			// for offline accus
+			//  url = "data/cities.json";
 
 			// copy fetched data into the global var citiesData
 			async function getData() {

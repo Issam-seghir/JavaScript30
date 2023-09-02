@@ -125,32 +125,3 @@ span.population {
 	border-radius: 0.25rem;
 }
 
-/* Style for the status badge */
-.status-badge {
-  position: absolute;
-  top: 10px;
-  left: 10px;
-  background-color: rgb(244 114 182); /* Background color for online state */
-  color: white;
-  padding: 5px 10px;
-  border-radius: 0 0 5px 0;
-  display: flex;
-  align-items: center;
-  font-weight: bold;
-  z-index: 9999;
-}
-
-/* Style for the triangle shape */
-.triangle {
-  width: 0;
-  height: 0;
-  border-left: 8px solid transparent; /* Adjust the size as needed */
-  border-right: 8px solid transparent; /* Adjust the size as needed */
-  border-bottom: 12px solid rgb(255, 197, 227); /* Match the background color */
-  margin-right: 5px;
-}
-
-/* Style for the status text (Online/Offline) */
-.status-text {
-  font-size: 14px;
-}

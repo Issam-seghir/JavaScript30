@@ -1,78 +1,219 @@
-﻿![](https://javascript30.com/images/JS3-social-share.png)
 
-# JavaScript30
+<div align="center">
 
-Starter Files + Completed solutions for the JavaScript 30 Day Challenge.
+<h1 align="center" > JavaScript 30</h1>
 
-Grab the course at [https://JavaScript30.com](https://JavaScript30.com)
+![cntr](https://img.shields.io/github/contributors/Issam-seghir/JavaScript30?color=pink&style=for-the-badge)
+![pullreQ](https://img.shields.io/github/issues-pr/Issam-seghir/JavaScript30?color=orange&style=for-the-badge)
+![comt](https://img.shields.io/github/last-commit/Issam-seghir/JavaScript30?style=for-the-badge)
+[![MIT License](https://img.shields.io/badge/License-MIT-green.svg?style=for-the-badge)](https://choosealicense.com/licenses/mit/)
 
-## Community #JavaScript30 Content
+![frk](https://img.shields.io/github/forks/Issam-seghir/JavaScript30?style=flat-square)
+![str](https://img.shields.io/github/stars/Issam-seghir/JavaScript30?style=flat-square)
+![deploy](https://img.shields.io/website?down_color=red&down_message=down&style=flat-square&up_color=succes&up_message=up&url=https%3A%2F%2Fissam-seghir.github.io%2FJavaScript30%2F)
 
-Feel free to submit a PR adding a link to your own recaps, guides or reviews!
+  <p align="center">
+This project is a my own recaps of [Wes Bos's JavaScript 30](https://javascript30.com/) course. It includes all the challenges and exercises from the original course, along with some additional features and improvements.
 
-* [Arjun Khode’s blog](http://thesagittariusme.blogspot.com/search/label/JS30) about summaries for each day, including fixed glitches, bugs and extra features.
-* [Nitish Dayal's Text Guides](https://github.com/nitishdayal/JavaScript30) are great for those who like reading over watching.
-* [Thorsten Frommen](https://tfrommen.de/tag/javascript-30/) shares how he solved the exercises before viewing the answers.
-* [Soyaine 写的中文指南](https://github.com/soyaine/JavaScript30)包含了过程记录和难点解释
-* [乔木 录制的讲解视频](https://b23.tv/pSa7rdu) 看中文讲解视频一起学习 Javascript30 吧! Javascript30 中 CSS/JS/HTML 视频讲解
-* [Ayo Isaiah's](https://freshman.tech/archive/#javascript30) Recaps and Lessons Learned.
-* [Adriana Rios](https://stpcollabr8nlstn.github.io/JavaScript30/) shares her alternative solutions.
-* [Michael Einsohn](http://30daysofjs.michaeleinsohn.com) publishes each challenge after watching the video once.
-* [Mike Ekkel](https://medium.com/@mike_ekkel/javascript-30-a-30-day-vanilla-js-challenge-6a733fc9f62c#.9frjtaje9)
-* [Yusef Habib](https://github.com/yhabib/JavaScript30) lessons and tricks learned, and a [gh-page](https://yhabib.github.io/JavaScript30/) to see working all the mini-projects.
-* [Amelie Yeh](https://github.com/amelieyeh/JS30) 30 lessons notes with things I've learned, and those important recaps. and directly view my demos [here](https://amelieyeh.github.io/JS30/) 🇹🇼😄
-* [Winar](https://github.com/winar-jin/JavaScript30-Challenge)的JavaScript30天挑战，记录练习过程，重难点和其他的解决方案。🎨
-* [Rayhatron](https://rayhatron.github.io/blog/) - walkthroughs, recaps and lessons learned.
-* [Andrei Dobra](https://github.com/andreidbr/JS30) Full repo with lessons learned and a [gh-page](https://andreidbr.github.io/JS30/) with all the exercises.
-* [从零到壹全栈部落](https://github.com/liyuechun/JavaScript30-liyuechun),春哥发起的从零到壹全栈部落，旨在带领大家一起学习，一起输出，文档化，代码化，中文视频化，全栈部落口号：输出是最好的学习方式。
-* [Usmaan Ali's](https://github.com/usyyy/javascript/blob/master/JavaScript30/analysis.md) summary of the technical skills learned from each project. He's also posting them as separate blog posts [here](https://medium.com/@usyyy).
-* [Axel](https://github.com/afuh/js30)'s lessons learned and a [showcase](https://afuh.github.io/js30/) with the projects.
-* [Chris](https://github.com/dwatow/JavaScript30) 中文實戰，目標描述、過程紀錄。
-* [Muhammad D. Ramadhan's](https://miayam.github.io) blog. He shamlesly mixed his personal life with 30 day JavaScript challenge so as to increase his learning retention. He also summarised the challenge on [one single page](https://miayam.github.io/js30). Do not read his blog!
-* [Lee Keitel's Blog](https://blog.keitel.xyz/categories/javascript30/) includes summaries of each lesson, what I learned from each one, and my thoughts about the topic taught and using them in the future.
-* [Dustin Hsiao](https://github.com/dustinhsiao21/Javascript30-dustin) 包含了各篇介紹、 效果Demo、各篇詳解及記錄過程，附上部分延伸閱讀及[gh-page](https://dustinhsiao21.github.io/Javascript30-dustin/)。
-* [GuaHsu](https://github.com/guahsu/JavaScript30) - 紀錄各篇練習過程與心得，並嘗試擴充部分練習，也做了一個包含全部練習的[介紹站](http://guahsu.io/JavaScript30/)🇹🇼
-* [Daniela](https://github.com/misslild)'s completed challenges on [GitHub Pages](https://misslild.github.io/WesBos-30day-Coding-challenge/) and [Codepen].(https://codepen.io/collection/DapZeP/) :raised_hands: :muscle: :+1:
-* [Dmitrii Pashutskii's](https://github.com/guar47) code of all challenges on [GitHub with Pages](https://github.com/guar47/javascript30Summary) and review [blog posts](https://blog.dpashutskii.com/tag/javascript30/).
-* [Abid Hasan's](https://github.com/sabidhasan/javascript-30) completion of all challenges. This was awesome!! Learned so much! :+1:
-* [Yusong Notes](https://sky172839465.github.io/course/js30) Records Yusong JS 30 days note and demo. :star2:
-* [Ding's Implementation](https://github.com/Ding-Fan/javascript30) code and online demo.
-* [Herminio Torres](https://github.com/herminiotorres/JavaScript30) lessons and tricks learned, and a [gh-page](https://herminiotorres.github.io/JavaScript30/) to see working all the mini-projects.
-* [Dmytro Borysovskyi](https://github.com/dimabory) says many thanks to for the course to Wes 🤝 It was incredible challenge 👌 The full repository with code available [here](https://github.com/dimabory/dimabory.github.io/tree/gh-pages/src/components/JavaScript30Days) and demos can be reached by the link to [gh-pages](https://dimabory.github.io/#/js30days).👍👍👍
-* [Kizito](https://github.com/akhilome/)'s follow along [repo](https://github.com/akhilome/js30) with [completed challenges](https://akhilome.github.io/js30) and [notes](https://akhilome.github.io/js30/notes).
-* [VannTile](https://github.com/vanntile)'s [repository](https://github.com/vanntile/JavaScript30) and [GitHub Pages showcase](https://vanntile.github.io/JavaScript30/). Thank you for a great ⌨️ experience.
-* [Alex Kim](https://github.com/Alex-K1m/js30-challenge) completed all the challenges. You can check them out at [github pages](https://alex-k1m.github.io/js30-challenge/).
-* [Mikhail Thomas](https://github.com/seckela) created [JS30++](https://github.com/seckela/js30plusplus) to add another level of challenge ontop of this already great course.
-* [Ramon Morcillo](https://github.com/reymon359/JavaScript30) finished this awesome challenge!. You can see the showcase of his implementations on [this link](https://reymon359.github.io/JavaScript30/).
-* [Santiago Escobar](https://github.com/sescobar99)'s [repository](https://github.com/sescobar99/javascript30-challenge) and [GitHub Pages showcase](https://sescobar99.github.io/javascript30-challenge/).
-* [Harry Xie](https://github.com/a90100/JavaScript30) 紀錄 30 天的練習筆記在 [此連結](https://github.com/a90100/JavaScript30).
-* [ Van Ribeiro's ](https://vanribeiro-30daysofjavascript.netlify.app/) about demos and recaps. On [GitHub Repo](https://github.com/vanribeiro/30days-Of-JavaScript) there's a summary about what was learned and researched.
-* [Mugilan](https://github.com/Mugilan-Codes) is currently doing this challenge. Check out his [Repo](https://github.com/Mugilan-Codes/javascript-30) and the [Live Demo](https://mugilan-codes.github.io/javascript-30/).
-* [Eshan Vohra](https://github.com/eshanvohra) is currently doing this challenge. Check out my repo [here](https://github.com/eshanvohra/JavaScript30).
-* [RegusAl](https://github.com/RegusAl) is currently doing this challenge. Check out my repo [here](https://github.com/RegusAl/JavaScript30).
-* [Ayush Gupta's](https://javascript30.ayushgupta.tech/) implementation of JavaScript30 challenge with some add-ons & updated design.
-* [filipkowal](https://github.com/filipkowal/JS30-05-Flex-Panels-Deactivate) Fix to flex panels (5th  day) so the panels deactivate when clicked on another one.
-* [Mo. Saif's](https://github.com/MoSaif00)note on lessons learned and a [gh-pages showcase](https://mosaif00.github.io/30-Days-JavaScript-Challenge/) for the projects.
-* [Stiaannel's](https://stiaannel.co.za/my-projects/javascript30) implementation of the Javascript30 challenge, with small design changes and a couple of extra features.
-* [Kelly CHI's](https://kellychi22.github.io/JavaScript30/) complete JavaScript30 challenges! Click the links to check demos and notes of each challenge. 🇹🇼 🌟
+Participating in and completing 30 day [Vanilla JS challenge (#JavaScript30)](https://javascript30.com/) by [WesBos](https://wesbos.com/).
 
-## Alternative Implementations
-Here are some links of people who have done the tutorials, but in a different language or framework:
+I added my own distinctive touch and Style
 
-* [Thomas Mattacchione](https://github.com/tkjone/clojurescript-30) JavaScript 30 written in ClojureScript.
-* [Dave Follett's](https://github.com/davefollett) blog series, [A New Vue on #JavaScript30](https://davefollett.io/categories/a-new-vue-on-javascript30/), where he explores re-implementing #JavaScript30 projects using [Vue](https://vuejs.org).
-* [Akinjide Bankole](https://github.com/akinjide/JS30days) used Node.js with [Jade](http://jadelang.net) to solve the exercises.
-* [Adrien Poly](https://github.com/adrienpoly/javascript30-stimulus) a modest attempt to convert Drum Kit, Video Player, Local Tapas, TypeHead to [Stimulus JS](https://stimulusjs.org/) framework in a Rails App.
-* [Bogdan Lazar](https://github.com/tricinel/TypeScript30) all the JavaScript 30 written in [TypeScript](https://www.typescriptlang.org/).
-* [Will Wager](https://github.com/wwags33/JavaScript30) another [TypeScript](https://www.typescriptlang.org/) implementation!
-* [marcoSven](https://github.com/marcoSven) solution suggestion for [10 - Hold Shift and Check Checkboxes](https://github.com/marcoSven/JavaScript30/blob/master/10%20-%20Hold%20Shift%20and%20Check%20Checkboxes/index-FINISHED.html).
-* [ALMaclaine](https://github.com/almaclaine) Javascript 30 written in [Dart 2.0](https://github.com/ALMaclaine/Dart30).
-* [Connie Leung](https://github.com/railsstudent) Javascript 30 written in [Angular and RxJS](https://github.com/railsstudent/ng-rxjs-30).
+If you appreciate it, please consider giving it a star ⭐
+ <br />
+    <a href="https://github.com/othneildrew/Best-README-Template"><strong>Read the Notes »</strong></a>
+    <br />
+    <br />
+    <a href="https://issam-seghir.github.io/JavaScript30/">View Demo</a>
+    .
+    <a href="https://github.com/Issam-seghir/JavaScript30/issues">Report Bug</a>
+    .
+    <a href="https://github.com/Issam-seghir/JavaScript30/issues">Request Feature</a>
+  </p>
 
-## A note on Pull Requests
+<br>
+</div>
+<!-- TABLE OF CONTENTS -->
+<details>
+  <summary>Table of Contents</summary>
+  <ol>
+    <li>
+      <a href="#about-the-project">About The Project</a>
+      <ul>
+        <li><a href="#built-with">Built With</a></li>
+      </ul>
+    </li>
+    <li>
+      <a href="#getting-started">Getting Started</a>
+      <ul>
+        <li><a href="#prerequisites">Prerequisites</a></li>
+        <li><a href="#installation">Installation</a></li>
+      </ul>
+    </li>
+    <li><a href="#usage">Usage</a></li>
+    <li><a href="#roadmap">Roadmap</a></li>
+    <li><a href="#contributing">Contributing</a></li>
+    <li><a href="#license">License</a></li>
+    <li><a href="#contact">Contact</a></li>
+    <li><a href="#acknowledgments">Acknowledgments</a></li>
+  </ol>
+</details>
+<hr>
 
-These are meant to be 1:1 copies of what is done in the video. If you found a better / different way to do things, great, but I will be keeping them the same as the videos.
+<!-- ![link](https://i.imgur.com/8qQeqSJ.gif) -->
+![link](./assets/mockup/mockup.png)
 
-The starter files + solutions will be updated if/when the videos are updated.
+## Key Features
+- different style and different solution
+- some enchncments and improve perfermence
+- fix some issues with style and js code
+- use mddern technique like observe intersaction
+<!-- GETTING STARTED -->
+## Getting Started
 
-Thanks!
+This is an example of how you may give instructions on setting up your project locally.
+To get a local copy up and running follow these simple example steps.
+
+### Prerequisites
+
+This is an example of how to list things you need to use the software and how to install them.
+
+* npm
+
+  ```sh
+  npm install npm@latest -g
+  ```
+
+### Installation
+
+_Below is an example of how you can instruct your audience on installing and setting up your app. This template doesn't rely on any external dependencies or services._
+
+1. Get a free API Key at [https://example.com](https://example.com)
+2. Clone the repo
+
+   ```sh
+   git clone https://github.com/your_username_/Project-Name.git
+   ```
+
+3. Install NPM packages
+
+   ```sh
+   npm install
+   ```
+
+4. Enter your API in `config.js`
+
+   ```js
+   const API_KEY = 'ENTER YOUR API';
+   ```
+
+```bash
+# Clone this repository
+
+$ git clone <https://github.com/amitmerchant1990/electron-markdownify>
+
+# Go into the repository
+
+$ cd electron-markdownify
+
+# Install dependencies
+
+$ npm install
+
+# Run the app
+
+$ npm start
+```
+
+<p align="right">(<a href="#readme-top">back to top</a>)</p>
+
+
+## Resoursos
+
+- ✨ Tools
+  - [websemantics : fluid typo/space generator](https://websemantics.uk/tools/responsive-font-calculator/)
+  - [Utopia : another fluid typo/space generator](https://utopia.fyi/grid/calculator/)
+  - [modern reset css](https://github.com/Andy-set-studio/modern-css-reset/blob/master/dist/reset.css)
+  - [Free svg background generator (1)](https://bgjar.com/)
+  - [Free svg background generator (2)](https://www.svgbackgrounds.com/)
+  - [Free svg illustration](https://freesvgillustration.com/)
+  - [svg wave generator](https://www.softr.io/tools/svg-wave-generator)
+  - [logo ai generator](https://logo.com/logos/artificial-intelligence)
+
+- 📑Articles
+
+  - [Styling And Animating Svg With Css (smashingmagazine )](https://www.smashingmagazine.com/2014/11/styling-and-animating-svgs-with-css/)
+  - [Animate SVG Path Changes in CSS (css tricks)](https://css-tricks.com/animate-svg-path-changes-in-css/)
+  - [How to animate SVG with CSS (Log Rocket)](https://blog.logrocket.com/how-to-animate-svg-css-tutorial-examples/)
+
+- 💻 Turtorials
+  - [elzero youtube channel](https://www.youtube.com/playlist?list=PLDoPjvoNmBAzHSjcR-HnW9tnxyuye8KbF)
+  - [elszero web school](https://elzero.org/practical-html-css/)
+
+- 🎨 Design
+
+  - [Kasper template psd](https://www.graphberry.com/item/kasper-one-page-creative-html-theme)
+
+## Usage
+
+You can **install** or (**fork** + **clone**) this repository to your local machine by following these steps:
+> **optional** : install the recommanded extenison in : [.vscode/extensions.json](.vscode/extensions.json)
+
+### Option 1: Install the ZIP file
+
+1. Click on the green **"Code"** button at the top of the repository.
+1. Click on **"Download ZIP"** to download the repository as a ZIP file.
+1. Extract the ZIP file to a location of your choice on your computer.
+
+### Option 2: Fork + Clone the repository
+
+1. Click on the **fork**  button at the top of the repository.
+1. Open your **terminal** or **command** **prompt**.
+1. Navigate to the **directory** where you want to **clone** the repository.
+1. **Run** the following command:
+
+```bash
+git clone <https://github.com/your-username/your-repo.git>
+```
+
+Replace **your-username** with your GitHub username and **your-repo** with the name of the repository.
+
+### Option 3: Use the website
+
+ is cooking 🍜 ...
+
+<br>
+<hr>
+
+<!-- CONTRIBUTING -->
+## Contributing
+
+Contributions are what make the open source community such an amazing place to learn, inspire, and create. Any contributions you make are **greatly appreciated**.
+
+If you have a suggestion that would make this better, please fork the repo and create a pull request. You can also simply open an issue with the tag "enhancement".
+Don't forget to give the project a star! Thanks again!
+
+1. Fork the Project
+2. Create your Feature Branch (`git checkout -b feature/AmazingFeature`)
+3. Commit your Changes (`git commit -m 'Add some AmazingFeature'`)
+4. Push to the Branch (`git push origin feature/AmazingFeature`)
+5. Open a Pull Request
+
+<!-- LICENSE -->
+## License
+
+Distributed under the MIT License. See `LICENSE.txt` for more information.
+
+<div align="center">
+
+thank you for generously sharing your knowledge and expertise with us for free !!
+
+<img src="https://user-images.githubusercontent.com/74573675/233981012-36b8cad9-5d3d-4115-9d43-f7e46dc57bac.png" width="150" height="150">
+</div>
+
+<div align="center">
+
+## Support Him
+
+<a href="https://www.buymeacoffee.com/OsamaElzero" target="_blank"><img src="https://www.buymeacoffee.com/assets/img/custom_images/orange_img.png" alt="Buy Elzero A Coffee" style="height: 41px !important;width: 174px !important;box-shadow: 0px 3px 2px 0px rgba(190, 190, 190, 0.5) !important;-webkit-box-shadow: 0px 3px 2px 0px rgba(190, 190, 190, 0.5) !important;" ></a>
+</div>
