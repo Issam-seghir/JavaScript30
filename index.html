@@ -227,7 +227,7 @@
 			</div>
 			<div class="card">
 				<a href="./11 - Custom Video Player/index.html">
-					<img class="card-gif" src="./11 - Custom Video Player/assets/video/showcase.mp4" alt="Exercise 11" />
+					<video class="card-gif" src="./11 - Custom Video Player/assets/video/showcase.mp4" alt="Exercise 11" muted ></video>
 					<h2 class="card-title">Exercise 11</h2>
 				</a>
 			</div>
@@ -239,7 +239,7 @@
 			</div>
 			<div class="card">
 				<a href="./13 - Slide in on Scroll/index-START.html">
-					<img class="card-gif" src="./13 - Slide in on Scroll/assets/video/showcase.mp4" alt="Exercise 13" />
+					<video class="card-gif" src="./13 - Slide in on Scroll/assets/video/showcase.mp4" alt="Exercise 13" muted ></video>
 					<h2 class="card-title">Exercise 13</h2>
 				</a>
 			</div>
@@ -257,7 +257,7 @@
 			</div>
 			<div class="card">
 				<a href="./16 - Mouse Move Shadow/index-START.html">
-					<img class="card-gif" src="./16 - Mouse Move Shadow/assets/video/showcase.mp4" alt="Exercise 16" />
+					<video class="card-gif" src="./16 - Mouse Move Shadow/assets/video/showcase.mp4" alt="Exercise 16" muted ></video>
 					<h2 class="card-title">Exercise 16</h2>
 				</a>
 			</div>
@@ -305,7 +305,7 @@
 			</div>
 			<div class="card">
 				<a href="./24 - Sticky Nav/index-START.html">
-					<img class="card-gif" src="./24 - Sticky Nav/assets/video/showcase.mp4" alt="Exercise 24" />
+					<video class="card-gif" src="./24 - Sticky Nav/assets/video/showcase.mp4" alt="Exercise 24" muted ></video>
 					<h2 class="card-title">Exercise 24</h2>
 				</a>
 			</div>
@@ -329,7 +329,7 @@
 			</div>
 			<div class="card">
 				<a href="./28 - Video Speed Controller/index-START.html">
-					<img class="card-gif" src="./28 - Video Speed Controller/assets/video/showcase.mp4" alt="Exercise 28" />
+					<video class="card-gif" src="./28 - Video Speed Controller/assets/video/showcase.mp4" alt="Exercise 28" muted ></video>
 					<h2 class="card-title">Exercise 28</h2>
 				</a>
 			</div>
@@ -341,7 +341,7 @@
 			</div>
 			<div class="card">
 				<a href="./30 - Whack A Mole/index-START.html">
-					<img class="card-gif freezeframe" src="" alt="Exercise 30" />
+					<video class="card-gif" src="./30 - Whack A Mole/assets/video/showcase.mp4" alt="Exercise 30" muted ></video>
 					<h2 class="card-title">Exercise 30</h2>
 				</a>
 			</div>
@@ -350,6 +350,17 @@
 		<script src="https://unpkg.com/freezeframe/dist/freezeframe.min.js"></script>
 		<script>
 			new Freezeframe();
+			const videos = document.querySelectorAll(".card video");
+			console.log(videos);
+			function playVideo() {
+				this.play();
+			}
+			function stopVideo() {
+				this.currentTime = 0;
+				this.pause();
+			}
+			videos.forEach((video) => video.addEventListener("mouseenter", playVideo));
+			videos.forEach((video) => video.addEventListener("mouseleave", stopVideo));
 		</script>
 	</body>
 </html>
