@@ -58,29 +58,28 @@ Certainly! Here are the features of the code for the clock with ticking sound ef
 - The function **calculates** the `X` and `Y` coordinates based on the number's **index** and total count of numbers.
 - This ensures that the numbers form a circular shape on the **clock** **face**, adapting to changes in **clock** **width**.
 
-    ```js
-        // Function to calculate the position of numbers around the clock face
-        function calculateNumberPosition(numberIndex, totalNumbers) {
-          const angle = (360 / totalNumbers) * numberIndex;
-          const radius = 15; // Adjust the radius to position the numbers closer or farther from the center
-          const centerX = 16; // X-coordinate of the center of the clock
-          const centerY = 16; // Y-coordinate of the center of the clock
+```js
+  // Function to calculate the position of numbers around the clock face
+  function calculateNumberPosition(numberIndex, totalNumbers) {
+    const angle = (360 / totalNumbers) * numberIndex;
+    const radius = 15; // Adjust the radius to position the numbers closer or farther from the center
+    const centerX = 16; // X-coordinate of the center of the clock
+    const centerY = 16; // Y-coordinate of the center of the clock
 
-          // Calculate the X and Y coordinates based on the angle and radius
-          const x = centerX + radius * Math.cos((angle - 90) * (Math.PI / 180));
-          const y = centerY + radius * Math.sin((angle - 90) * (Math.PI / 180));
+    // Calculate the X and Y coordinates based on the angle and radius
+    const x = centerX + radius * Math.cos((angle - 90) * (Math.PI / 180));
+    const y = centerY + radius * Math.sin((angle - 90) * (Math.PI / 180));
 
-          return { x, y };
-        }
-
-    ```
+    return { x, y };
+  }
+```
 
 - I iterate through each number element and apply the calculated **position** on the `style.left` and `style.top` properties.
 - This arrangement results in a visually appealing **clock** **face** with positioned numbers.
 
     ```js
-       // Position each number around the clock face using trigonometry
-    numbers.forEach((number, index) => {
+      // Position each number around the clock face using trigonometry
+      numbers.forEach((number, index) => {
       const position = calculateNumberPosition(index + 1, numbers.length);
       number.style.left = position.x + "rem";
       number.style.top = position.y + "rem";
@@ -95,77 +94,77 @@ Certainly! Here are the features of the code for the clock with ticking sound ef
   - Revise the **clock hands' positions** (hourHand, minuteHand, and secondHand) through the `style.transform` property.
   - Update the clock elements' text content (hourSpan, minuteSpan, and secondSpan) with the current time details. Use `padStart(2, '0')` to guarantee **single-digit** values are formatted with leading zeros.
 
-    ```js
-        function updateClock() {
-          // Select the clock hands and elements that display hours, minutes, and seconds
-          const minuteHand = document.querySelector('.min-hand');
-          const secondHand = document.querySelector('.second-hand');
-          const hourHand = document.querySelector('.hour-hand');
-          // Get the current time components: minutes, seconds, and hours
-          let currentMinute = new Date().getMinutes();
-          let currentSeconds = new Date().getSeconds();
-          let currentHour = new Date().getHours();
-          currentHour = (currentHour % 12) || 12; // Convert to 12-hour format
+```js
+  function updateClock() {
+    // Select the clock hands and elements that display hours, minutes, and seconds
+    const minuteHand = document.querySelector('.min-hand');
+    const secondHand = document.querySelector('.second-hand');
+    const hourHand = document.querySelector('.hour-hand');
+    // Get the current time components: minutes, seconds, and hours
+    let currentMinute = new Date().getMinutes();
+    let currentSeconds = new Date().getSeconds();
+    let currentHour = new Date().getHours();
+    currentHour = (currentHour % 12) || 12; // Convert to 12-hour format
 
 
-          // Update the position of the hours hand
-          hourHand.style.transform = `rotate(${currentHour * (360 / 12) + currentMinute / 2 + 90}deg)`;
+    // Update the position of the hours hand
+    hourHand.style.transform = `rotate(${currentHour * (360 / 12) + currentMinute / 2 + 90}deg)`;
 
-          // Update the position of the minute hand
-          minuteHand.style.transform = `rotate(${currentMinute * (360 / 60) + 90}deg)`;
+    // Update the position of the minute hand
+    minuteHand.style.transform = `rotate(${currentMinute * (360 / 60) + 90}deg)`;
 
-          // Update the position of the second hand
-          secondHand.style.transform = `rotate(${currentSeconds * (360 / 60) + 90}deg)`;
+    // Update the position of the second hand
+    secondHand.style.transform = `rotate(${currentSeconds * (360 / 60) + 90}deg)`;
 
-          // Update the text content of display span
-          const hourSpan = document.querySelector('.hour');
-          const minuteSpan = document.querySelector('.minute');
-          const secondSpan = document.querySelector('.second');
+    // Update the text content of display span
+    const hourSpan = document.querySelector('.hour');
+    const minuteSpan = document.querySelector('.minute');
+    const secondSpan = document.querySelector('.second');
 
-          const hours = currentHour.toString().padStart(2, '0');
-          const minutes = currentMinute.toString().padStart(2, '0');
-          const seconds = currentSeconds.toString().padStart(2, '0');
+    const hours = currentHour.toString().padStart(2, '0');
+    const minutes = currentMinute.toString().padStart(2, '0');
+    const seconds = currentSeconds.toString().padStart(2, '0');
 
-          hourSpan.textContent = hours;
-          minuteSpan.textContent = minutes;
-          secondSpan.textContent = seconds;
+    hourSpan.textContent = hours;
+    minuteSpan.textContent = minutes;
+    secondSpan.textContent = seconds;
 
-        }
-    ```
+  }
+```
 
 - I set up an **event** **handler** to call `updateClock()` when the **window** **loads**.
 - This initializes the **clock**'s **appearance** and **display**.
 - Additionally, I call the `clockSound()` function to play the initial **tick** **sound** and ensure the sound **replays** when it ends.
 - The `updateClock()` function is also scheduled to run every second (**1000** **milliseconds**) to maintain the real-time **display** of the clock.
 
-    ```js
-        // Call the clockSound function initially when the window loads
-        window.onload = function () {
-          updateClock();
+```js
+  // Call the clockSound function initially when the window loads
+  window.onload = function () {
+    updateClock();
 
-          // Play sound initially
-          clockSound();
+    // Play sound initially
+    clockSound();
 
-          // Play sound again when the audio ends
-          audio.addEventListener('ended', clockSound);
+    // Play sound again when the audio ends
+    audio.addEventListener('ended', clockSound);
 
-          // Update clock every second
-          setInterval(updateClock, 1000);
-        };
-    ```
+    // Update clock every second
+    setInterval(updateClock, 1000);
+  };
+```
 
 ### 3.Ticking Sound Effect
 
 ```js
-    const audio = document.querySelector("audio");
+  const audio = document.querySelector("audio");
 
-    // Function to play the clock sound
-    function clockSound() {
-      if (audio) {
-        audio.currentTime = 0;
-        audio.play();
-      }
+  // Function to play the clock sound
+  function clockSound() {
+    if (audio) {
+      audio.currentTime = 0;
+      audio.play();
     }
+  }
 
 ```
 

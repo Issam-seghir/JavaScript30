@@ -67,6 +67,7 @@ module.exports = {
 		"unicorn/prevent-abbreviations": [
 			"error",
 			{
+				"checkFilenames": false,
 				replacements: {
 					e: false,
 					err: {

@@ -1,9 +1,10 @@
+<!-- eslint-disable unicorn/prevent-abbreviations -->
 <!DOCTYPE html>
 <html lang="en">
 	<head>
 		<meta charset="UTF-8" />
 		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
-		<title>JS + CSS Clock</title>
+		<title>Custom Video Player</title>
 		<link rel="stylesheet" href="./cobalt theme/cobalt.css" />
 		<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/styles/atom-one-dark.min.css" />
 	</head>
@@ -54,7 +55,7 @@
 			}
 
 			async function loadMarkdownContent() {
-				const markdownContent = await fetchAndConvertMarkdownToHTML("../02 - JS and CSS Clock/README.md");
+				const markdownContent = await fetchAndConvertMarkdownToHTML("../11 - Custom Video Player/README.md");
 				const markdownContainer = document.querySelector(".markdown-content");
 				markdownContainer.innerHTML = markdownContent;
 
@@ -68,10 +69,10 @@
 			// Listen for the custom event after markdown content is loaded
 			document.addEventListener("markdownContentLoaded", function () {
 				// change embeded img path :
-				const img = document.querySelector(".markdown-content h1 ~ p>img");
-				img.src = "../02 - JS and CSS Clock/assets/images/showcase.gif";
+				const video = document.querySelector(".video-container video");
+				video.src = "../11 - Custom Video Player/assets/video/showcase.mp4";
 
-                // add margin for heading if the preview tag is heading also
+				// add margin for heading if the preview tag is heading also
 				// Get all headings in the document
 				const headings = document.querySelectorAll("h1, h2, h3, h4, h5, h6");
 

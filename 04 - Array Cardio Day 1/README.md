@@ -18,7 +18,6 @@ I applied **filtering**, **mapping**, **sorting**, and **reducing** techniques t
   - [7. Sorting People Alphabetically](#7-sorting-people-alphabetically)
   - [8. Reducing Data Instances](#8-reducing-data-instances)
 
-
 ## 1. Filtering Inventors
 
 ```js
@@ -122,7 +121,7 @@ const data = ['car', 'car', 'truck', 'truck', 'bike', 'walk', 'car', 'van', 'bik
 - The `reduce()` method is applied to the `data` array. The `reduce()` method takes a callback function and an initial value (an empty object `{}` in this case) as arguments.
 
 ```javascript
-const instances = data.reduce((acc, item) => {
+const instances = data.reduce((acc, item) => {...}, {});
 ```
 
 - Inside the callback function, two things happen:
@@ -130,20 +129,20 @@ const instances = data.reduce((acc, item) => {
   - For each `item` in the `data` array, the code checks if the `item` is already a key in the `acc` object. If it's not, a new key is created with the `item`, and its value is initialized to `0`. Then, `1` is added to the value, effectively counting the occurrence of the `item`.
 
 ```javascript
+const instances = data.reduce((acc, item) => {
   acc[item] = (acc[item] || 0) + 1;
+  ...
+}, {});
 ```
 
 - The callback function returns the updated `acc` object after each iteration.
-
-```javascript
-  return acc;
-```
-
 - The initial value for the accumulator is an empty object `{}`.
-
 - The `reduce()` method returns the `instances` object, which contains key-value pairs representing the count of each unique item in the `data` array.
 
 ```javascript
+const instances = data.reduce((acc, item) => {
+  acc[item] = (acc[item] || 0) + 1;
+  return acc;
 }, {});
 ```
 

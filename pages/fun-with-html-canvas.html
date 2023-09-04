@@ -3,7 +3,7 @@
 	<head>
 		<meta charset="UTF-8" />
 		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
-		<title>JS + CSS Clock</title>
+		<title>Fun With Html Canvas</title>
 		<link rel="stylesheet" href="./cobalt theme/cobalt.css" />
 		<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/styles/atom-one-dark.min.css" />
 	</head>
@@ -54,7 +54,7 @@
 			}
 
 			async function loadMarkdownContent() {
-				const markdownContent = await fetchAndConvertMarkdownToHTML("../02 - JS and CSS Clock/README.md");
+				const markdownContent = await fetchAndConvertMarkdownToHTML("../08 - Fun with HTML5 Canvas/README.md");
 				const markdownContainer = document.querySelector(".markdown-content");
 				markdownContainer.innerHTML = markdownContent;
 
@@ -69,7 +69,7 @@
 			document.addEventListener("markdownContentLoaded", function () {
 				// change embeded img path :
 				const img = document.querySelector(".markdown-content h1 ~ p>img");
-				img.src = "../02 - JS and CSS Clock/assets/images/showcase.gif";
+				img.src = "../08 - Fun with HTML5 Canvas/assets/image/showcase.gif";
 
                 // add margin for heading if the preview tag is heading also
 				// Get all headings in the document

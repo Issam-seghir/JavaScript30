@@ -1,7 +1,7 @@
 # Dynamic Text Shadow Effect
 
 <div class="video-container">
-  <video controls >
+  <video controls autoplay>
     <source src="./assets/video/showcase.mp4" type="video/mp4">
     Your browser does not support the video tag.
   </video>
