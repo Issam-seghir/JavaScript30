@@ -1,6 +1,11 @@
 # Countdown Timer
 
-![Alt text](assets/images/showcase.gif)
+<div class="video-container">
+  <video controls  autoplay>
+    <source src="assets/video/showcase.mp4" type="video/mp4" >
+    Your browser does not support the video tag.
+  </video>
+</div>
 
 This JavaScript code creates a countdown timer that allows users to set a custom time interval or choose predefined times to countdown from. It provides real-time updates on the remaining time and the expected end time.
 

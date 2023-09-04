@@ -11,7 +11,11 @@ This code example demonstrates a video playback speed controller that allows use
 
 Let's explore how I **achieved** this and what I **added/fixed** to enhance the functionality.
 
+
+## Table of Contents
+
 - [Custom Video Speed Controller](#custom-video-speed-controller)
+  - [Table of Contents](#table-of-contents)
   - [Features](#features)
   - [How It Works](#how-it-works)
     - [1. Event Listeners Setup](#1-event-listeners-setup)
