@@ -87,6 +87,63 @@
 					}
 				}
 
+				// add copy button to all code blocks
+				// Select all code Code Blocks
+				const codeBlocks = document.querySelectorAll("pre");
+				// Function to copy code when the button is clicked
+				function copyCode(event) {
+					const codeElement = event.target.parentNode.querySelector("code");
+
+					// Create a range to select the text inside the code element
+					const range = document.createRange();
+					range.selectNode(codeElement);
+
+					// Create a selection to select the text
+					const selection = window.getSelection();
+					selection.removeAllRanges();
+					selection.addRange(range);
+
+					// Copy the selected text to the clipboard
+					document.execCommand("copy");
+
+					// Deselect the text
+					selection.removeAllRanges();
+
+					// Display a message or perform any other action as needed
+					console.log("Code copied to clipboard");
+					// show tooltip
+					showTooltip(event.target.parentNode);
+				}
+				// Function to create and show the tooltip
+				function showTooltip(codeBlock) {
+					const toolTip = codeBlock.querySelector(".tooltip")
+					toolTip.classList.add("show");
+
+					setTimeout(() => {
+						toolTip.classList.remove("show");
+					}, 2000);
+				}
+
+				// Loop through each  code block
+				codeBlocks.forEach((codeBlock) => {
+					// Create a span element for the copy button
+					const copyButton = document.createElement("span");
+					copyButton.textContent = "Copy";
+					copyButton.classList.add("copy-button");
+
+					// add tool tip for the button when its clicked
+					const tooltip = document.createElement("span");
+					tooltip.classList.add("tooltip");
+					tooltip.textContent = "Copied!";
+					copyButton.append(tooltip);
+
+					// Attach the click event to the copy button
+					copyButton.addEventListener("click", copyCode);
+
+					// Append the copy button to the code codeBlock
+					codeBlock.append(copyButton);
+				});
+				
 				// Move the toggle button to the desired position
 				const toggleButton = document.createElement("div");
 				toggleButton.classList.add("toggle-button");
