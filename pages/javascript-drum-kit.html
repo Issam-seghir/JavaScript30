@@ -4,169 +4,10 @@
 		<meta charset="UTF-8" />
 		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
 		<title>JavaScript Drum Kit</title>
-		<link rel="stylesheet" href="../cobalt.css" />
+		<link rel="stylesheet" href="./cobalt theme/cobalt.css" />
 		<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/styles/atom-one-dark.min.css" />
-		<style>
-			:root {
-				scroll-behavior: smooth;
-			}
-
-			h1.toc-title {
-				overflow: hidden; /* Hide any overflowing content */
-				font-size: 2.25rem;
-				line-height: 2.5rem;
-				text-overflow: ellipsis; /* Show ellipsis (...) when content overflows */
-				white-space: nowrap; /* Prevent text from wrapping */
-			}
-
-			.container {
-				display: flex;
-			}
-
-			/* Style for the sidebar */
-			.sidebar {
-				position: sticky;
-				top: 0;
-				align-self: flex-start; /* <-- this is the fix */
-				width: 20%;
-				min-height: 100vh;
-				opacity: 1;
-
-				/* box-shadow: 0 0 10px rgb(0 0 0 / 10%); */
-				border-radius: 0.25rem;
-				box-shadow: 15px 3px 140px -31px rgb(0 0 0 / 47.9%);
-				transition: all 0.7s ease;
-			}
-
-			/* Style for the Table of Contents */
-			.toc {
-				padding: 20px;
-			}
-
-			.toc ul {
-				margin: 0;
-				padding: 0;
-				list-style: none;
-			}
-
-			.toc li {
-				position: relative;
-				margin-bottom: 8px;
-			}
-
-			.toc li::before {
-				content: "";
-				position: absolute;
-				top: 10%;
-				left: -3%;
-				transform-origin: top;
-				display: block;
-				width: 0.07rem;
-				height: 80%;
-				background-color: #f4c25e;
-				border-radius: 1rem;
-				transition: width 0.3s cubic-bezier(0.4, 0, 0.2, 1); /* Use cubic-bezier easing function */
-			}
-
-			.toc li:hover::before {
-				width: 0.25rem;
-			}
-
-			/* Style for TOC links at different levels */
-			.toc-level-2 {
-				margin-left: 10px;
-			}
-
-			.toc-level-3 {
-				margin-left: 20px;
-			}
-
-			/* Add more styles for other levels if needed */
-
-			/* Highlight TOC links on hover */
-			.toc a:hover {
-				color: #007bff;
-			}
-
-			/* Add styles for the toggle button */
-			.toggle-button {
-				cursor: pointer;
-				position: absolute;
-				top: 0;
-				right: 0%; /* Adjust the right position as needed */
-				left: -10%;
-				margin: 10px;
-				padding: 10px;
-				font-size: 24px;
-				color: #f4c25e;
-				background-color: transparent;
-				border: none;
-				transition: all 0.5s ease;
-			}
-
-			/* Adjust the sidebar's width when it's collapsed */
-
-			/* .sidebar.collapsed {
-				width: 0; // Adjust as needed
-			} */
-
-			/* Adjust the sidebar's width when it's collapsed */
-			.sidebar.collapsed {
-				width: 0; /* Adjust as needed */
-				opacity: 0;
-			}
-
-			.no-wrap {
-				overflow: hidden; /* Hide any overflowing content */
-				text-overflow: ellipsis; /* Show ellipsis (...) when content overflows */
-				white-space: nowrap; /* Prevent text from wrapping */
-			}
-
-			.sidebar.collapsed ~ .markdown-content .toggle-button {
-				left: -30%;
-			}
-
-			/* .sidebar.collapsed .toggle-button {
-				margin-left: 0;
-			} */
-
-			.markdown-content {
-				position: relative;
-				max-width: 55%;
-			}
-
-			.scroll-to-top-button {
-				cursor: pointer;
-				position: fixed;
-				right: 20px;
-				bottom: 20px;
-				display: flex;
-				align-items: center;
-				justify-content: center;
-				width: 40px;
-				height: 40px;
-				font-size: 24px;
-				color: #696969;
-				opacity: 0;
-				background-color: #f4c25e;
-				border: none;
-				border-radius: 50%;
-				box-shadow: rgb(0 0 0 / 40%) 0 2px 4px, rgb(243 216 141) 0 7px 13px -3px, rgb(0 0 0 / 20%) 0 -3px 0 inset;
-				transition: all 0.3s ease-in-out;
-			}
-
-			.scroll-to-top-button:hover {
-				background-color: #ffaa0b;
-				box-shadow: rgb(243 216 141) 0 2px 4px, rgb(243 216 141) 0 7px 13px -3px, rgb(0 0 0 / 20%) 0 -3px 0 inset;
-			}
-
-			.scroll-to-top-button.show {
-				opacity: 1;
-			}
-		</style>
 	</head>
 	<body>
-		<!-- Sidebar TOC container -->
 
 		<div class="container">
 			<button id="scrollToTopButton" class="scroll-to-top-button">
@@ -227,6 +68,10 @@
 
 			// Listen for the custom event after markdown content is loaded
 			document.addEventListener("markdownContentLoaded", function () {
+				// change embeded img path :
+				const img = document.querySelector(".markdown-content h1 ~ p>img");
+				img.src = "../01 - JavaScript Drum Kit/assets/images/showcase.gif";
+				console.log(img);
 				// Move the toggle button to the desired position
 				const toggleButton = document.createElement("div");
 				toggleButton.classList.add("toggle-button");

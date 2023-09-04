@@ -1,7 +1,7 @@
 
 # Drum Kit
 
-![gif](assets/images/showcase.gif)
+![Alt text](assets/images/showcase.gif)
 
 I create  a **dynamic drum kit** that's both fun and interactive.
 Each key corresponds to a unique **animal sound** and triggers a cool **animation**.

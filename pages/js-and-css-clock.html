@@ -1,10 +1,157 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-</head>
-<body>
-</body>
+	<head>
+		<meta charset="UTF-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<title>JS + CSS Clock</title>
+		<link rel="stylesheet" href="./cobalt theme/cobalt.css" />
+		<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/styles/atom-one-dark.min.css" />
+	</head>
+	<body>
+
+		<div class="container">
+			<button id="scrollToTopButton" class="scroll-to-top-button">
+				<svg fill="#000000" height="114px" width="114px" viewBox="0 0 512 512">
+					<g id="SVGRepo_iconCarrier">
+						<path
+							d="M264.32,147.947c-4.053-4.587-10.987-5.013-15.573-0.96c-0.32,0.32-0.64,0.64-0.96,0.96L109.12,318.613 c-3.733,4.587-2.987,11.307,1.6,15.04s11.307,2.987,15.04-1.6L256,171.627l130.347,160.427c3.733,4.587,10.453,5.227,15.04,1.6 c4.587-3.733,5.227-10.453,1.6-15.04L264.32,147.947z"
+						></path>
+					</g>
+				</svg>
+			</button>
+			<div class="sidebar">
+				<h1 class="toc-title">Table of Contents</h1>
+				<nav class="toc"></nav>
+			</div>
+			<div class="markdown-content" id="write">
+				<!-- The converted Markdown content will be inserted here -->
+			</div>
+		</div>
+
+		<!-- Include external scripts -->
+		<script src="https://cdnjs.cloudflare.com/ajax/libs/showdown/2.1.0/showdown.min.js" integrity="sha512-LhccdVNGe2QMEfI3x4DVV3ckMRe36TfydKss6mJpdHjNFiV07dFpS2xzeZedptKZrwxfICJpez09iNioiSZ3hA==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+		<script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/highlight.min.js"></script>
+		<script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/languages/javascript.min.js"></script>
+		<script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/languages/css.min.js"></script>
+		<script>
+			// use gfm :  github markdown syntax
+			showdown.setFlavor("github");
+			/* parse GitHub-style mentions in the Markdown document.
+			This means that when a user types a GitHub username in the Markdown document, it will be converted into a link to that user's GitHub profile.
+			*/
+			// showdown.setOption("ghMentions", true);
+
+			// change option globally  : affects all Showdown instances
+			console.log(showdown.getOptions());
+
+			const markdownToHtml = new showdown.Converter();
+
+			async function fetchAndConvertMarkdownToHTML(filePath) {
+				const markdownResponse = await fetch(filePath);
+				let markdown = await markdownResponse.text();
+				// Remove the "Table of Contents" heading and its content from markdown text
+				markdown = markdown.replace(/## Table of Contents[\S\s]*?(?=## )/, "");
+				return markdownToHtml.makeHtml(markdown);
+			}
+
+			async function loadMarkdownContent() {
+				const markdownContent = await fetchAndConvertMarkdownToHTML("../02 - JS and CSS Clock/README.md");
+				const markdownContainer = document.querySelector(".markdown-content");
+				markdownContainer.innerHTML = markdownContent;
+
+				// Dispatch custom event after markdown content is inserted
+				const markdownContentLoadedEvent = new Event("markdownContentLoaded");
+				document.dispatchEvent(markdownContentLoadedEvent);
+			}
+
+			loadMarkdownContent();
+
+			// Listen for the custom event after markdown content is loaded
+			document.addEventListener("markdownContentLoaded", function () {
+				// change embeded img path :
+				const img = document.querySelector(".markdown-content h1 ~ p>img");
+				img.src = "../02 - JS and CSS Clock/assets/images/showcase.gif";
+
+
+				// Move the toggle button to the desired position
+				const toggleButton = document.createElement("div");
+				toggleButton.classList.add("toggle-button");
+				toggleButton.innerHTML = "&#9776;";
+
+				const markdownContainer = document.querySelector(".markdown-content");
+				markdownContainer.prepend(toggleButton);
+
+				// Add event listener to the toggle button
+				toggleButton.addEventListener("click", toggleSidebar);
+
+				// Toggle the sidebar's class to control its visibility
+				function toggleSidebar() {
+					const sidebar = document.querySelector(".sidebar");
+					sidebar.classList.toggle("collapsed");
+				}
+
+				const sidebar = document.querySelector(".sidebar");
+
+				function noWrapContent(e) {
+					// avoid trigger event in child elements
+					if (e.target !== this) return;
+
+					const toc = document.querySelector(".toc");
+					toc.classList.add("no-wrap");
+				}
+				function wrapContent() {
+					const toc = document.querySelector(".toc");
+
+					toc.classList.remove("no-wrap");
+				}
+				// Add event listener to the toggle button
+				sidebar.addEventListener("transitionstart", noWrapContent);
+				sidebar.addEventListener("transitionend", wrapContent);
+
+				// scroll to top button
+				const scrollToTopButton = document.querySelector("#scrollToTopButton");
+
+				// Show or hide the "Scroll to Top" button based on scroll position
+				window.addEventListener("scroll", () => {
+					if (window.scrollY > 300) {
+						scrollToTopButton.classList.add("show");
+					} else {
+						scrollToTopButton.classList.remove("show");
+					}
+				});
+
+				// Scroll to top when the button is clicked
+				scrollToTopButton.addEventListener("click", () => {
+					window.scrollTo({
+						top: 0,
+						behavior: "smooth",
+					});
+				});
+
+				// Apply syntax highlighting after Markdown is inserted
+				hljs.highlightAll();
+				// Generate and insert the TOC
+				generateAndInsertTOC();
+			});
+
+			function generateAndInsertTOC() {
+				// Get all headings with IDs
+				const headings = document.querySelectorAll("h2[id], h3[id], h4[id], h5[id], h6[id]");
+				const tocContainer = document.querySelector(".toc");
+
+				// Generate the TOC
+				let tocHTML = "<ul>";
+				headings.forEach((heading) => {
+					const id = heading.getAttribute("id");
+					const text = heading.textContent;
+					const level = Number.parseInt(heading.tagName.charAt(1));
+
+					tocHTML += `<li class="toc-level-${level}"><a href="#${id}">${text}</a></li>`;
+				});
+				tocHTML += "</ul>";
+
+				tocContainer.innerHTML = tocHTML;
+			}
+		</script>
+	</body>
 </html>
