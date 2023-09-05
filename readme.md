@@ -13,11 +13,11 @@
 ![deploy](https://img.shields.io/website?down_color=red&down_message=down&style=flat-square&up_color=succes&up_message=up&url=https%3A%2F%2Fissam-seghir.github.io%2FJavaScript30%2F)
 
   <p align="center">
-This project is my own recap of [Wes Boss JavaScript 30](https://javascript30.com/) course. It encompasses all the challenges and exercises from the original course, enhanced with additional features and improvements.
+This project is my own recap of  <a href="https://javascript30.com/"> Wes Boss JavaScript 30</a> course. It encompasses all the challenges and exercises from the original course, enhanced with additional features and improvements.
 
 If you appreciate it, please consider giving it a star ⭐
  <br />
-    <a href="./pages/toc.html"><strong>Read the Notes »</strong></a>
+    <a href="https://issam-seghir.github.io/JavaScript30/"><strong>Read the Notes »</strong></a>
     <br />
     <br />
     <a href="https://issam-seghir.github.io/JavaScript30/">View Demo</a>
