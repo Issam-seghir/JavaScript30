@@ -6,11 +6,11 @@ In this project, I created a simple webcame that captures live video from the us
 
 Let's explore how I **achieved** this and what I **added/fixed** to enhance the functionality.
 
-> NOTE: based on **MDN** and in the time that i write this **08/2023**  **getUserMedia() API** its a **Secure context** see: [MDN : getUserMedia API](https://developer.mozilla.org/en-US/docs/Web/API/MediaDevices/getUserMedia).
-> **Secure context** : This feature is available only in secure contexts (HTTPS), in some or all supporting browsers.
-The `getVideo` function utilizes the `navigator.mediaDevices.getUserMedia` API to access the user's webcam. It starts the video playback and displays the webcam feed on the web page.
+> NOTE: As of **August 2023**, **getUserMedia() API** is considered to be in a **Secure context**, according to [MDN: getUserMedia API](https://developer.mozilla.org/en-US/docs/Web/API/MediaDevices/getUserMedia). A **"Secure context"** implies that this feature is only available in secure contexts (**HTTPS**) in some or all supporting browsers.
 
-> to setup https for testing locally this project , read this [section](../readme.md) in the readme  , see also : [How to use HTTPS for local development (web.dev)](https://web.dev/how-to-use-local-https/)
+The `getVideo` function employs the `navigator.mediaDevices.getUserMedia` API to access the user's webcam. It initiates video playback and displays the webcam feed on the web page.
+
+To set up **HTTPS** for local testing in this project, please refer to the [relevant section](../readme.md#setup-https) in the readme. You can also find information here: [How to use HTTPS for local development (web.dev)](https://web.dev/how-to-use-local-https/).
 
 ## Table of Contents
 
@@ -61,7 +61,7 @@ The `getVideo` function utilizes the `navigator.mediaDevices.getUserMedia` API t
 
 The `paintToCanvas` function is called when the `video` element's `canplay` event is triggered. This function draws the current video frame onto an HTML5 Canvas element. The video feed is continually drawn to the canvas using the `ctx.drawImage` method.
 
-> we talk about the usefull functions i create `rgbSplit()` / `redEffect()` / `greenScreen()`  later sonner
+> we talk about the useful functions i create `rgbSplit()` / `redEffect()` / `greenScreen()`  later sonner
 
 ```js
     const canvas = document.querySelector(".photo");
@@ -180,4 +180,3 @@ Various visual effects are implemented as separate functions, including `redEffe
 - **Webcam Integration**: Learned how to access and utilize the user's webcam using the `getUserMedia` API.
 - **Setup Https Server** for testing **Secure context API**
 - **Real-Time Effects**: Implemented real-time visual effects by modifying pixel data on the canvas.
-

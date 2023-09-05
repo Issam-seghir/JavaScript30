@@ -13,8 +13,7 @@
 ![deploy](https://img.shields.io/website?down_color=red&down_message=down&style=flat-square&up_color=succes&up_message=up&url=https%3A%2F%2Fissam-seghir.github.io%2FJavaScript30%2F)
 
   <p align="center">
-This project is my own recap of [Wes Bos's JavaScript 30](https://javascript30.com/) course. It encompasses all the challenges and exercises from the original course, enhanced with additional features and improvements.
-
+This project is my own recap of [Wes Boss JavaScript 30](https://javascript30.com/) course. It encompasses all the challenges and exercises from the original course, enhanced with additional features and improvements.
 
 If you appreciate it, please consider giving it a star ⭐
  <br />
@@ -30,162 +29,123 @@ If you appreciate it, please consider giving it a star ⭐
 
 <br>
 </div>
+
 <!-- TABLE OF CONTENTS -->
 <details>
   <summary>Table of Contents</summary>
   <ol>
     <li>
-      <a href="#about-the-project">About The Project</a>
-      <ul>
-        <li><a href="#built-with">Built With</a></li>
-      </ul>
+      <a href="#key-features">Key Features</a>
     </li>
     <li>
       <a href="#getting-started">Getting Started</a>
       <ul>
-        <li><a href="#prerequisites">Prerequisites</a></li>
-        <li><a href="#installation">Installation</a></li>
+        <li>
+          <a href="#installation">Installation</a>
+            <ul>
+              <li>
+                <a href="#setup-https">Setup HTTPS</a>
+                  <ul>
+                    <li>
+                      <a href="#step-1-globally">Step 1: Globally</a>
+                    </li>
+                    <li>
+                      <a href="#step-2-inside-the-project-folder">Step 2: Inside the project folder</a>
+                    </li>
+                    <li>
+                      <a href="#step-3-configure-your-server">Step 3: Configure Your Server</a>
+                    </li>
+                    <li>
+                      <a href="#step-4-accept-the-warning">Step 4: Accept the Warning</a>
+                    </li>
+                  </ul>
+              </li>
+            </ul>
+        </li>
       </ul>
     </li>
-    <li><a href="#usage">Usage</a></li>
-    <li><a href="#roadmap">Roadmap</a></li>
     <li><a href="#contributing">Contributing</a></li>
     <li><a href="#license">License</a></li>
-    <li><a href="#contact">Contact</a></li>
-    <li><a href="#acknowledgments">Acknowledgments</a></li>
   </ol>
 </details>
 <hr>
 
 <!-- ![link](https://i.imgur.com/8qQeqSJ.gif) -->
-![link](./assets/mockup/mockup.png)
+![Alt text](src/assets/image.png)
 
 ## Key Features
-- different style and different solution
-- some enchncments and improve perfermence
-- fix some issues with style and js code
-- use mddern technique like observe intersaction
-- I write a blog (note) for every exercice
-- I infused my unique touch and style.
 
-<!-- GETTING STARTED -->
+- Unique styles and solutions 🎨
+- Enhancements for improved performance 🚀
+- Resolved issues with both style and JavaScript code ✅
+- Utilized modern techniques like intersection observation 🌐
+- Comprehensive blog notes for each exercise 📝
+- Infused with my distinct style and touch ✨
+
 ## Getting Started
-
-This is an example of how you may give instructions on setting up your project locally.
-To get a local copy up and running follow these simple example steps.
-
-### Prerequisites
-
-This is an example of how to list things you need to use the software and how to install them.
-
-* npm
-
-  ```sh
-  npm install npm@latest -g
-  ```
 
 ### Installation
 
-_Below is an example of how you can instruct your audience on installing and setting up your app. This template doesn't rely on any external dependencies or services._
-
-1. Get a free API Key at [https://example.com](https://example.com)
-2. Clone the repo
+- Clone the repo
 
    ```sh
-   git clone https://github.com/your_username_/Project-Name.git
+   git clone git@github.com:issam-seghir/JavaScript30.git
    ```
 
-3. Install NPM packages
+> Note : As of **August 2023**, **getUserMedia() API** is considered to be in a **Secure context**, according to [MDN: getUserMedia API](https://developer.mozilla.org/en-US/docs/Web/API/MediaDevices/getUserMedia). A **"Secure context"** implies that this feature is only available in secure contexts (**HTTPS**) in some or all supporting browsers.
 
-   ```sh
-   npm install
-   ```
+- Cloning the repo is sufficient for most exercises, except for `19 - webcam` & `21 - geolocation`.
+- If you want to test these two exercises locally, you need to set up HTTPS for `19 - webcam` and localhost for `21 - geolocation`.
+- Setting up **HTTPS** is sufficient for both. If you are genuinely interested in testing these two exercises locally, please read the following instructions.
 
-4. Enter your API in `config.js`
+#### Setup HTTPS
 
-   ```js
-   const API_KEY = 'ENTER YOUR API';
-   ```
+##### Step 1: Globally
+
+- Install mkcert to generate a local certificate authority (CA) using your preferred package manager. In this example, I use Scoop, a package manager for Windows.
+- The CA certification is stored in the user folder.
 
 ```bash
-# Clone this repository
-
-$ git clone <https://github.com/amitmerchant1990/electron-markdownify>
-
-# Go into the repository
-
-$ cd electron-markdownify
-
-# Install dependencies
-
-$ npm install
-
-# Run the app
-
-$ npm start
+# Generate a local certificate authority (CA).
+# (This is only trusted locally on your device.)
+scoop install mkcert
+mkcert -install
 ```
 
-<p align="right">(<a href="#readme-top">back to top</a>)</p>
-
-
-## Resoursos
-
-- ✨ Tools
-  - [websemantics : fluid typo/space generator](https://websemantics.uk/tools/responsive-font-calculator/)
-  - [Utopia : another fluid typo/space generator](https://utopia.fyi/grid/calculator/)
-  - [modern reset css](https://github.com/Andy-set-studio/modern-css-reset/blob/master/dist/reset.css)
-  - [Free svg background generator (1)](https://bgjar.com/)
-  - [Free svg background generator (2)](https://www.svgbackgrounds.com/)
-  - [Free svg illustration](https://freesvgillustration.com/)
-  - [svg wave generator](https://www.softr.io/tools/svg-wave-generator)
-  - [logo ai generator](https://logo.com/logos/artificial-intelligence)
-
-- 📑Articles
-
-  - [Styling And Animating Svg With Css (smashingmagazine )](https://www.smashingmagazine.com/2014/11/styling-and-animating-svgs-with-css/)
-  - [Animate SVG Path Changes in CSS (css tricks)](https://css-tricks.com/animate-svg-path-changes-in-css/)
-  - [How to animate SVG with CSS (Log Rocket)](https://blog.logrocket.com/how-to-animate-svg-css-tutorial-examples/)
-
-- 💻 Turtorials
-  - [elzero youtube channel](https://www.youtube.com/playlist?list=PLDoPjvoNmBAzHSjcR-HnW9tnxyuye8KbF)
-  - [elszero web school](https://elzero.org/practical-html-css/)
-
-- 🎨 Design
-
-  - [Kasper template psd](https://www.graphberry.com/item/kasper-one-page-creative-html-theme)
-
-## Usage
-
-You can **install** or (**fork** + **clone**) this repository to your local machine by following these steps:
-> **optional** : install the recommanded extenison in : [.vscode/extensions.json](.vscode/extensions.json)
-
-### Option 1: Install the ZIP file
-
-1. Click on the green **"Code"** button at the top of the repository.
-1. Click on **"Download ZIP"** to download the repository as a ZIP file.
-1. Extract the ZIP file to a location of your choice on your computer.
-
-### Option 2: Fork + Clone the repository
-
-1. Click on the **fork**  button at the top of the repository.
-1. Open your **terminal** or **command** **prompt**.
-1. Navigate to the **directory** where you want to **clone** the repository.
-1. **Run** the following command:
+##### Step 2: Inside the project folder
 
 ```bash
-git clone <https://github.com/your-username/your-repo.git>
+# Generate a certificate for your site
+# with the hostname (localhost)
+cd <project-folder>
+mkcert localhost
 ```
 
-Replace **your-username** with your GitHub username and **your-repo** with the name of the repository.
+This will generate two files:
 
-### Option 3: Use the website
+- `localhost.crt`
+- `localhost.key`
 
- is cooking 🍜 ...
+> Note: It's important to ensure that these two files remain secret, and no one can access them. Be sure to add them to .gitignore before exposing them with a commit.
+
+##### Step 3: Configure Your Server
+
+```bash
+# This will install http-server for you
+npm install
+# This will generate an HTTPS link for you
+npm start
+```
+
+##### Step 4: Accept the Warning
+
+This warning appears because the certification is self-created locally. The browser is trying to protect you, but it is safe to ignore this warning.
+
+![Browser Warning](https://i.imgur.com/bRJTr6S.png)
 
 <br>
 <hr>
 
-<!-- CONTRIBUTING -->
 ## Contributing
 
 Contributions are what make the open source community such an amazing place to learn, inspire, and create. Any contributions you make are **greatly appreciated**.
@@ -203,17 +163,6 @@ Don't forget to give the project a star! Thanks again!
 ## License
 
 Distributed under the MIT License. See `LICENSE.txt` for more information.
-
-<div align="center">
-
-thank you for generously sharing your knowledge and expertise with us for free !!
-
-<img src="https://user-images.githubusercontent.com/74573675/233981012-36b8cad9-5d3d-4115-9d43-f7e46dc57bac.png" width="150" height="150">
-</div>
-
-<div align="center">
-
-## Support Him
 
 <a href="https://www.buymeacoffee.com/OsamaElzero" target="_blank"><img src="https://www.buymeacoffee.com/assets/img/custom_images/orange_img.png" alt="Buy Elzero A Coffee" style="height: 41px !important;width: 174px !important;box-shadow: 0px 3px 2px 0px rgba(190, 190, 190, 0.5) !important;-webkit-box-shadow: 0px 3px 2px 0px rgba(190, 190, 190, 0.5) !important;" ></a>
 </div>
