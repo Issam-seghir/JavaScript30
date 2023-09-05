@@ -22,9 +22,9 @@ If you appreciate it, please consider giving it a star ⭐
     <br />
     <a href="https://issam-seghir.github.io/JavaScript30/">View Demo</a>
     .
-    <a href="https://github.com/Issam-seghir/JavaScript30/issues">Report Bug</a>
+    <a href="https://github.com/issam-seghir/JavaScript30/issues">Report Bug</a>
     .
-    <a href="https://github.com/Issam-seghir/JavaScript30/issues">Request Feature</a>
+    <a href="https://github.com/issam-seghir/JavaScript30/pulls">Request Feature</a>
   </p>
 
 <br>
@@ -164,5 +164,5 @@ Don't forget to give the project a star! Thanks again!
 
 Distributed under the MIT License. See `LICENSE.txt` for more information.
 
-<a href="https://www.buymeacoffee.com/OsamaElzero" target="_blank"><img src="https://www.buymeacoffee.com/assets/img/custom_images/orange_img.png" alt="Buy Elzero A Coffee" style="height: 41px !important;width: 174px !important;box-shadow: 0px 3px 2px 0px rgba(190, 190, 190, 0.5) !important;-webkit-box-shadow: 0px 3px 2px 0px rgba(190, 190, 190, 0.5) !important;" ></a>
+<a href="https://www.buymeacoffee.com/issam.seghir" target="_blank"><img src="https://www.buymeacoffee.com/assets/img/custom_images/orange_img.png" alt="Buy Elzero A Coffee" style="height: 2.5625rem !important;width: 10.875rem !important;box-shadow: 0rem .1875rem .125rem 0rem rgba(190, 190, 190, 0.5) !important;-webkit-box-shadow: 0rem .1875rem .125rem 0rem rgba(190, 190, 190, 0.5) !important;" ></a>
 </div>
