@@ -17,7 +17,7 @@ This project is my own recap of  <a href="https://javascript30.com/"> Wes Boss J
 
 If you appreciate it, please consider giving it a star ⭐
  <br />
-    <a href="https://issam-seghir.github.io/JavaScript30/"><strong>Read the Notes »</strong></a>
+    <a href="https://issam-seghir.github.io/JavaScript30/pages/toc.html"><strong>Read the Notes »</strong></a>
     <br />
     <br />
     <a href="https://issam-seghir.github.io/JavaScript30/">View Demo</a>
