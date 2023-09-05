@@ -3,25 +3,22 @@
 
 <h1 align="center" > JavaScript 30</h1>
 
-![cntr](https://img.shields.io/github/contributors/Issam-seghir/JavaScript30?color=pink&style=for-the-badge)
-![pullreQ](https://img.shields.io/github/issues-pr/Issam-seghir/JavaScript30?color=orange&style=for-the-badge)
-![comt](https://img.shields.io/github/last-commit/Issam-seghir/JavaScript30?style=for-the-badge)
+![cntr](https://img.shields.io/github/contributors/issam-seghir/JavaScript30?color=pink&style=for-the-badge)
+![pullreQ](https://img.shields.io/github/issues-pr/issam-seghir/JavaScript30?color=orange&style=for-the-badge)
+![comt](https://img.shields.io/github/last-commit/issam-seghir/JavaScript30?style=for-the-badge)
 [![MIT License](https://img.shields.io/badge/License-MIT-green.svg?style=for-the-badge)](https://choosealicense.com/licenses/mit/)
 
-![frk](https://img.shields.io/github/forks/Issam-seghir/JavaScript30?style=flat-square)
-![str](https://img.shields.io/github/stars/Issam-seghir/JavaScript30?style=flat-square)
+![frk](https://img.shields.io/github/forks/issam-seghir/JavaScript30?style=flat-square)
+![str](https://img.shields.io/github/stars/issam-seghir/JavaScript30?style=flat-square)
 ![deploy](https://img.shields.io/website?down_color=red&down_message=down&style=flat-square&up_color=succes&up_message=up&url=https%3A%2F%2Fissam-seghir.github.io%2FJavaScript30%2F)
 
   <p align="center">
-This project is a my own recaps of [Wes Bos's JavaScript 30](https://javascript30.com/) course. It includes all the challenges and exercises from the original course, along with some additional features and improvements.
+This project is my own recap of [Wes Bos's JavaScript 30](https://javascript30.com/) course. It encompasses all the challenges and exercises from the original course, enhanced with additional features and improvements.
 
-Participating in and completing 30 day [Vanilla JS challenge (#JavaScript30)](https://javascript30.com/) by [WesBos](https://wesbos.com/).
-
-I added my own distinctive touch and Style
 
 If you appreciate it, please consider giving it a star ⭐
  <br />
-    <a href="https://github.com/othneildrew/Best-README-Template"><strong>Read the Notes »</strong></a>
+    <a href="./pages/toc.html"><strong>Read the Notes »</strong></a>
     <br />
     <br />
     <a href="https://issam-seghir.github.io/JavaScript30/">View Demo</a>
@@ -68,6 +65,9 @@ If you appreciate it, please consider giving it a star ⭐
 - some enchncments and improve perfermence
 - fix some issues with style and js code
 - use mddern technique like observe intersaction
+- I write a blog (note) for every exercice
+- I infused my unique touch and style.
+
 <!-- GETTING STARTED -->
 ## Getting Started
 

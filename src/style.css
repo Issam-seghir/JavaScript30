@@ -18,6 +18,36 @@
 	padding: 0;
 }
 
+:root {
+	scroll-behavior: smooth;
+	scrollbar-color: rgb(0 212 255 / 100%) #216cad23;
+	scrollbar-width: 5px;
+	scrollbar-gutter: auto;
+	overflow-y: scroll;
+}
+
+::selection {
+	background-color: rgb(2 51 61);
+}
+
+/* For Chrome and other browsers */
+
+::-webkit-scrollbar-track {
+	background-color: #051f2b;
+	border-radius: 10px;
+	box-shadow: inset 0 0 2px rgb(2 5 46 / 30%);
+}
+
+::-webkit-scrollbar {
+	width: 12px;
+}
+
+::-webkit-scrollbar-thumb {
+	background-color: #73e9fb;
+	border-radius: 10px;
+	box-shadow: inset 0 0 6px rgb(0 0 0 / 30%);
+}
+
 html,
 body {
 	overflow: auto;
