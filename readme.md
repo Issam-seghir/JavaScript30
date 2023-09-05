@@ -70,17 +70,15 @@ If you appreciate it, please consider giving it a star ⭐
 </details>
 <hr>
 
-<!-- ![link](https://i.imgur.com/8qQeqSJ.gif) -->
 ![Alt text](src/assets/image.png)
 
 ## Key Features
 
 - Unique styles and solutions 🎨
 - Enhancements for improved performance 🚀
-- Resolved issues with both style and JavaScript code ✅
-- Utilized modern techniques like intersection observation 🌐
+- Resolved some issues with both style and JavaScript code ✅
+- Utilized modern techniques like intersection observation ✨
 - Comprehensive blog notes for each exercise 📝
-- Infused with my distinct style and touch ✨
 
 ## Getting Started
 
@@ -88,7 +86,7 @@ If you appreciate it, please consider giving it a star ⭐
 
 - Clone the repo
 
-   ```sh
+   ```bash
    git clone git@github.com:issam-seghir/JavaScript30.git
    ```
 
